@@ -52,6 +52,16 @@ function userRemove() {
 				${user.phone} <%-- <%=user.getPhone()%> --%>
 			</td>
 		  </tr>		  
+		  <tr>
+			<td width="120" align="center" bgcolor="E6ECDE" height="22">커뮤니티</td>
+			<td width="470" bgcolor="ffffff" style="padding-left: 10">
+				<a href="<c:url value='/community/view'>
+					   <c:param name='commId' value='<%=Integer.toString(user.getCommId())%>'/>
+			 		 </c:url>">
+					${user.commName} <%-- <%=user.commName()%> --%>
+				</a>
+			</td>
+		  </tr>	
 	 	</table>
 	    <br>
 	    <a href="<c:url value='/user/update/form'>
