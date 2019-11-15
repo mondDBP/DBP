@@ -122,7 +122,21 @@ public class ProjectDAO {
 	
 //	findUsersOnProject 미정
 	public List<User> findUsersOnProject(int project_id) {
-		// TODO Auto-generated method stub
+		String sql = "SELECT userid"
+				+ "FROM PROJECT "
+				+ "WHERE project_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						
+//				Project proj = s.getString("user_id"),
+//				
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
 		return null;
 	}
 //	검색 
@@ -134,7 +148,7 @@ public class ProjectDAO {
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			if (rs.next()) {						// 학생 정보 발견
+			if (rs.next()) {						
 				Project proj = new Project(			
 						rs.getInt("project_id"),
 						rs.getString("category_name"),
