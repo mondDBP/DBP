@@ -61,7 +61,7 @@ function userCreate(targetUri) {
 		  <tr>
 			<td align="center">
 			<input type="button" value="로그인" onClick="login()"> &nbsp;
-			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/terms' />')">
+			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/terms.jsp' />')">
 			</td>						
 		  </tr>
 		  
