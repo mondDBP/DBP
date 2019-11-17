@@ -79,7 +79,7 @@ public class UserManager {
 		return true;
 	}
 	
-	public Project createProject(Project proj) throws SQLException {
+	public int createProject(Project proj) throws SQLException {
 		return projDAO.create(proj);		
 	}
 

@@ -84,7 +84,7 @@ public class ProjectDAO {
 	}
 
 //	프로젝트 삭제
-	public int remove(String project_id) throws SQLException {
+	public int remove(int project_id) throws SQLException {
 		String sql = "DELETE FROM Project WHERE project_id=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil에 delete문과 매개 변수 설정
 

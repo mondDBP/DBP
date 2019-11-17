@@ -3,6 +3,7 @@ package controller.project;
 import javax.servlet.http.HttpSession;
 
 // 프로젝트 세션이 필요한경우가 많지않아보여서 클래스는 만들긴했지만 다른곳에 사용하지않았음
+//ex.장바구니 -기능이 없어서 필요할지 모르겠음
 public class ProjectSessionUtils {
 	public static final String PROJECT_SESSION_KEY = "project_id";
 
