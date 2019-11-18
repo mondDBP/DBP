@@ -89,12 +89,12 @@ public class UserDAO_ej {
 	 * 기존의 사용자 정보를 수정.
 	 */
 	public int update(User user) throws SQLException {
-		String sql = "UPDATE USERINFO "
-					+ "SET password=?, name=?, email=?, phone=?, address=? "
-					+ "WHERE userid=?";
+		String sql = "UPDATE USERS "
+					+ "SET pwd=?, name=?, phone_number=?, address=?, email=?, resid_id=? "
+					+ "WHERE user_id=?";
 		Object[] param = new Object[] {user.getPassword(), user.getName(), 
-					user.getEmail(), user.getPhone(), 
-					user.getAddress(), user.getUserId()};				
+					user.getPhone(), 
+					user.getAddress(), user.getEmail() + "@" +user.getEmail2(), user.getResid_id() + user.getResid_id2()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 			
 		try {				
@@ -115,7 +115,7 @@ public class UserDAO_ej {
 	 * 사용자 ID에 해당하는 사용자를 삭제.
 	 */
 	public int remove(String userId) throws SQLException {
-		String sql = "DELETE FROM USERINFO WHERE userid=?";		
+		String sql = "DELETE FROM USERS WHERE user_id=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
@@ -168,9 +168,9 @@ public class UserDAO_ej {
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환(비밀번호와 주민등록번호는 개인정보상 null로 저장)
 	 */
 	public List<User> findUserList() throws SQLException {
-        String sql = "SELECT userId, name, email, phone, address " 
-        		   + "FROM USER "
-        		   + "ORDER BY name";
+        String sql = "SELECT id, pwd, name, phone_number, address, email, resid_id " 
+        		   + "FROM USERS "
+        		   + "ORDER BY user_id";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
@@ -178,12 +178,12 @@ public class UserDAO_ej {
 			List<User> userList = new ArrayList<User>();	// User들의 리스트 생성
 			while (rs.next()) {
 				User user = new User(			// User 객체를 생성하여 현재 행의 정보를 저장
-					rs.getString("userId"),
+					rs.getString("id"),
 					null,
 					rs.getString("name"),
-					rs.getString("email"),
-					rs.getString("phone"),
+					rs.getString("phone_number"),
 					rs.getString("address"),
+					rs.getString("email"),
 					null);
 				userList.add(user);				// List에 User 객체 저장
 			}		
@@ -202,9 +202,9 @@ public class UserDAO_ej {
 	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
 	 */
 	public List<User> findUserList(int currentPage, int countPerPage) throws SQLException {
-		String sql = "SELECT userId, name, email, phone, address " 
-					+ "FROM USER "
-					+ "ORDER BY userId";
+		String sql = "SELECT id, pwd, name, phone_number, address, email, resid_id " 
+					+ "FROM USERS "
+					+ "ORDER BY user_id";
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
 				ResultSet.CONCUR_READ_ONLY);						
@@ -216,12 +216,12 @@ public class UserDAO_ej {
 				List<User> userList = new ArrayList<User>();	// User들의 리스트 생성
 				do {
 					User user = new User(			// User 객체를 생성하여 현재 행의 정보를 저장
-							rs.getString("userId"),
+							rs.getString("id"),
 							null,
 							rs.getString("name"),
-							rs.getString("email"),
-							rs.getString("phone"),
+							rs.getString("phone_number"),
 							rs.getString("address"),
+							rs.getString("email"),
 							null);
 					userList.add(user);							// 리스트에 User 객체 저장
 				} while ((rs.next()) && (--countPerPage > 0));		
