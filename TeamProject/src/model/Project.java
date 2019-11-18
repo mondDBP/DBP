@@ -6,7 +6,7 @@ public class Project {
 	private String category_name;
 	private String user_id;
 	private String title;
-	private String start_date; // Date형식?
+	private String start_date; // Date형식??
 	private String image;	//AnyType
 	private String description; //CLOB
 	private int goal;

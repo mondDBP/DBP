@@ -25,8 +25,7 @@ public class UpdateProjectController implements Controller {
 				Integer.parseInt(request.getParameter("fund_rate")),
 				Integer.parseInt(request.getParameter("rest_day")),
 				Integer.parseInt(request.getParameter("funding_period")),
-				Integer.parseInt(request.getParameter("total_money")),
-				Integer.parseInt(request.getParameter("is_success"))  
+				Integer.parseInt(request.getParameter("total_money"))
 				);
 		
 		log.debug("Update Project : {}", updateProj);
