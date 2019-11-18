@@ -19,19 +19,24 @@ public class RegisterUserController implements Controller {
 			request.getParameter("userId"),
 			request.getParameter("password"),
 			request.getParameter("name"),
-			request.getParameter("email"),
 			request.getParameter("phone"),
 			request.getParameter("address"),
-			request.getParameter("resid_id"));
-		
-        log.debug("Create User : {}", user);
+			request.getParameter("email"),
+			request.getParameter("email2"),
+			request.getParameter("resid_id"),
+			request.getParameter("resid_id2"));
+
+			String[] name = request.getParameterValues("interest");//interest 테이블에 들어갈 checkbox선택 내용
+
+
+			log.debug("Create User : {}", user);
 
 		try {
 			UserManager manager = UserManager.getInstance();
-			manager.create(user);
-	        return "redirect:/user/list";	// 성공 시 사용자 리스트 화면으로 redirect
+			manager.create(user, name);
+	        return "/user/successregister";		// 성공 시 사용자 리스트 화면으로 redirect 
 	        
-		} catch (ExistingUserException e) {	// 예외 발생 시 회원가입 form으로 forwarding
+		} catch (ExistingUserException e) {		// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);

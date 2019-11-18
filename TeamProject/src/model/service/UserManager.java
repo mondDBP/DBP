@@ -19,13 +19,13 @@ public class UserManager {
 	private static UserManager userMan = new UserManager();
 	private UserDAO_ej userDAO;
 	private ProjectDAO projDAO;
-	private UserAnalysis userAanlysis;
+//	private UserAnalysis userAanlysis;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO_ej();
 			projDAO = new ProjectDAO();
-			userAanlysis = new UserAnalysis(userDAO);
+	//		userAanlysis = new UserAnalysis(userDAO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -35,12 +35,13 @@ public class UserManager {
 		return userMan;
 	}
 	
-	public int create(User user) throws SQLException, ExistingUserException {
+	public int create(User user, String[] name) throws SQLException, ExistingUserException {
 		if (userDAO.existingUser(user.getUserId()) == true) {
 			throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
 		}
-		return userDAO.create(user);
+		return userDAO.create(user, name);
 	}
+
 
 	public int update(User user) throws SQLException, UserNotFoundException {
 		return userDAO.update(user);

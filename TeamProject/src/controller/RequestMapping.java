@@ -47,6 +47,10 @@ public class RequestMapping {
 //        mappings.put("/project/update/form", new UpdateCommunityController());
 //        mappings.put("/project/update", new UpdateCommunityController());
         
+        mappings.put("/user/mainpage", new ForwardController("/user/Mainpage.jsp"));//메인페이지 화면 연결
+        mappings.put("/user/terms", new ForwardController("/user/terms.jsp"));//동의약관화면 연결
+        mappings.put("/user/successregister", new ForwardController("/user/successRegister.jsp"));//성공적인 회원가입시 뜨는 화면연결
+        
         logger.info("Initialized Request Mapping!");
     }
 

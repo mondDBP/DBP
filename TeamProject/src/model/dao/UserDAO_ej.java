@@ -21,16 +21,15 @@ public class UserDAO_ej {
 	/**
 	 * 사용자 관리 테이블에 새로운 사용자 생성.
 	 */
-	public int create(User user) throws SQLException {
-		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {user.getUserId(), user.getPassword(), 
-						user.getName(), user.getEmail(), user.getPhone(), 
-						user.getAddress(), user.getResid_id()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
-						
+	public int getSequence() throws SQLException{
+		int result = 1;
+		String sql = "SELECT user_id_seq.nextval FROM DUAL";
+		jdbcUtil.setSqlAndParameters(sql, null);
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
-			return result;
+			ResultSet rs = jdbcUtil.executeQuery();
+			if(rs.next())
+				result = rs.getInt(1);
+			//return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -38,6 +37,51 @@ public class UserDAO_ej {
 			jdbcUtil.commit();
 			jdbcUtil.close();	// resource 반환
 		}		
+		return result;
+		
+	}
+	
+	public int create(User user, String[] name) throws SQLException {
+		
+		String sql = "INSERT INTO USERS (user_id, id, pwd, name, phone_number, address, email, resid_id) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";		
+		int seq = getSequence();
+		
+		Object[] param = new Object[] {seq, user.getUserId(), user.getPassword(), 
+		user.getName(), user.getPhone(), user.getAddress(), user.getEmail() + "@" +user.getEmail2(), user.getResid_id() + user.getResid_id2()};				
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+				
+		try {				
+			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			//return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}	
+		
+		String sql2 = "INSERT INTO INTEREST (category_name, user_id) "
+				+ "VALUES (?, ?)";
+		
+		for(int i = 0; i < name.length; i++) {
+			if(name[i] != null) {
+				Object[] param2 = new Object[] {name[i], seq};
+				jdbcUtil.setSqlAndParameters(sql2, param2);	// JDBCUtil 에 insert문과 매개 변수 설정
+					
+				try {				
+					int result = jdbcUtil.executeUpdate();	// insert 문 실행
+				} catch (Exception ex) {
+					jdbcUtil.rollback();
+					ex.printStackTrace();
+				} finally {		
+					jdbcUtil.commit();
+					jdbcUtil.close();	// resource 반환
+				}
+			}
+		}
+
 		return 0;			
 	}
 
@@ -93,9 +137,9 @@ public class UserDAO_ej {
 	 * 저장하여 반환.
 	 */
 	public User findUser(String userId) throws SQLException {
-        String sql = "SELECT password, name, email, phone, address, resid_id "
-        			+ "FROM USER "
-        			+ "WHERE userid=? ";              
+        String sql = "SELECT pwd, name, phone_number, address, email, resid_id "
+        			+ "FROM USERS "
+        			+ "WHERE id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
@@ -103,11 +147,11 @@ public class UserDAO_ej {
 			if (rs.next()) {						// 학생 정보 발견
 				User user = new User(		// User 객체를 생성하여 학생 정보를 저장
 					userId,
-					rs.getString("password"),
+					rs.getString("pwd"),
 					rs.getString("name"),
-					rs.getString("email"),
-					rs.getString("phone"),
+					rs.getString("phone_number"),
 					rs.getString("address"),
+					rs.getString("email"),
 					rs.getString("resid_id"));
 				return user;
 			}
@@ -118,6 +162,7 @@ public class UserDAO_ej {
 		}
 		return null;
 	}
+
 
 	/**
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환(비밀번호와 주민등록번호는 개인정보상 null로 저장)
@@ -195,7 +240,7 @@ public class UserDAO_ej {
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
 	 */
 	public boolean existingUser(String userId) throws SQLException {
-		String sql = "SELECT count(*) FROM USERINFO WHERE userid=?";      
+		String sql = "SELECT count(*) FROM USERS WHERE id=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
