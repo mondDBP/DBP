@@ -14,20 +14,17 @@ public class Project {
 	private int rest_day;
 	private int funding_period;
 	private int total_money;
-	private int is_success;
 	
 	@Override
 	public String toString() {
 		return "Project [project_id=" + project_id + ", category_name=" + category_name + ", user_id=" + user_id
 				+ ", title=" + title + ", start_date=" + start_date + ", image=" + image + ", description="
 				+ description + ", goal=" + goal + ", fund_rate=" + fund_rate + ", rest_day=" + rest_day
-				+ ", funding_period=" + funding_period + ", total_money=" + total_money + ", is_success=" + is_success
-				+ "]";
+				+ ", funding_period=" + funding_period + ", total_money=" + total_money + "]";
 	}
 	public Project() {};
 	public Project(int project_id, String category_name, String user_id, String title, String start_date, String image,
-			String description, int goal, int fund_rate, int rest_day, int funding_period, int total_money,
-			int is_success) {
+			String description, int goal, int fund_rate, int rest_day, int funding_period, int total_money) {
 		this.project_id = project_id;
 		this.category_name = category_name;
 		this.user_id = user_id;
@@ -40,7 +37,6 @@ public class Project {
 		this.rest_day = rest_day;
 		this.funding_period = funding_period;
 		this.total_money = total_money;
-		this.is_success = is_success;
 	}
 	public int getProject_id() {
 		return project_id;
@@ -114,12 +110,5 @@ public class Project {
 	public void setTotal_money(int total_money) {
 		this.total_money = total_money;
 	}
-	public int getIs_success() {
-		return is_success;
-	}
-	public void setIs_success(int is_success) {
-		this.is_success = is_success;
-	}
-	
 	
 }
