@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.BackOrder;
 import model.Project;
 import model.User;
 
@@ -40,7 +41,7 @@ public class ProjectDAO {
 //	새로운 프로젝트 생성
 	public int create(Project p) throws SQLException {
 		String sql = "INSERT INTO Project (title, start_date, image, description , goal,"
-				+ " fund_rate, rest_day, funding_period, total_money) "
+				+ " fund_rate, rest_day, funding_period, total_money, category) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { p.getTitle(), p.getStart_date(), p.getImage(), p.getDescription(), p.getGoal(),
 				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(),
@@ -272,6 +273,42 @@ public class ProjectDAO {
 			}		
 			return projList;					
 				
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	//마이페이지에서 '내가 창작한 프로젝트' 들어가면 나오는 리스트를 위한 메소드
+	public List<Project> userCreateProjectList(int userId) {
+		String sql = "SELECT * " 
+     		   + "FROM PROJECT "
+     		   + "WHERE user_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Project> projectList = new ArrayList<Project>();	// User들의 리스트 생성
+			while (rs.next()) {
+				Project project = new Project(			// User 객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("project_id"),
+						rs.getString("category_name"),
+						rs.getString("user_id"),
+						rs.getString("title"),
+						rs.getString("start_date"),
+						rs.getString("image"),
+						rs.getString("description"),
+						rs.getInt("goal"),
+						rs.getInt("fund_rate"),
+						rs.getInt("rest_day"),
+						rs.getInt("funding_period"),
+						rs.getInt("total_money"));
+					projectList.add(project);				// List에 User 객체 저장
+			}		
+			return projectList;					
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
