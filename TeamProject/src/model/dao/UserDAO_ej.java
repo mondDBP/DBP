@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
+import model.BackOrder;
 
 /**
  * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
@@ -209,6 +210,38 @@ public class UserDAO_ej {
 			jdbcUtil.close();		// resource 반환
 		}
 		return false;
+	}
+	
+	public List<BackOrder> userBackOrderList(int userId) {
+		String sql = "SELECT * " 
+     		   + "FROM BACK_ORDER "
+     		   + "WHERE user_id = ?"
+     		   + "ORDER BY back_date desc";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<BackOrder> backOrderList = new ArrayList<BackOrder>();	// User들의 리스트 생성
+			while (rs.next()) {
+				BackOrder backOrder = new BackOrder(			// User 객체를 생성하여 현재 행의 정보를 저장
+					rs.getInt("user_id"),
+					rs.getInt("project_id"),
+					rs.getInt("amount_pledged"),
+					rs.getInt("reward_option"),
+					rs.getString("back_date"),
+					rs.getInt("rest_day"),
+					rs.getInt("is_success"),
+					rs.getInt("is_paid"));
+				backOrderList.add(backOrder);				// List에 User 객체 저장
+			}		
+			return backOrderList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
 	}
 
 }
