@@ -40,10 +40,10 @@ public class ProjectDAO {
 //	새로운 프로젝트 생성
 	public int create(Project p) throws SQLException {
 		String sql = "INSERT INTO Project (title, start_date, image, description , goal,"
-				+ " fund_rate, rest_day, funding_period, total_money ) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " fund_rate, rest_day, funding_period, total_money, is_success, ) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { p.getTitle(), p.getStart_date(), p.getImage(), p.getDescription(), p.getGoal(),
-				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(),
+				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(), p.getIs_success(),
 				p.getCategory_name() };
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 
@@ -63,10 +63,10 @@ public class ProjectDAO {
 //	프로젝트 수정
 	public int update(Project p) throws SQLException {
 		String sql = "UPDATE Project " + "SET title=?, start_date=?, image=?, description=?, goal=?,"
-				+ "fund_rate=?, rest_day=?, funding_period=?, total_money=?, category_name=? "
+				+ "fund_rate=?, rest_day=?, funding_period=?, total_money=?, is_success=?, category_name=? "
 				+ "WHERE project_id=?";
 		Object[] param = new Object[] { p.getTitle(), p.getStart_date(), p.getImage(), p.getDescription(), p.getGoal(),
-				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(),
+				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(), p.getIs_success(),
 				p.getCategory_name() + p.getProject_id() };
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil에 update문과 매개 변수 설정
 
@@ -161,7 +161,8 @@ public class ProjectDAO {
 						rs.getInt("fund_rate"),
 						rs.getInt("rest_day"),
 						rs.getInt("funding_period"),
-						rs.getInt("total_money"));
+						rs.getInt("total_money"),
+						rs.getInt("is_success"));
 					return proj;
 			}
 		} catch (Exception ex) {
@@ -201,7 +202,8 @@ public class ProjectDAO {
 					rs.getInt("fund_rate"),
 					rs.getInt("rest_day"),
 					rs.getInt("funding_period"),
-					rs.getInt("total_money"));
+					rs.getInt("total_money"),
+					rs.getInt("is_success"));
 				projList.add(proj);			// List에 project 객체 저장
 			}		
 			return projList;					
@@ -234,7 +236,8 @@ public class ProjectDAO {
 					rs.getInt("fund_rate"),
 					rs.getInt("rest_day"),
 					rs.getInt("funding_period"),
-					rs.getInt("total_money"));
+					rs.getInt("total_money"),
+					rs.getInt("is_success"));
 				projList.add(proj);			// List에 project 객체 저장
 			}		
 			return projList;					
@@ -267,7 +270,8 @@ public class ProjectDAO {
 					rs.getInt("fund_rate"),
 					rs.getInt("rest_day"),
 					rs.getInt("funding_period"),
-					rs.getInt("total_money"));
+					rs.getInt("total_money"),
+					rs.getInt("is_success"));
 				projList.add(proj);			// List에 project 객체 저장
 			}		
 			return projList;					

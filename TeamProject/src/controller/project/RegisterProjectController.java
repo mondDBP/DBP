@@ -43,7 +43,7 @@ public class RegisterProjectController implements Controller{
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("project", project); //객체참조변수
-			return "/user/registerForm.jsp"; //★경로 
+			return "/user/registerForm.jsp"; //★경로
 		}
 				
 }

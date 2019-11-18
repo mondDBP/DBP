@@ -32,7 +32,7 @@ public class UpdateProjectController implements Controller {
 		
 		ProjectManager pm = ProjectManager.getInstance();
 		pm.update(updateProj);
-		return "redirect:/project/list"; //★프로젝트경로 
+		return "redirect:/project/list"; //★프로젝트경로
 				
 	}
 }
