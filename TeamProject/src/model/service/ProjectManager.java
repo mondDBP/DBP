@@ -78,6 +78,10 @@ public class ProjectManager {//프로젝트 존재여부
 		return projAnalysis.recommendProjects(userId);
 	}
 	
+	public List<Project> userCreateProjectList(int userId) throws Exception {
+		return projDAO.userCreateProjectList(userId);
+	}
+	
 	public ProjectDAO getProjectDAO() {
 		return this.projDAO;
 	}

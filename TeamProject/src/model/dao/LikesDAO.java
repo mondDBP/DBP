@@ -17,7 +17,12 @@ public class LikesDAO {
 		this.jdbcUtil = jdbcUtil;
 	}
 
-//	새로운 생성
+	public LikesDAO() {
+		// TODO Auto-generated constructor stub
+		super();		
+	}
+
+	//	새로운 생성
 	public int create(Likes likes) throws SQLException {
 		String sql = "INSERT INTO LIKES (user_id, project_id) "
 				+ "VALUES (?, ?)";
@@ -59,4 +64,56 @@ public class LikesDAO {
 		return 0;
 	}
 	
+	public List<Project> likesList(int user_id) throws SQLException {
+		String sql = "SELECT * " 
+	     		   + "FROM LIKES "
+	     		   + "WHERE user_id = ?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {user_id});		// JDBCUtil에 query문 설정
+						
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+				List<Project> projectList = new ArrayList<Project>();	// User들의 리스트 생성
+				while (rs.next()) {
+					Project project = new Project(			// User 객체를 생성하여 현재 행의 정보를 저장
+							rs.getInt("project_id"),
+							rs.getString("category_name"),
+							rs.getString("user_id"),
+							rs.getString("title"),
+							rs.getString("start_date"),
+							rs.getString("image"),
+							rs.getString("description"),
+							rs.getInt("goal"),
+							rs.getInt("fund_rate"),
+							rs.getInt("rest_day"),
+							rs.getInt("funding_period"),
+							rs.getInt("total_money"));
+						projectList.add(project);				// List에 User 객체 저장
+				}		
+				return projectList;					
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			return null;
+	}
+	
+	public boolean existingProject(int project_id) throws SQLException {
+		String sql = "SELECT count(*) FROM Project WHERE project_id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return false;
+	}
 }

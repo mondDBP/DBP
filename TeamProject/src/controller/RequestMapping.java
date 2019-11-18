@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.project.*;
 import controller.user.*;
+import controller.mypage.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -24,6 +25,10 @@ public class RequestMapping {
         mappings.put("/user/view", new ViewUserController());
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
+        mappings.put("/user/mypage/info", new MyInfoController());
+        mappings.put("/user/mypage/project", new MyCreateProjectListController());
+        mappings.put("/user/mypage/back", new MyBackOrderListController());
+        mappings.put("/user/mypage/likes", new MyLikesController());
 
         // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
 //      mappings.put("/user/update/form", new UpdateUserFormController());
@@ -36,7 +41,8 @@ public class RequestMapping {
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
         mappings.put("/project/list/likes", new ListProjectFromLikesController());
         mappings.put("/project/view", new ViewProjectController());
-        mappings.put("/project/create/form", new ForwardController("/community/creationForm.jsp"));
+        mappings.put("/project/create/form", new ForwardController("/project/creationForm.jsp"));
+        
 //        mappings.put("/project/create", new CreateCommunityController());
 //        mappings.put("/project/update/form", new UpdateCommunityController());
 //        mappings.put("/project/update", new UpdateCommunityController());
