@@ -212,6 +212,7 @@ public class UserDAO_ej {
 		return false;
 	}
 	
+	//userId를 이용하여 해당회원이 후원한 프로젝트목록을 출력하는 메소드
 	public List<BackOrder> userBackOrderList(int userId) {
 		String sql = "SELECT * " 
      		   + "FROM BACK_ORDER "
