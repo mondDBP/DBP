@@ -26,7 +26,7 @@ public class RegisterUserController implements Controller {
 			request.getParameter("resid_id"),
 			request.getParameter("resid_id2"));
 
-			String[] name = request.getParameterValues("interest");//interest 테이블에 들어갈 checkbox선택 내용
+			String[] name = request.getParameterValues("interest");//interest 테이블에 들어갈 checkbox선택 내용//
 
 
 			log.debug("Create User : {}", user);
