@@ -144,7 +144,7 @@ public class ProjectDAO {
 	public Project findProject(int project_id) throws SQLException {
         String sql = "SELECT * "
         			+ "FROM PROJECT "
-        			+ "WHERE project_id=? ";              
+        			+ "WHERE project_id LIKE ? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {

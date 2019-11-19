@@ -10,13 +10,13 @@ import model.Card;
 public class CardDAO {
 	private JDBCUtil jdbcUtil = null;
 
-	public CardDAO(JDBCUtil jdbcUtil) {
-		super();
+	public CardDAO() {
 		this.jdbcUtil = jdbcUtil;
 	}
 	
 	public int create(Card card) throws SQLException {
-		String sql = "INSERT INTO Card VALUES (?, ?, ?, ?)";		
+		String sql = "INSERT INTO Card (user_id, , card_company, card_number, expiration)"
+					+"VALUES (?, ?, ?, ?)";		
 		Object[] param = new Object[] {
 				card.getUser_id(),
 				card.getCard_number(),
@@ -80,6 +80,11 @@ public class CardDAO {
 		}		
 		return 0;
 	}
+//	전체 카드정보를 List로 반환
+	public List<Card> getCardList(){
+		
+	}
+	
 //	회원의 카드목록 보여주기
 	public List<Card> findCardList() throws SQLException {
         String sql = "SELECT user_id, card_company, card_number, expiration " 

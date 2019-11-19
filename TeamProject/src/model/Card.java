@@ -9,7 +9,7 @@ public class Card {
 	private Date expiration;
 //	»ı¼ºÀÚ
 	public Card() {}
-	public Card(String user_id, String card_company, int card_number, Date expiration) {
+	public Card(String string, String card_company, int card_number, Date expiration) {
 		super();
 		this.user_id = user_id;
 		this.card_company = card_company;

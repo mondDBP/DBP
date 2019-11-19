@@ -114,4 +114,41 @@ public class UserDAO {
 		}
 		return false;
 	}
+
+//	외래키 from Backorder
+	public User getUserById(int PK_ID) {
+		String query = "SELECT user_id_pk_seq, userId, password, name, phone, " +
+					"       address, email, email2, resid_id, resid_id2" +
+					"FROM USER ";
+		
+		String searchQuery = query + "WHERE user_id_pk_seq = ?";
+		Object[] param = new Object[] {PK_ID};
+		
+		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] {param});
+//		jdbcUtil.setSql(searchQuery);
+//		jdbcUtil.setParameters(param);
+	
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			User dto = new User();
+			while (rs.next()) {
+				dto.setUser_id_pk_seq(rs.getInt("user_id_pk_seq"));
+				dto.setUserId(rs.getString("userId"));
+				dto.setPassword(null); //비밀번호는 전송x
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setAddress(rs.getString("address"));
+				dto.setEmail(rs.getString("email"));
+				dto.setEmail(rs.getString("email2"));
+				dto.setResid_id(rs.getString("resid_id"));
+				dto.setResid_id2(rs.getString("resid_id2"));	
+			}
+			return dto;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
 }
