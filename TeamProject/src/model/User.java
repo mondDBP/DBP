@@ -39,7 +39,7 @@ public class User {
 		return resid_id + "-" + resid_id2;
 	}
 
-	public User() { }		// 기본 생성자
+	public User() { }		// 기본 생성자//
 	
 	public User(String userId, String password, String name, String phone, String address,
 			String email, String email2, String resid_id) {

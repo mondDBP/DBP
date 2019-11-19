@@ -210,7 +210,7 @@ div{
    		 <input type = "checkbox" name = "interest" value = "푸드">푸드
    		 <br>
    		 <input type = "checkbox" name = "interest" value = "출판">출판
-   		 <input type = "checkbox" name = "interest" value = "테크/가전">테크
+   		 <input type = "checkbox" name = "interest" value = "테크/가전">테크/가전
    		 <input type = "checkbox" name = "interest" value = "패션">패션
    		 <input type = "checkbox" name = "interest" value = "캠페인">캠페인
    		 <br>

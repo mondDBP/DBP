@@ -153,7 +153,7 @@ public class UserDAO {
 			jdbcUtil.close();	// resource 반환
 		}		
 		return 0;
-	}
+	}//
 
 	/**
 	 * 사용자 ID에 해당하는 사용자를 삭제.

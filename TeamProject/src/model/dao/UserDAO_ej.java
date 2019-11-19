@@ -84,7 +84,7 @@ public class UserDAO_ej {
 
 		return 0;			
 	}
-
+//
 	/**
 	 * 기존의 사용자 정보를 수정.
 	 */
