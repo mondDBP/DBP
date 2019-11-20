@@ -16,9 +16,12 @@ public class CardDAO {
 	
 	public int create(Card card) throws SQLException {
 		String sql = "INSERT INTO Card (user_id, , card_company, card_number, expiration)"
-					+"VALUES (?, ?, ?, ?)";		
+					+"VALUES (?, ?, ?, ?)";	
+
+		
+		
 		Object[] param = new Object[] {
-				card.getUser_id(),
+				user_id,
 				card.getCard_number(),
 				card.getCard_company(),
 				card.getExpiration()

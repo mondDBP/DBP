@@ -4,8 +4,8 @@ package model.dao;
 // Factory Class
 public class DAOFactory {
 	
-	public BackOrderDAO getBackOrderDAO() {
-		return new BackOrderDAO();//~Impl클래스없이 구현됨	 
+	public Back_OrderDAO getBack_OrderDAO() {
+		return new Back_OrderDAO();//~Impl클래스없이 구현됨	 
 	}
 	public CardDAO getCardDAO() {
 		return new CardDAO();		
