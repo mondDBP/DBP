@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.BackOrder;
+import model.Project;
 import model.User;
 
 public class BackOrderDAO {
@@ -22,9 +23,7 @@ public class BackOrderDAO {
 		int result = 0;
 		String insertQuery = query + ", " + ""; //이부분도 미완료
 		
-		//Factory는 객체공장(객체만들어서 보내준다)
-		DAOFactory factory = new DAOFactory();		// 교수정보와 학과정보를 알아오기 위해 DAO 객체를 생성하는 factory 객체생성
-		// FK  - user_id값 알아오기
+		DAOFactory factory = new DAOFactory();		
 		UserDAO UserDAO = factory.getUserDAO();	
 		User user = UserDAO.getUserById(bo.getUser_id());	//Param.메소드로 외래키역할??!!!
 		int user_id_pk_seq = user.getUser_id_pk_seq();	//객체받고 변수 꺼내기
@@ -34,9 +33,9 @@ public class BackOrderDAO {
 		}
 //	--->11/19 21:34 여기까지 작업	
 		// FK  - project_id값 알아오기
-		DeptDAO deptDAO = factory.getDeptDAO();		// 공장에서 DAO객체획득
-		DeptDTO deptDTO = deptDAO.getDeptByName(stu.getDept());		// 학과 DAO 의 학과명을 사용하여 학과코드를 얻어오는 메소드 사용
-		String dCode = deptDTO.getDCode();			// 공장에서 DAO가져옴(외부표) -> 외부표.get__by외래키?(my표.메소드)); 
+		ProjectDAO ProjectDAO = factory.getProjectDAO();		// 공장에서 DAO객체획득
+		Project Project = ProjectDAO.getProjectById(bo.getProject_id());		// 학과 DAO 의 학과명을 사용하여 학과코드를 얻어오는 메소드 사용
+		String dCode = Project.getProject_id();			// 공장에서 DAO가져옴(외부표) -> 외부표.get__by외래키?(my표.메소드)); 
 		if (dCode == null) {						// -> 외부객체(dto)반환 -> 변수1개추출
 			System.out.println("해당 학과가 없습니다.");
 			return 0;

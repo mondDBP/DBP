@@ -316,4 +316,39 @@ public class ProjectDAO {
 		}
 		return null;
 	}
+
+	public Project getProjectById(int PK_ID) {
+		String query = "SELECT project_id, category_name, user_id, title, start_date, " +
+				"       image, description, goal, fund_rate, rest_day, " +
+				"       funding_period, total_money " +
+				"FROM Project ";
+	
+	String searchQuery = query + "WHERE project_id = ?";
+	Object[] param = new Object[] {PK_ID};
+	
+	jdbcUtil.setSqlAndParameters(searchQuery, new Object[] {param});
+	
+	try {
+		ResultSet rs = jdbcUtil.executeQuery();
+		User dto = new User();
+		while (rs.next()) {
+			dto.setUser_id_pk_seq(rs.getInt("project_id"));
+			dto.setUserId(rs.getString("category_name"));
+			dto.setPassword(null); //비밀번호는 전송x
+			dto.setName(rs.getString("name"));
+			dto.setPhone(rs.getString("phone"));
+			dto.setAddress(rs.getString("address"));
+			dto.setEmail(rs.getString("email"));
+			dto.setEmail(rs.getString("email2"));
+			dto.setResid_id(rs.getString("resid_id"));
+			dto.setResid_id2(rs.getString("resid_id2"));	
+		}
+		return dto;
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		jdbcUtil.close();
+	}
+	return null;
+	}
 }
