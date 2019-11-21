@@ -228,7 +228,7 @@ public class UserDAO {
 		
 	}
 	
-	public int create(User user, String[] name) throws SQLException {
+	public int create(User user, String[] name) throws SQLException {//users테이블에는 시퀀스가 user_id 콜롬으로 저장되어있음. 아이디는 id 콜롬으로 되어있음
 		for(int i = 0; i < name.length; i++) 
 		{
 			if(name[i] != null)

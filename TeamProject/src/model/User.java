@@ -4,8 +4,8 @@ package model;
  * 사용자 관리를 위해 필요한 도메인 클래스, dto
  */
 public class User {
-	private int user_id_pk_seq;
-	private String userId;
+	private int user_id_pk_seq;//users테이블의 시퀀스 값 int형 
+	private String userId;//users테이블의 아이디 String형
 	private String password;
 	private String name;
 	private String phone;
