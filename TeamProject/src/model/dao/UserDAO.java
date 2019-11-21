@@ -15,7 +15,7 @@ import model.User;
 
 /**
  * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
- * USERINFO 테이블에 사용자 정보를 추가, 수정, 삭제, 검색 수행 
+ * USERINFO 테이블에 사용자 정보를 추가, 수정, 삭제, 검색 수행 //
  */
 public class UserDAO {
 	private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
