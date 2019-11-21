@@ -29,7 +29,11 @@ public class RequestMapping {
         mappings.put("/user/mypage/project", new MyCreateProjectListController());
         mappings.put("/user/mypage/back", new MyBackOrderListController());
         mappings.put("/user/mypage/likes", new MyLikesController());
-
+        
+        mappings.put("/user/mainpage", new ForwardController("/user/Mainpage.jsp"));//메인페이지 화면 연결
+        mappings.put("/user/terms", new ForwardController("/user/terms.jsp"));//동의약관화면 연결
+        mappings.put("/user/successregister", new ForwardController("/user/successRegister.jsp"));//성공적인 회원가입시 뜨는 화면연결
+        
         // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
 //      mappings.put("/user/update/form", new UpdateUserFormController());
         mappings.put("/user/update/form", new UpdateUserController());

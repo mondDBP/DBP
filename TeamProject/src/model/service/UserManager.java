@@ -7,6 +7,7 @@ import java.util.List;
 import model.User;
 import model.Project;
 import model.dao.ProjectDAO;
+//import model.dao.UserDAO_ej;
 import model.dao.UserDAO;
 
 /**
@@ -44,13 +45,13 @@ public class UserManager {
 	}
 
 
-	public int update(User user) throws SQLException, UserNotFoundException {
+	/*public int update(User user) throws SQLException, UserNotFoundException {
 		return userDAO.update(user);
 	}	
 
 	public int remove(String userId) throws SQLException, UserNotFoundException {
 		return userDAO.remove(userId);
-	}
+	}*/
 
 	public User findUser(String userId)
 		throws SQLException, UserNotFoundException {
@@ -62,7 +63,7 @@ public class UserManager {
 		return user;
 	}
 
-	public List<User> findUserList() throws SQLException {
+/*	public List<User> findUserList() throws SQLException {
 			return userDAO.findUserList();
 	}
 	
@@ -70,7 +71,7 @@ public class UserManager {
 		throws SQLException {
 		return userDAO.findUserList(currentPage, countPerPage);
 	}
-
+*/
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
 		User user = findUser(userId);
@@ -101,7 +102,7 @@ public class UserManager {
 		return projDAO.findUsersOnProject(project_id);
 	}
 
-/*	public UserDAO_ej getUserDAO() {
+	/*public UserDAO_ej getUserDAO() {
 		return this.userDAO;
 	}*/
 }
