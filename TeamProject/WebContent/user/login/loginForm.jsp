@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css"> -->
+<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
 function login() {
 	if (form.userId.value == "") {
@@ -61,7 +61,7 @@ function userCreate(targetUri) {
 		  <tr>
 			<td align="center">
 			<input type="button" value="로그인" onClick="login()"> &nbsp;
-			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/terms.jsp' />')">
+			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/register/terms.jsp' />')">
 			</td>						
 		  </tr>
 		  

@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	request.setCharacterEncoding("UTF-8");
 
-	String u_idx = (String) session.getAttribute("u_idx");
-	String u_img = (String) session.getAttribute("u_img");
-	String u_nm = (String) session.getAttribute("u_nm");
-	out.println("u_idx: " + u_idx);
-	out.println("u_nm: " + u_nm);
-	out.println("u_img: " + u_img);
-%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,22 +27,26 @@
 		</div>
 		
 		<c:choose>
-			<c:when test='${empty u_idx}'>
+			<c:when test='${empty userId}'>
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/loginForm.jsp' />" class="view-login">로그인/회원가입</a>
+					<a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/login/loginForm.jsp' />" class="view-login">
 					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
+					</a>
 				</div>
 			</c:when>
 			<c:when test='${!empty u_img}'>
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png'/>" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="view-user" style="padding: 0 10px;"><%=u_nm%></span>
-					<a href="<c:url value='/user/mypage.jsp' />" class="view-mypage">
-					<img src="<c:url value='/images/<%=u_img%>' />" alt="profile" style="width: auto; height: 35px;">
+					<span class="view-user" style="padding: 0 10px;">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					</span>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
+					<img src="<c:url value='/images/${u_img}' />" alt="profile" style="width: auto; height: 35px;">
 					</a>
 				</div>
 			</c:when>
@@ -59,9 +54,11 @@
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="view-user" style="padding: 0 10px;"><%=u_nm%></span>
+					<span class="view-user" style="padding: 0 10px;">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					</span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/mypage.jsp' />" class="view-mypage">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
 					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
 					</a>
 				</div>
@@ -441,25 +438,5 @@
 		</div>
 		<!--네번째 텍스트박스-->
 	</div>
-
-
-
-
-
-
-
-
-
-
-	<nav>
-		<ul>
-			<li><a href="<c:url value='/project/category.jsp' />">CATEGORY</a></li>
-			<li><a href="<c:url value='/main/main.jsp' />"><img
-					src="<c:url value='/images/logo.gif' />" alt="logo_image" /></a></li>
-			<li><a href="<c:url value='/project/search.jsp' />">SEARCH</a></li>
-			<li><a href="<c:url value='/user/loginForm.jsp' />">LOGIN</a></li>
-		</ul>
-	</nav>
-	<br>
 </body>
 </html>

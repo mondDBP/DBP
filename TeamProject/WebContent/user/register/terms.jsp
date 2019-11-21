@@ -32,7 +32,7 @@ table{
 
 </head>
 <body>
-<form name="form2" method="POST" action="registerForm.jsp">
+<form name="form2" method="POST" action="<c:url value='/user/register/form'/>">
 <h2 style = "text-align :center;">회원가입</h2>
 <hr>
 <table>
