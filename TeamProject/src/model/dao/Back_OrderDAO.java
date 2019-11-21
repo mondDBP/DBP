@@ -14,21 +14,21 @@ public class Back_OrderDAO {
 	private JDBCUtil jdbcUtil = null;
 	private static String query = "SELECT user_id, project_id, amount_pleded, reward_option, back_date, " +
 								"       rest_day, is_success, is_paid " +
-										"FROM BackOrder ";
+										"FROM Back_Order ";
 
 	public Back_OrderDAO() {
 		this.jdbcUtil = jdbcUtil;
 	}
-	/* public int insertBackOrder(BackOrder bo) 
+	/* public int insertBack_Order(Back_Order bo) 
 	 * 후원정보를 보는곳이므로 수정(Update)는 이루어지지않는다
-	 * public int deleteBackOrder(BackOrder bo) 
-	 * public List<BackOrder> getBackOrderListByuserID() 회원1명이 후원한 모든 프로젝트 보여주기
+	 * public int deleteBack_Order(Back_Order bo) 
+	 * public List<Back_Order> getBack_OrderListByuserID() 회원1명이 후원한 모든 프로젝트 보여주기
 	 * 
 	 */
 	
-	public int insertBackOrder(Back_Order bo) {
+	public int insertBack_Order(Back_Order bo) {
 		int result = 0;
-		String insertQuery = "INSERT INTO BackOrder (user_id, project_id, amount_pleded, reward_option, back_date, "+
+		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pleded, reward_option, back_date, "+
 							 "rest_day, is_success, is_paid) " +
 							 "VALUES (?, ?, ?, ?, ?, ?, ?, ?); "; //예제에서 ; 없는데 들어가는지확인해보기
 		
@@ -95,7 +95,7 @@ public class Back_OrderDAO {
 		}
 	}
 
-	public int deleteBackOrder(Back_Order bo) {
+	public int deleteBack_Order(Back_Order bo) {
 		String deleteQuery = "DELETE FROM BackOrder WHERE user_id = ? AND project_id=? AND";
 
 		Object[] param = new Object[] { stuNo };

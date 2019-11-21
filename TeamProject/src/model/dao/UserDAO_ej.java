@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
-import model.BackOrder;
+import model.Back_Order;
 //
 /**
  * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
@@ -258,7 +258,7 @@ public class UserDAO_ej {
 	}
 	
 	//userId를 이용하여 해당회원이 후원한 프로젝트목록을 출력하는 메소드
-	public List<BackOrder> userBackOrderList(int userId) {
+	public List<Back_Order> userBack_OrderList(int userId) {
 		String sql = "SELECT * " 
      		   + "FROM BACK_ORDER "
      		   + "WHERE user_id = ?"
@@ -267,9 +267,9 @@ public class UserDAO_ej {
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<BackOrder> backOrderList = new ArrayList<BackOrder>();	// User들의 리스트 생성
+			List<Back_Order> userBack_OrderList = new ArrayList<Back_Order>();	// User들의 리스트 생성
 			while (rs.next()) {
-				BackOrder backOrder = new BackOrder(			// User 객체를 생성하여 현재 행의 정보를 저장
+				Back_Order Back_Order = new Back_Order(			// User 객체를 생성하여 현재 행의 정보를 저장
 					rs.getInt("user_id"),
 					rs.getInt("project_id"),
 					rs.getInt("amount_pledged"),
@@ -278,9 +278,9 @@ public class UserDAO_ej {
 					rs.getInt("rest_day"),
 					rs.getInt("is_success"),
 					rs.getInt("is_paid"));
-				backOrderList.add(backOrder);				// List에 User 객체 저장
+				userBack_OrderList.add(Back_Order);				// List에 User 객체 저장
 			}		
-			return backOrderList;					
+			return userBack_OrderList;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
