@@ -4,7 +4,7 @@
 <head>
 <title>회원가입</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
+
 <script>
 function validate(){
 	if(form.resid_id.value.length != 6){
@@ -204,20 +204,20 @@ div{
 	 <tr>
   	 	<td class = "title">관심분야</td>
   		<td>
-    	 <input type = "checkbox" name = "interesting" value = "1">게임
-   		 <input type = "checkbox" name = "interesting" value = "2">공연
-   		 <input type = "checkbox" name = "interesting" value = "3">디자인
-   		 <input type = "checkbox" name = "interesting" value = "4">푸드
+    	 <input type = "checkbox" name = "interesting" value = "게임">게임
+   		 <input type = "checkbox" name = "interesting" value = "공연">공연
+   		 <input type = "checkbox" name = "interesting" value = "디자인">디자인
+   		 <input type = "checkbox" name = "interesting" value = "푸드">푸드
    		 <br>
-   		 <input type = "checkbox" name = "interesting" value = "5">출판
-   		 <input type = "checkbox" name = "interesting" value = "6">테크
-   		 <input type = "checkbox" name = "interesting" value = "7">패션
-   		 <input type = "checkbox" name = "interesting" value = "8">캠페인
+   		 <input type = "checkbox" name = "interesting" value = "출판">출판
+   		 <input type = "checkbox" name = "interesting" value = "테크/가전">테크/가전
+   		 <input type = "checkbox" name = "interesting" value = "패션">패션
+   		 <input type = "checkbox" name = "interesting" value = "캠페인">캠페인
    		 <br>
-    	 <input type = "checkbox" name = "interesting" value = "9">반려동물
-   		 <input type = "checkbox" name = "interesting" value = "10">교육/키즈
-   		 <input type = "checkbox" name = "interesting" value = "11">여행/레져
-   		 <input type = "checkbox" name = "interesting" value = "12">홈리빙
+    	 <input type = "checkbox" name = "interesting" value = "반려동물">반려동물
+   		 <input type = "checkbox" name = "interesting" value = "교육/키즈">교육/키즈
+   		 <input type = "checkbox" name = "interesting" value = "여행/레져">여행/레져
+   		 <input type = "checkbox" name = "interesting" value = "홈리빙">홈리빙
    		</td>
   	</tr>
       

@@ -241,7 +241,7 @@ public class UserDAO {
 		return null;
 	}
 	
-	public List<Back_Order> userBackOrderList(int userId) {
+	public List<Back_Order> userBack3_OrderList(int userId) {
 		String sql = "SELECT * " 
      		   + "FROM Back_Order "
      		   + "WHERE user_id = ?"
@@ -291,7 +291,7 @@ public class UserDAO {
 		return false;
 	}
 
-//	외래키 from Backorder
+//	외래키 from Back_order
 	public User getUserById(int PK_ID) {
 		String query = "SELECT user_id_pk_seq, userId, password, name, phone, " +
 					"       address, email, email2, resid_id, resid_id2" +
