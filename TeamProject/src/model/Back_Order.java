@@ -3,9 +3,9 @@ package model;
 public class Back_Order {
 	//변수8개
 	private int user_id;
-	private int project_id;
+	private int project_id;//PK 1번
 	private int amount_pleded;
-	private int reward_option;
+	private int reward_option;//PK 1번
 	private String back_date;
 	private int rest_day;
 	private int is_success;

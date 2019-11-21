@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Card {
-	private String user_id;
+	private int user_id_pk_seq;
 	private String card_company;
 	private int card_number;
 	private Date expiration;
@@ -11,7 +11,7 @@ public class Card {
 	public Card() {}
 	public Card(String string, String card_company, int card_number, Date expiration) {
 		super();
-		this.user_id = user_id;
+		this.user_id_pk_seq = user_id_pk_seq;
 		this.card_company = card_company;
 		this.card_number = card_number;
 		this.expiration = expiration;
@@ -19,15 +19,15 @@ public class Card {
 //	toString
 	@Override
 	public String toString() {
-		return "Card [user_id=" + user_id + ", card_company=" + card_company + ", card_number=" + card_number
+		return "Card [user_id=" + user_id_pk_seq + ", card_company=" + card_company + ", card_number=" + card_number
 				+ ", expiration=" + expiration + "]";
 	}
 //	getter, setter
-	public String getUser_id() {
-		return user_id;
+	public int getUser_id_pk_seq() {
+		return user_id_pk_seq;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUser_id_pk_seq(int user_id_pk_seq) {
+		this.user_id_pk_seq = user_id_pk_seq;
 	}
 	public String getCard_company() {
 		return card_company;
