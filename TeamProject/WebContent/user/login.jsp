@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<link rel="stylesheet" type="text/css" href="login.css">
+<!-- <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css"> -->
 <script type="text/javascript">
 	function loginCheck(){
 		if(document.loginForm.u_email.value==""){
