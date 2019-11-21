@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.RegisterUserController;
-import model.BackOrder;
+import model.Back_Order;
 import model.User;
 
 /**
@@ -241,18 +241,18 @@ public class UserDAO {
 		return null;
 	}
 	
-	public List<BackOrder> userBackOrderList(int userId) {
+	public List<Back_Order> userBackOrderList(int userId) {
 		String sql = "SELECT * " 
-     		   + "FROM BACK_ORDER "
+     		   + "FROM Back_Order "
      		   + "WHERE user_id = ?"
      		   + "ORDER BY back_date desc";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});		// JDBCUtil에 query문 설정
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<BackOrder> backOrderList = new ArrayList<BackOrder>();	// User들의 리스트 생성
+			List<Back_Order> back_OrderList = new ArrayList<Back_Order>();	// User들의 리스트 생성
 			while (rs.next()) {
-				BackOrder backOrder = new BackOrder(			// User 객체를 생성하여 현재 행의 정보를 저장
+				Back_Order Back_Order = new Back_Order(			// User 객체를 생성하여 현재 행의 정보를 저장
 					rs.getInt("user_id"),
 					rs.getInt("project_id"),
 					rs.getInt("amount_pledged"),
@@ -261,9 +261,9 @@ public class UserDAO {
 					rs.getInt("rest_day"),
 					rs.getInt("is_success"),
 					rs.getInt("is_paid"));
-				backOrderList.add(backOrder);				// List에 User 객체 저장
+				back_OrderList.add(Back_Order);				// List에 User 객체 저장
 			}		
-			return backOrderList;					
+			return back_OrderList;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
