@@ -1,6 +1,6 @@
 package model;
 
-public class BackOrder {
+public class Back_Order {
 	//º¯¼ö8°³
 	private int user_id;
 	private int project_id;
@@ -11,7 +11,7 @@ public class BackOrder {
 	private int is_success;
 	private int is_paid;
 	
-	public BackOrder(int user_id, int project_id, int amount_pleded, int reward_option, String back_date, int rest_day,
+	public Back_Order(int user_id, int project_id, int amount_pleded, int reward_option, String back_date, int rest_day,
 			int is_success, int is_paid) {
 		super();
 		this.user_id = user_id;

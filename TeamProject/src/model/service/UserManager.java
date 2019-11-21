@@ -1,12 +1,14 @@
 package model.service;
 
 import java.sql.SQLException;
+
 import java.util.List;
 
 import model.User;
 import model.Project;
 import model.dao.ProjectDAO;
-import model.dao.UserDAO_ej;
+//import model.dao.UserDAO_ej;
+import model.dao.UserDAO;
 
 /**
  * 사용자 관리 API를 사용하는 개발자들이 직접 접근하게 되는 클래스.
@@ -17,13 +19,13 @@ import model.dao.UserDAO_ej;
  */
 public class UserManager {
 	private static UserManager userMan = new UserManager();
-	private UserDAO_ej userDAO;
+	private UserDAO userDAO;
 	private ProjectDAO projDAO;
 //	private UserAnalysis userAanlysis;
 
 	private UserManager() {
 		try {
-			userDAO = new UserDAO_ej();
+			userDAO = new UserDAO();
 			projDAO = new ProjectDAO();
 	//		userAanlysis = new UserAnalysis(userDAO);
 		} catch (Exception e) {
@@ -43,13 +45,13 @@ public class UserManager {
 	}
 
 
-	public int update(User user) throws SQLException, UserNotFoundException {
+	/*public int update(User user) throws SQLException, UserNotFoundException {
 		return userDAO.update(user);
 	}	
 
 	public int remove(String userId) throws SQLException, UserNotFoundException {
 		return userDAO.remove(userId);
-	}
+	}*/
 
 	public User findUser(String userId)
 		throws SQLException, UserNotFoundException {
@@ -61,7 +63,7 @@ public class UserManager {
 		return user;
 	}
 
-	public List<User> findUserList() throws SQLException {
+/*	public List<User> findUserList() throws SQLException {
 			return userDAO.findUserList();
 	}
 	
@@ -69,7 +71,7 @@ public class UserManager {
 		throws SQLException {
 		return userDAO.findUserList(currentPage, countPerPage);
 	}
-
+*/
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
 		User user = findUser(userId);
@@ -100,7 +102,7 @@ public class UserManager {
 		return projDAO.findUsersOnProject(project_id);
 	}
 
-	public UserDAO_ej getUserDAO() {
+	/*public UserDAO_ej getUserDAO() {
 		return this.userDAO;
-	}
+	}*/
 }
