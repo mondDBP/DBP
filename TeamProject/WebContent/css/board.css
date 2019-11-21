@@ -1,0 +1,382 @@
+.div1 {
+background-color: transparent;
+width: 100%;
+padding-bottom: 60px;
+}
+div, h3, p {
+word-break: break-all;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+div {
+    display: block;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body, h1, h2, h3, h4, h5 {
+    padding: 0;
+    font-family: SpoqaHanSans,Helvetica Neue,Arial,Helvetica,sans-serif;
+}
+body {
+    margin: 0;
+    overflow-x: hidden;
+    min-width: 320px;
+    background: #f6f5f5;
+    font-size: 14px;
+    line-height: 1.7em;
+    color: rgba(0,0,0,.87);
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body, h1, h2, h3, h4, h5 {
+    padding: 0;
+    font-family: SpoqaHanSans,Helvetica Neue,Arial,Helvetica,sans-serif;
+}
+body {
+    margin: 0;
+    overflow-x: hidden;
+    min-width: 320px;
+    background: #f6f5f5;
+    font-size: 14px;
+    line-height: 1.7em;
+    color: rgba(0,0,0,.87);
+}
+html {
+    font-size: 14px;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+html {
+    font-family: sans-serif;
+    font-size: 12.5px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+html {
+    font-size: 14px;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+user agent stylesheet
+html {
+    color: -internal-root-color;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+::selection {
+    background-color: #cce2ff;
+    color: rgba(0,0,0,.87);
+}
+::selection {
+    background-color: #cce2ff;
+    color: rgba(0,0,0,.87);
+}
+.div2 {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+}
+.div3 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+.div4 {
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    width: 100%;
+    margin: 0.25rem 0 0.75rem;
+}
+.div5 {
+    width: 100%;
+}       
+.div6 {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    -webkit-transition: box-shadow .2s ease-in-out;
+    transition: box-shadow .2s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+}
+.gXVgCu {
+    padding: 1.2rem 1.5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #757575;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.fVfKuI {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.blaijR {
+    display: inline-block;
+    background-image: url(https://tumblbug-upi.imgix.net/30f6f82….png…a&facepad=2.0&ch=Save-Data&mask=ellipse&s=57eeeb2…);
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: 50% 38%;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin-right: 1rem;
+}
+
+
+i._1oJMWnMCW_Y6GmNc1mhqaW._1QY7TzdLHKX3-BKPDNNYKF, i._1oJMWnMCW_Y6GmNc1mhqaW.JXDnh3ZF3p-Ajae7ENKXc {
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+.gXVgCu > i {
+    -webkit-animation: fzoeFq 1s infinite;
+    animation: fzoeFq 1s infinite;
+}
+i._1QY7TzdLHKX3-BKPDNNYKF, i.JXDnh3ZF3p-Ajae7ENKXc {
+    font-size: 1em;
+}
+i._1QY7TzdLHKX3-BKPDNNYKF {
+    display: inline-block;
+    opacity: 1;
+    margin: 0 .25rem 0 0;
+    width: 1.18em;
+    height: 1em;
+    font-family: Icons;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: inherit;
+    text-align: center;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+user agent stylesheet
+i {
+    font-style: italic;
+}
+.kEeUNF {
+    margin: 1rem 0;
+}
+a, a:hover {
+    text-decoration: none;
+}
+
+.evTQgg {
+    margin: 2rem 0 1rem;
+}
+.evTQgg {
+    width: 100%;
+    margin: 2rem .5rem 1rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.dQQULI {
+    color: #757575;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 700;
+    padding: .3em 1em;
+    font-size: .95em;
+    border-radius: 0.28571429rem;
+    color: rgba(0,0,0,.7);
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    background-color: #d9d9d9;
+}
+.jXFesk {
+    color: #757575;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 700;
+    padding: .3em 1em;
+    font-size: .95em;
+    border-radius: 0.28571429rem;
+}
+.jyqxKO {
+    margin: 0 0 1rem;
+}
+.gBrdMC {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    -webkit-transition: box-shadow .2s ease-in-out;
+    transition: box-shadow .2s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+}
+.bwIkbu {
+    padding: 1.5rem;
+}
+element.style {
+    cursor: pointer;
+}
+
+.cdzcXK {
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.dcqdFa { 
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.dOOkIY {
+    display: inherit;
+    position: relative;
+    width: 100%;
+}
+.hJqEWw {
+    display: inline-block;
+    background-image: url(https://tumblbug-upi.imgix.net/defaults/avatar_7.png?ixlib=rb-1.1.0&w=100&h…a&facepad=2.0&ch=Save-Data&mask=ellipse&s=68049aa…);
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: 50% 38%;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin-right: 0;
+}
+.kekUEM {
+    margin-left: 1rem;
+    color: #757575;
+    font-size: 0.9rem;
+}
+.toZNR {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.sKdTV {
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: bold;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bIvack {
+    position: absolute;
+    right: -1rem;
+}
+.cdzcXK {
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.gnqHud {
+    min-height: 30px;
+    max-height: 500px;
+    overflow: hidden;
+}
+.storyContent:first-child {
+    margin-top: 0;
+}
+.storyContent, .storyContent dl, .storyContent label, .storyContent legend, .storyContent ol, .storyContent p, .storyContent ul {
+    color: #000;
+}
+
+.storyContent {
+    padding: 1.5rem 1rem;
+    font-size: 17px;
+}
+.storyContent {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 1rem;
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.fuuiFa {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #efefef;
+    color: #000;
+    font-weight: bold;
+}
+i._1QY7TzdLHKX3-BKPDNNYKF, i.JXDnh3ZF3p-Ajae7ENKXc {
+    font-size: 1em;
+}
+i._1QY7TzdLHKX3-BKPDNNYKF {
+    display: inline-block;
+    opacity: 1;
+    margin: 0 .25rem 0 0;
+    width: 1.18em;
+    height: 1em;
+    font-family: Icons;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: inherit;
+    text-align: center;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}

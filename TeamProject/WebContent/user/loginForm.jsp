@@ -1,20 +1,10 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-	<title>Login Page</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-
-	<!--Custom styles-->
-	<!--  <link rel="stylesheet" type="text/css" href="styles.css"> -->
-	<!--  -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
 function login() {
 	if (form.userId.value == "") {
@@ -39,53 +29,46 @@ function userCreate(targetUri) {
 
 </style>
 </head>
-<body>
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-			</div>
-			<div class="card-body">
-				<form name="form" method="POST" action="<c:url value='/user/login' />">
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" name="userId" class="form-control" placeholder="username">
-						
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" name="password" class="form-control" placeholder="password">
-					</div>
-					
-					<div>
-					<c:if test="${loginFailed}">
-	  				  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
-	  				</c:if>
-					</div>
-					<!-- <div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
-					</div> -->
-					<div class="form-group">
-						<input type="button" value="로그인" onClick="login()" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					<input type="button" class="btn float-right" value="회원가입" onClick="userCreate('<c:url value='/user/terms' />')">
-				</div>
-			<!--  	<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>-->
-			</div>
-		</div>
-	</div>
-</div>
+<body text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<br>
+<!-- login form  -->
+<form name="form" method="POST" action="<c:url value='/user/login' />">
+  <table border="1">
+  	<tr>
+		<td align="center" class ="title">로그인</td>
+	</tr>
+
+	    <!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
+        <c:if test="${loginFailed}">
+	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
+	    </c:if>
+	<tr> 
+	<td>     
+	    <table>
+	  	  <tr>
+			<td align="center">아이디</td>
+			<td bgcolor="ffffff">
+				<input type="text" name="userId">
+			</td>
+		  </tr>
+	  	  <tr>
+			<td align="center">비밀번호</td>
+			<td bgcolor="ffffff">
+				<input type="password" name="password">
+			</td>
+		  </tr>
+
+		  <tr>
+			<td align="center">
+			<input type="button" value="로그인" onClick="login()"> &nbsp;
+			<input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/terms.jsp' />')">
+			</td>						
+		  </tr>
+		  
+	    </table>
+	  </td>
+	 </tr>
+  </table>  
+</form>
 </body>
 </html>

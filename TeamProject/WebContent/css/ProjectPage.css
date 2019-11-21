@@ -1,0 +1,756 @@
+        div, h3, p {
+            word-break: break-all;
+        }
+
+        *, :after, :before {
+            box-sizing: inherit;
+        }
+
+        div {
+            display: block;
+        }
+
+        body, h1, h2, h3, h4, h5 {
+            padding: 0;
+            font-family: SpoqaHanSans,Helvetica Neue,Arial,Helvetica,sans-serif;
+        }
+
+        li {
+            list-style:none;
+        }
+        /*
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            min-width: 320px;
+            background: #f6f5f5;
+            font-size: 14px;
+            line-height: 1.7em;
+            color: rgba(0,0,0,.87);
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            min-width: 320px;
+            background: #f6f5f5;
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: rgb(246, 245, 245);
+            font-size: 14px;
+            line-height: 1.7em;
+            color: rgba(0,0,0,.87);
+        }
+        */
+
+        a, a:hover {
+            text-decoration: none;
+        }
+
+
+        @media (min-width: 1080px) {
+            html {
+                font-size: 14px;
+            }
+
+            .ProjectIntro {
+                background-color: white;
+                text-align: center;
+                margin: 0 auto;
+                padding: 1rem;
+            }
+
+            .Container {
+                width: 1080px;
+                margin: 0 auto;
+            }
+
+            .ProjectIntro_Wrapper {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+            }
+
+            .ProjectIntro_Outline {
+                width: 100%;    /* Ãß°¡ */
+                height: 280px;
+                padding-bottom: 0;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-order: 1;
+                -ms-flex-order: 1;
+                order: 1;
+            }
+
+            .ProjectIntro_OutlineInner {
+                text-align: center;
+                margin: 75px auto; /* 0 auto > 75px auto */
+                padding: 1rem;
+            }
+
+            .ProjectIntro_ProjectCategory {
+                font-size: 0.9rem;
+                font-weight: 600;
+                padding: 0.6rem;
+                color: #757575;
+                background-color: #fafafa;
+                border: 1px solid #efefef;
+                border-radius: 2px;
+            }
+
+            .ProjectIntro_Title {
+                font-size: 2.8rem;
+                margin: 1.5rem 0 1rem;
+            }
+
+            .ProjectIntro_Creator {
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+            }
+
+            .ProjectIntro_Main {
+                width: 650px;
+                height: auto;
+                margin: 0 1rem;
+                -webkit-order: 2;
+                -ms-flex-order: 2;
+                order: 2;
+            }
+
+            .ProjectIntro_Sub {
+                width: 360px;
+                -webkit-order: 3;
+                -ms-flex-order: 3;
+                order: 3;
+                margin: 0 1rem;
+            }
+
+            .ProjectIntro_FundingStatus {
+                height: 280px;
+                width: 100%;
+                display: block;
+                margin: 0 0 2rem 0.5rem;
+                padding: 0;
+            }
+
+            .ProjectIntro_Matric {
+                margin: 0 0 1.75rem;
+                text-align: left;
+            }
+
+            .ProjectIntro_StatusTitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .ProjectIntro_StatusValue {
+                font-size: 2.75rem;
+            }
+
+            .ProjectIntro_Small {
+                font-size: 1rem;
+            }
+
+            .ProjectIntro_FundingRate {
+                font-size: 1.3rem;
+                margin-left: 10px;
+            }
+
+            .ProjectIntro_FundingInfo {
+                margin: 0 0.5rem 1rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .ContentsNav_Nav {
+                height: 52px;
+                padding: 0 1rem;
+            }
+
+            .ContentsNav_NavInner {
+                width: 1080px;
+                margin: 0 auto;
+            }
+
+            
+            .ProjectPage_ProjectContents {
+                margin-top: 1rem;
+            }
+
+            .ProjectPage_ContentsMain {
+                width: 670px;
+                margin: 0 0.5rem 0 1rem;
+            }
+
+            .ProjectPage_MaineInner {
+                min-height: 500px;
+            }
+
+            .StoryCard {
+                padding: 2rem;
+            }
+
+            .storyContent {
+                padding: 1.5rem 1rem;
+                font-size: 17px;
+            }
+
+            .storyContent h2 {
+                font-size: 2rem;
+                word-spacing: -1px;
+            }
+
+            .ProjectPage_ContentsSub {
+                width: 360px;
+                margin: 0 1rem 0 0.5rem;
+            }
+
+            .ProjectPage_SubInner {
+                min-height: 500px;
+            }
+            
+            .Rewards {
+                margin-top: 2rem;
+            }
+            
+        }
+        html {
+            font-size: 14px;
+        }
+
+        .ProjectIntro {
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            padding: 0;
+        }
+
+        /*
+        .ProjectIntro_Outline {
+            width: 100%;
+            height: auto;
+            -webkit-order: 2;
+            -ms-flex-order: 2;
+            order: 2;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: flex-start;
+            -webkit-box-align: flex-start;
+            -ms-flex-align: flex-start;
+            align-items: flex-start;
+        }
+        
+        .ProjectIntro_OutlineInner {
+            display: block;
+            text-align: left;
+            margin: 0;
+            padding: 1.75rem 1rem;
+        }
+        
+        .ProjectIntro_ProjectCategory {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.6rem;
+            color: #757575;
+            background-color: #fafafa;
+            border: 1px solid #efefef;
+            border-radius: 2px;
+        }
+        
+        
+        .ProjectIntro_Title {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            margin: 1.2rem 0;
+            word-break: keep-all;
+        }
+        */
+
+        .ProjectIntro_Creator {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        .ProjectIntro_Profileimg {
+            display: inline-block;
+            background-image: url();
+            width: 25px;
+            height: 25px;
+            background-size: cover;
+            background-position: 50% 38%;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            margin-right: .5rem;
+        }
+        
+        .ProjectIntro_CreatorName {
+            font-size: 1rem;
+            font-weight: 600;
+            color: inherit;
+            cursor: pointer;
+        }
+        /*
+        .ProjectIntro_Main {
+            width: 100%;
+            height: auto;
+            margin: 0;
+            -webkit-order: 1;
+            -ms-flex-order: 1;
+            order: 1;
+        }
+        */
+        .ProjectIntro_MainCoverImgFigure {
+            background-color: #000;
+            display: block;
+            height: 0;
+            margin: 0;
+            overflow: hidden;
+            padding: 0 0 75%;
+            position: relative;
+        }
+
+        .ProjectIntro_MainCoverImg {
+            height: 100%;
+            width: 100%;
+            max-width: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+        }
+        /*
+        .ProjectIntro_FundingStatus {
+            width: 100%;
+            -webkit-order: 4;
+            -ms-flex-order: 4;
+            order: 4;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 0.5rem 1rem 1.5rem;
+        }
+
+        .ProjectIntro_Matric {
+            margin: 0;
+        }
+        
+        .ProjectIntro_StatusTitle {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .ProjectIntro_StatusValue {
+            font-size: 1.6rem;
+            -webkit-letter-spacing: 0.5px;
+            -moz-letter-spacing: 0.5px;
+            -ms-letter-spacing: 0.5px;
+            letter-spacing: 0.5px;
+        }
+        */
+
+        .ProjectIntro_Small {
+            font-size: 0.85rem;
+            margin-left: 0.25rem;
+        }
+
+        /*
+        .ProjectIntro_FundingRate {
+            display: inline;
+            font-size: 0.9rem;
+            margin-left: 7px;
+            font-weight: bolder;
+        }
+        */
+        .ProjectIntro_FundingInfo {
+            -webkit-order: 5;
+            -ms-flex-order: 5;
+            order: 5;
+            padding: 1rem;
+            margin: 0 0 0.5rem 0;
+            background-color: #fafafa;
+            border: 1px solid #efefef;
+        }
+
+        .ProjectIntro_InfoInner {
+            font-size: 1rem;
+            color: rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .ProjectIntro_InfoInner > div {
+            text-align: left;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .ProjectIntro_InfoInner > span {
+            text-align: left;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .ProjectIntro_ProjectBtn {
+            -webkit-order: 5;
+            -ms-flex-order: 5;
+            order: 5;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .ProjectIntro_BtnInner {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .ProjectIntro_PrimaryBtn {
+            width: 80%;
+            padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+            -webkit-order: 1;
+            -ms-flex-order: 1;
+            order: 1;
+        }
+
+        .Btn {
+            cursor: pointer;
+            display: inline-block;
+            min-height: 1em;
+            outline: none;
+            border: none;
+            vertical-align: baseline;
+            box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(0,0,0,0.1) inset;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-transition: opacity 0.1s ease,background-color 0.1s ease,color 0.1s ease,box-shadow 0.1s ease,background 0.1s ease;
+            transition: opacity 0.1s ease,background-color 0.1s ease,color 0.1s ease,box-shadow 0.1s ease,background 0.1s ease;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0 .25em 0 0;
+            border-radius: 0.28571429rem;
+            text-transform: none;
+            text-shadow: none;
+            font-weight: bold;
+            line-height: 1em;
+            font-style: normal;
+            text-align: center;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: rgba(0,0,0,.6);
+            background-color: #e7e7e7;
+            background-color: #fa6462;
+            color: #fff;
+            padding: 1.2em 2em;
+            font-size: 1.1em;
+            width: 100%;
+            opacity: 1;
+        }
+        
+        .ContentsNav_Nav {
+            width: 100vw;
+            height: 48px;
+            padding: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            border-top: 1px solid #efefef;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: stretch;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            position: relative;
+            z-index: 10;
+        }
+        /*
+        .ContentsNav_NavInner {
+            width: 100vw;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+        */
+        .ContentsNav_NavLeft {
+            max-width: 100%;
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: start;
+            -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            white-space: nowrap;
+            -webkit-align-items: stretch;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            float: left;
+            margin: 0 1rem;
+            overflow: auto;
+        }
+
+        .current {
+            color: rgba(0,0,0,1);
+            border-bottom: 3px solid rgba(0,0,0,1);
+            padding-bottom: calc(0.5rem - 3px);
+        }
+
+        .ContentsNav_NavItem {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-flex: 0;
+            -webkit-flex-grow: 0;
+            -ms-flex-positive: 0;
+            flex-grow: 0;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            line-height: 1.5;
+            font-size: 1rem;
+            font-weight: bold;
+            color: rgba(0,0,0,1);
+            /* ¿ø·¡ color: rgba(0,0,0,0.4);¿´´Âµ¥ ÅÇ current ÆùÆ® ÄÃ·¯ ¾È¸ÔÇô¼­ ÁøÇÏ°Ô ³öµÒ */
+            cursor: pointer;
+        }
+
+        .ProjectPage {
+            background-color: transparent;
+            width: 100%;
+            padding-bottom: 60px;
+        }
+
+        .ProjectPage_ProjectContents {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        /*
+        .ProjectPage_ContentsMain {
+            -webkit-order: 1;
+            -ms-flex-order: 1;
+            order: 1;
+            width: 100%;
+            margin: 0.25rem 0 0.75rem;
+        }
+
+        .ProjectPage_MaineInner {
+            width: 100%;
+        }
+        */
+        .Card {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+            -webkit-transition: box-shadow .2s ease-in-out;
+            transition: box-shadow .2s ease-in-out;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+ .Card {
+            margin-bottom: 0.5rem;
+        }
+
+        .storyContent {
+                max-width: 620px;
+                margin: 0 auto;
+                padding: 1rem;
+                overflow-x: hidden;
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+        .storyContent h2 {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-top: 0;
+        }
+        /*
+        .ProjectPage_ContentsSub {
+                -webkit-order: 2;
+                -ms-flex-order: 2;
+                order: 2;
+                width: 100%;
+                margin: 0.25rem 0;
+        }
+
+        .ProjectPage_SubInner {
+            width: 100%;
+        }
+        */
+        .Rewards {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .Rewards_Label {
+            color: rgba(0,0,0,0.7);
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .RewardCard_CardWrapper {
+            margin: 0.5rem 0 1rem;
+            min-height: 150px;
+        }
+
+        .RewardCard_CardInner {
+            padding: 1.5rem;
+        }
+
+        .RewardCard_Header {
+            color: #757575;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .RewardCard_PledgeAmount {
+            text-align: left;
+        }
+
+        .RewardCard_QuantityLimited {
+            text-align: right;
+            float: right;
+        }
+
+        .RewardCard_LimitedRewardLabel {
+            font-weight: normal;
+            color: rgba(250,100,98,1);
+            background-color: #feefee;
+            border-radius: 2px;
+            border: 1px solid rgba(250,100,98,0.2);
+            padding: 0.4rem 0.45rem;
+        }
+
+        .RewardCard_Contents {
+            margin: 1rem 0;
+        }
+
+        .RewardCard_MinPledgeAmount {
+            font-size: 1.75rem;
+            color: black;
+            font-weight: bold;
+            line-height: 1.75;
+        }
+
+        .RewardCard_Description {
+            font-size: 1rem;
+            color: black;
+            line-height: 1.7;
+            word-break: keep-all;
+            word-wrap: break-word;
+        }
+
+        .RewardCard_Items {
+            margin: 1.75rem 0.5rem;
+        }
+
+        .RewardCard_ItemList {
+            font-size: 1rem;
+            color: black;
+            line-height: 1.75;
+        }
+
+        .RewardCard_DeliveryDate {
+            font-size: 0.95rem;
+            color: #757575;
+        }
+
+        .Divider {
+            border-top: 1px solid #efefef;
+            margin: 1rem 0;
+            height: 0;
+        }
+
+        .Button {
+            cursor: pointer;
+            display: inline-block;
+            min-height: 1em;
+            outline: none;
+            border: none;
+            vertical-align: baseline;
+            box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(0,0,0,0.1) inset;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-transition: opacity 0.1s ease,background-color 0.1s ease,color 0.1s ease,box-shadow 0.1s ease,background 0.1s ease;
+            transition: opacity 0.1s ease,background-color 0.1s ease,color 0.1s ease,box-shadow 0.1s ease,background 0.1s ease;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0 .25em 0 0;
+            border-radius: 0.28571429rem;
+            text-transform: none;
+            text-shadow: none;
+            font-weight: bold;
+            line-height: 1em;
+            font-style: normal;
+            text-align: center;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: rgba(0,0,0,.6);
+            background-color: #e7e7e7;
+            padding: 1em 1.5em;
+            font-size: 1em;
+            width: 85%; /* 100% > 85% */
+            opacity: 1;
+        }
