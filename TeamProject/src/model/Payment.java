@@ -3,18 +3,18 @@ package model;
 import java.sql.Date;
 
 public class Payment {
-	private String user_id;
-	private int amount;
-	private String payment_id;//PK
-	private int project_id;
-	private Date payment_date;
-	private int card_number;
+	private String userId;		//USER_ID	  -FK
+	private int amount;			//AMOUNT
+	private String payment_id;  //PAYMENT_ID  -PK -CHAR(18 BYTE)
+	private int project_id;		//PROJECT_ID  -FK
+	private Date payment_date;  //PAYMENT_DATE -DATE
+	private int card_number;	//CARD_NUMBER
 	
 //	»ý¼ºÀÚ
 	public Payment() {}
 	public Payment(String user_id, int amount, String payment_id, int project_id, Date payment_date, int card_number) {
 		super();
-		this.user_id = user_id;
+		this.userId = user_id;
 		this.amount = amount;
 		this.payment_id = payment_id;
 		this.project_id = project_id;
@@ -24,15 +24,15 @@ public class Payment {
 //	toString
 	@Override
 	public String toString() {
-		return "Payment [user_id=" + user_id + ", amount=" + amount + ", payment_id=" + payment_id + ", project_id="
+		return "Payment [user_id=" + userId + ", amount=" + amount + ", payment_id=" + payment_id + ", project_id="
 				+ project_id + ", payment_date=" + payment_date + ", card_number=" + card_number + "]";
 	}
 //	getter, setter
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String user_id) {
+		this.userId = user_id;
 	}
 	public int getAmount() {
 		return amount;

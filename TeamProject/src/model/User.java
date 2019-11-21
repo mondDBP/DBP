@@ -6,13 +6,13 @@ package model;
 public class User {
 	private int user_id_pk_seq;//users테이블의 시퀀스 값 int형 USER_ID
 	private String userId;//users테이블의 아이디 String형 ID
-	private String password;
-	private String name;
-	private String phone;
-	private String address;
-	private String email;
+	private String password; //PWD
+	private String name;	 //NAME
+	private String phone;	 //PHONE_NUMBER
+	private String address;	 //ADDRESS
+	private String email;	 //EMAIL
 	private String email2;
-	private String resid_id;
+	private String resid_id; //RESID_ID
 	private String resid_id2;
 	
 	public String getResid_id2() {

@@ -1,13 +1,13 @@
 package model;
 
 public class Reward_option {
-	private String option_id;//PK
-	private int project_id;	 //FK
-	private int price;
-	private int shipping_fee;
-	private String description;
-	private int backer_count;
-	private int amount_limit;
+	private String option_id;	//OPTION_ID ->Oracle CHAR에서 NUMBER(10)으로변경
+	private int project_id;	 	//PROJECT_ID
+	private int price;			//PRICE
+	private int shipping_fee;	//SHIPPING_FEE
+	private String description; //DESCRIPTION  -CLOB
+	private int backer_count;	//BACKER_COUNT
+	private int amount_limit;	//AMOUNT_LIMIT
 	
 //	생성자
 	public Reward_option() {}

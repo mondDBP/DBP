@@ -3,10 +3,10 @@ package model;
 import java.sql.Date;
 
 public class Shipping {
-	private String shipping_id;
-	private String user_id;
-	private int project_id;
-	private Date shipping_date;
+	private String shipping_id;		//SHIPPING_ID  -CHAR(18 BYTE)
+	private String user_id;			//USER_ID
+	private int project_id;			//PROJECT_ID
+	private Date shipping_date;		//SHIPPING_DATE -DATE
 
 //	»ý¼ºÀÚ
 	public Shipping() {}

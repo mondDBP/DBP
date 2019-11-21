@@ -1,19 +1,20 @@
 package model;
 
+import java.sql.Date;
 
 public class Project {
-	private int project_id;
-	private String category_name;
-	private String user_id;
-	private String title;
-	private String start_date; // DateÇü½Ä?
-	private String image;	//AnyType
-	private String description; //CLOB
-	private int goal;
-	private int fund_rate;
-	private int rest_day;
-	private int funding_period;
-	private int total_money;
+	private int project_id;			//PROJECT_ID
+	private String user_id;			//USER_ID
+	private String title;			//TITLE
+	private Date start_date; 		//START_DATE	- Date from imiport java.sql.Date
+	private String image;			//IMAGE			- Anytype	
+	private String description; 	//DESCRIPTION   - Clob
+	private int goal;				//GOAL
+	private int fund_rate;			//FUND_RATE
+	private int rest_day;			//REST_DAY
+	private int funding_period;		//FUNDING_PERIOD
+	private int total_money;		//TOTAL_MONEY
+	private String category_name;	//CATEGORY_NAME
 	
 	@Override
 	public String toString() {
@@ -23,7 +24,7 @@ public class Project {
 				+ ", funding_period=" + funding_period + ", total_money=" + total_money + "]";
 	}
 	public Project() {};
-	public Project(int project_id, String category_name, String user_id, String title, String start_date, String image,
+	public Project(int project_id, String category_name, String user_id, String title, Date start_date, String image,
 			String description, int goal, int fund_rate, int rest_day, int funding_period, int total_money) {
 		this.project_id = project_id;
 		this.category_name = category_name;
@@ -62,10 +63,10 @@ public class Project {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getStart_date() {
+	public Date getStart_date() {
 		return start_date;
 	}
-	public void setStart_date(String start_date) {
+	public void setStart_date(Date start_date) {
 		this.start_date = start_date;
 	}
 	public String getImage() {
