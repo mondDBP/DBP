@@ -1,5 +1,8 @@
 package model.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,12 +43,23 @@ public class ProjectDAO {
 
 //	새로운 프로젝트 생성
 	public int create(Project p) throws SQLException {
-		String sql = "INSERT INTO Project (title, start_date, image, description , goal,"
-				+ " fund_rate, rest_day, funding_period, total_money, category) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] { p.getTitle(), p.getStart_date(), p.getImage(), p.getDescription(), p.getGoal(),
-				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(),
-				p.getCategory_name() };
+		String sql = "INSERT INTO Project (PROJECT_ID, USER_ID, TITLE, START_DATE , IMAGE, "
+				+ " DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+		Object[] param = new Object[] { 
+					p.getProject_id(),
+					p.getUser_id_pk_seq(),
+					p.getTitle(),
+					p.getStart_date(),
+					p.getImage(),
+					p.getDescription(),
+					p.getGoal(),
+					p.getFund_rate(),
+					p.getRest_day(),
+					p.getFunding_period(),
+					p.getTotal_money(),
+					p.getCategory_name()
+		};
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 
 		try {
@@ -63,12 +77,23 @@ public class ProjectDAO {
 
 //	프로젝트 수정
 	public int update(Project p) throws SQLException {
-		String sql = "UPDATE Project " + "SET title=?, start_date=?, image=?, description=?, goal=?,"
-				+ "fund_rate=?, rest_day=?, funding_period=?, total_money=?, category_name=? "
-				+ "WHERE project_id=?";
-		Object[] param = new Object[] { p.getTitle(), p.getStart_date(), p.getImage(), p.getDescription(), p.getGoal(),
-				+p.getFund_rate(), p.getRest_day(), p.getFunding_period(), p.getTotal_money(),
-				p.getCategory_name() + p.getProject_id() };
+		String sql = "UPDATE Project " + "SET PROJECT_ID=?, USER_ID=?, TITLE=?, START_DATE=?, IMAGE=?, "
+				+ "DESCRIPTION=?, GOAL=?, FUND_RATE=?, REST_DAY=?, FUNDING_PERIOD=?, TOTAL_MONEY=?, CATEGORY_NAME=? "
+				+ "WHERE project_id=? ; ";
+		Object[] param = new Object[] {
+				p.getProject_id(),
+				p.getUser_id_pk_seq(),
+				p.getTitle(),
+				p.getStart_date(),
+				p.getImage(),
+				p.getDescription(),
+				p.getGoal(),
+				p.getFund_rate(),
+				p.getRest_day(),
+				p.getFunding_period(),
+				p.getTotal_money(),
+				p.getCategory_name()
+		};
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil에 update문과 매개 변수 설정
 
 		try {
@@ -86,7 +111,7 @@ public class ProjectDAO {
 
 //	프로젝트 삭제
 	public int remove(int project_id) throws SQLException {
-		String sql = "DELETE FROM Project WHERE project_id=?";
+		String sql = "DELETE FROM Project WHERE project_id=? ; ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil에 delete문과 매개 변수 설정
 
 		try {
@@ -104,7 +129,7 @@ public class ProjectDAO {
 
 // 프로젝트ID에 해당하는 프로젝트가 존재하는지 검사
 	public boolean existingProject(int project_id) throws SQLException {
-		String sql = "SELECT count(*) FROM Project WHERE project_id=?";
+		String sql = "SELECT count(*) FROM Project WHERE project_id=? ; ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
@@ -125,7 +150,7 @@ public class ProjectDAO {
 	public List<User> findUsersOnProject(int project_id) {
 		String sql = "SELECT userid"
 				+ "FROM PROJECT "
-				+ "WHERE project_id=?";
+				+ "WHERE project_id=? ; ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
@@ -140,30 +165,70 @@ public class ProjectDAO {
 		}
 		return null;
 	}
-//	검색 
-	public Project findProject(int project_id) throws SQLException {
+//	이름(title)로 프로젝트 검색 --- 미완성
+	public Project findProject(String title) throws SQLException {
+		//pStmt를 위해 JDBC이용
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");	// JDBC 드라이버 로딩 및 등록
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		Connection conn = null;
+		PreparedStatement pStmt = null;
+		try {
+		conn = DriverManager.getConnection("202.20.119.117:1521:orcl", "dbp0108", "mond");
+		}catch(SQLException ex) {ex.printStackTrace(); }
+		
+		stmt = conn.createStatement();	
+		rs = stmt.executeQuery(query2);	
+		
         String sql = "SELECT * "
         			+ "FROM PROJECT "
-        			+ "WHERE project_id LIKE ? ";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});	// JDBCUtil에 query문과 매개 변수 설정
+        			+ "WHERE TITLE LIKE ? ";    
+        System.out.println(sql);
+        pStmt = conn.prepareStatement(sql);
+        pStmt.setString(1, title);
+        
+        String pattern = "' " + title + "' ";
+        try {
+			String query2 = "SELECT * "
+        			+ "FROM PROJECT "
+					  	+ "WHERE TITLE LIKE '" + pattern + "'";	// 문자열 값 앞뒤에 작은따옴표 필요
+			System.out.println(query2);
+			
+			stmt = conn.createStatement();	
+			rs = stmt.executeQuery(query2);				// Statement 객체를 통한 질의 실행
+			System.out.println();
+			while (rs.next()) {							// 커서를 통해 한 행씩 fetch
+				String ename = rs.getString("ename");
+				String job = rs.getString("job");
+				String dname = rs.getString("dname");
+				System.out.println(ename + " " + job + " " + dname);
+			}
+			System.out.println();
+			rs.close();
+        
+        String name = title;
+        pstmt.setString(1, "%"+name+"%"); 
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {title});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						
 				Project proj = new Project(			
-						rs.getInt("project_id"),
-						rs.getString("category_name"),
-						rs.getString("user_id"),
-						rs.getString("title"),
-						rs.getString("start_date"),
-						rs.getString("image"),
-						rs.getString("description"),
-						rs.getInt("goal"),
-						rs.getInt("fund_rate"),
-						rs.getInt("rest_day"),
-						rs.getInt("funding_period"),
-						rs.getInt("total_money"));
-					return proj;
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)로 선택
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME"));
+				return proj;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -191,18 +256,18 @@ public class ProjectDAO {
 			List<Project> projList = new ArrayList<Project>();	// project들의 리스트 생성
 			while (rs.next()) {
 				Project proj = new Project(			
-					rs.getInt("project_id"),
-					rs.getString("category_name"),
-					rs.getString("user_id"),
-					rs.getString("title"),
-					rs.getString("start_date"),
-					rs.getString("image"),
-					rs.getString("description"),
-					rs.getInt("goal"),
-					rs.getInt("fund_rate"),
-					rs.getInt("rest_day"),
-					rs.getInt("funding_period"),
-					rs.getInt("total_money"));
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)로 선택
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME"));
 				projList.add(proj);			// List에 project 객체 저장
 			}		
 			return projList;					
@@ -224,18 +289,18 @@ public class ProjectDAO {
 			List<Project> projList = new ArrayList<Project>();	// project들의 리스트 생성
 			while (rs.next()) {
 				Project proj = new Project(			
-					rs.getInt("project_id"),
-					rs.getString("category_name"),
-					rs.getString("user_id"),
-					rs.getString("title"),
-					rs.getString("start_date"),
-					rs.getString("image"),
-					rs.getString("description"),
-					rs.getInt("goal"),
-					rs.getInt("fund_rate"),
-					rs.getInt("rest_day"),
-					rs.getInt("funding_period"),
-					rs.getInt("total_money"));
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)로 선택
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME"));
 				projList.add(proj);			// List에 project 객체 저장
 			}		
 			return projList;					
@@ -257,18 +322,18 @@ public class ProjectDAO {
 			List<Project> projList = new ArrayList<Project>();	// project들의 리스트 생성
 			while (rs.next()) {
 				Project proj = new Project(			
-					rs.getInt("project_id"),
-					rs.getString("category_name"),
-					rs.getString("user_id"),
-					rs.getString("title"),
-					rs.getString("start_date"),
-					rs.getString("image"),
-					rs.getString("description"),
-					rs.getInt("goal"),
-					rs.getInt("fund_rate"),
-					rs.getInt("rest_day"),
-					rs.getInt("funding_period"),
-					rs.getInt("total_money"));
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)로 선택
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME"));
 				projList.add(proj);			// List에 project 객체 저장
 			}		
 			return projList;					
@@ -292,23 +357,23 @@ public class ProjectDAO {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
 			List<Project> projectList = new ArrayList<Project>();	// User들의 리스트 생성
 			while (rs.next()) {
-				Project project = new Project(			// User 객체를 생성하여 현재 행의 정보를 저장
-						rs.getInt("project_id"),
-						rs.getString("category_name"),
-						rs.getString("user_id"),
-						rs.getString("title"),
-						rs.getString("start_date"),
-						rs.getString("image"),
-						rs.getString("description"),
-						rs.getInt("goal"),
-						rs.getInt("fund_rate"),
-						rs.getInt("rest_day"),
-						rs.getInt("funding_period"),
-						rs.getInt("total_money"));
-					projectList.add(project);				// List에 User 객체 저장
-			}		
+				Project project = new Project(			//객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)로 선택
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME")
+						);
+				projectList.add(project);				// List에 저장
+			}
 			return projectList;					
-			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

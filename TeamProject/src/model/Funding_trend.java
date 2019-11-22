@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Funding_trend {
+public class Funding_trend {//4°³
 	private int project_id;	 //FK		//PROJECT_ID	
 	private Date date_added;//PK -Date	//DATE_ADDED
 	private int amount_pledged;	 		//AMOUNT_PLEDGED

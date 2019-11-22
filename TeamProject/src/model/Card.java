@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Card {
+public class Card {//4°³
 	private int user_id_pk_seq;		//USER_ID
 	private String card_company;	//CARD_COMPANY
 	private int card_number;		//CARD_NUMBER

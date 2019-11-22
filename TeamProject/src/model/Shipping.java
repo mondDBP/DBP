@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Shipping {
+public class Shipping {//º¯¼ö 4°³
 	private String shipping_id;		//SHIPPING_ID  -CHAR(18 BYTE)
 	private String user_id;			//USER_ID
 	private int project_id;			//PROJECT_ID
