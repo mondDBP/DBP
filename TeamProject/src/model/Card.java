@@ -3,10 +3,10 @@ package model;
 import java.sql.Date;
 
 public class Card {
-	private int user_id_pk_seq;
-	private String card_company;
-	private int card_number;
-	private Date expiration;
+	private int user_id_pk_seq;		//USER_ID
+	private String card_company;	//CARD_COMPANY
+	private int card_number;		//CARD_NUMBER
+	private Date expiration;		//EXPIRATION	-Date
 //	»ý¼ºÀÚ
 	public Card() {}
 	public Card(String string, String card_company, int card_number, Date expiration) {

@@ -3,10 +3,10 @@ package model;
 import java.sql.Date;
 
 public class Funding_trend {
-	private int project_id;	 //FK
-	private Date date_added;//PK -- 타입을 Date로 했다
-	private int amount_pledged;	 
-	private int backer_count;
+	private int project_id;	 //FK		//PROJECT_ID	
+	private Date date_added;//PK -Date	//DATE_ADDED
+	private int amount_pledged;	 		//AMOUNT_PLEDGED
+	private int backer_count;			//BACKER_COUNT
 
 //	생성자
 	public Funding_trend() {}
