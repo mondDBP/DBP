@@ -8,11 +8,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import model.Back_Order;
 import model.Project;
 import model.User;
 
 public class ProjectDAO {
+	
+	private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
+	
 	private JDBCUtil jdbcUtil = null;
 
 //	생성자
@@ -38,13 +44,12 @@ public class ProjectDAO {
 			jdbcUtil.close();	// resource 반환
 		}		
 		return result;
-		
 	}
 
 //	새로운 프로젝트 생성
 	public int create(Project p) throws SQLException {
 		String sql = "INSERT INTO Project (PROJECT_ID, USER_ID, TITLE, START_DATE , IMAGE, "
-				+ " DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME) "
+				+ "DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 		Object[] param = new Object[] { 
 					p.getProject_id(),

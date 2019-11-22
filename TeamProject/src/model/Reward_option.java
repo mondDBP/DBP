@@ -1,7 +1,7 @@
 package model;
 
 public class Reward_option {
-	private String option_id;	//OPTION_ID ->Oracle CHAR에서 NUMBER(10)으로변경
+	private int option_id;	//OPTION_ID ->Oracle CHAR에서 NUMBER(10)으로변경 ->완료
 	private int project_id;	 	//PROJECT_ID
 	private int price;			//PRICE
 	private int shipping_fee;	//SHIPPING_FEE
@@ -11,7 +11,7 @@ public class Reward_option {
 	
 //	생성자
 	public Reward_option() {}
-	public Reward_option(String option_id, int project_id, int price, int shipping, String description,
+	public Reward_option(int option_id, int project_id, int price, int shipping, String description,
 			int backer_count, int amount_limit) {
 		super();
 		this.option_id = option_id;
@@ -30,10 +30,10 @@ public class Reward_option {
 				+ ", amount_limit=" + amount_limit + "]";
 	}
 //	getter, setter
-	public String getOption_id() {
+	public int getOption_id() {
 		return option_id;
 	}
-	public void setOption_id(String option_id) {
+	public void setOption_id(int option_id) {
 		this.option_id = option_id;
 	}
 	public int getProject_id() {

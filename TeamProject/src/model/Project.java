@@ -20,7 +20,6 @@ public class Project {//º¯¼ö12°³
 	public Project() {};
 	public Project(int project_id, int user_id_pk_seq, String title, Date start_date, String image, String description,
 			int goal, int fund_rate, int rest_day, int funding_period, int total_money, String category_name) {
-		super();
 		this.project_id = project_id;
 		this.user_id_pk_seq = user_id_pk_seq;
 		this.title = title;
