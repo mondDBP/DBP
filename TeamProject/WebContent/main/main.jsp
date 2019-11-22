@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	request.setCharacterEncoding("UTF-8");
 
-	String u_idx = (String) session.getAttribute("u_idx");
-	String u_img = (String) session.getAttribute("u_img");
-	String u_nm = (String) session.getAttribute("u_nm");
-	out.println("u_idx: " + u_idx);
-	out.println("u_nm: " + u_nm);
-	out.println("u_img: " + u_img);
-%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,22 +27,26 @@
 		</div>
 		
 		<c:choose>
-			<c:when test='${empty u_idx}'>
+			<c:when test='${empty userId}'>
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/loginForm.jsp' />" class="view-login">로그인/회원가입</a>
+					<a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/login/loginForm.jsp' />" class="view-login">
 					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
+					</a>
 				</div>
 			</c:when>
 			<c:when test='${!empty u_img}'>
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png'/>" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="view-user" style="padding: 0 10px;"><%=u_nm%></span>
-					<a href="<c:url value='/user/mypage.jsp' />" class="view-mypage">
-					<img src="<c:url value='/images/<%=u_img%>' />" alt="profile" style="width: auto; height: 35px;">
+					<span class="view-user" style="padding: 0 10px;">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					</span>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
+					<img src="<c:url value='/images/${u_img}' />" alt="profile" style="width: auto; height: 35px;">
 					</a>
 				</div>
 			</c:when>
@@ -59,9 +54,11 @@
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="view-user" style="padding: 0 10px;"><%=u_nm%></span>
+					<span class="view-user" style="padding: 0 10px;">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					</span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/mypage.jsp' />" class="view-mypage">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
 					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
 					</a>
 				</div>
@@ -97,126 +94,9 @@
 		</div>
 		<!-- ..........................................................................-->
 
-		<div class="recommend_project">
-			<div class="recommend_header">
-				<a class="recommend" href="recommend_page.html">추천 프로젝트</a>
-				<button></button>
-			</div>
-			<div class="project_card_section">
-				<div class="project_card_1" onclick="location.href='https:www.google.com'">
-
-					<div class="card_1_content">
-						<div class="imgbox">
-							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
-								alt="">
-						</div>
-						<div class="textbox">
-							<h2>제목</h2>
-							<h4>게시자</h4>
-						</div>
-
-						<progress value="20" max="100">
-							<a href="#"></a>
-						</progress>
-						<div class="nowbox">
-							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
-								href="#">퍼센트</a></span>
-						</div>
-					</div>
-				</div>
-				<div class="project_card_2"
-					onclick="location.href='https:www.google.com'">
-					<div class="card_2_content">
-						<div class="imgbox">
-							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
-								alt="">
-						</div>
-						<div class="textbox">
-							<h2>제목</h2>
-							<h4>게시자</h4>
-						</div>
-
-						<progress value="20" max="100">
-							<a href="#"></a>
-						</progress>
-						<div class="nowbox">
-							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
-								href="#">퍼센트</a></span>
-						</div>
-					</div>
-				</div>
-				<div class="project_card_3"
-					onclick="location.href='https:www.google.com'">
-					<div class="card_3_content">
-						<div class="imgbox">
-							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
-								alt="">
-						</div>
-						<div class="textbox">
-							<h2>제목</h2>
-							<h4>게시자</h4>
-						</div>
-
-						<progress value="20" max="100">
-							<a href="#"></a>
-						</progress>
-						<div class="nowbox">
-							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
-								href="#">퍼센트</a></span>
-						</div>
-					</div>
-				</div>
-				<div class="project_card_4"
-					onclick="location.href='https:www.google.com'">
-					<div class="card_4_content">
-						<div class="imgbox">
-							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
-								alt="">
-						</div>
-						<div class="textbox">
-							<h2>제목</h2>
-							<h4>게시자</h4>
-						</div>
-
-						<progress value="20" max="100">
-							<a href="#"></a>
-						</progress>
-						<div class="nowbox">
-							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
-								href="#">퍼센트</a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- ///////////////////////////////////////////////////////////// -->
-
-
-		<div class="planning_project">
-			<div class="planning_header">
-				<a class="recommend" href="recommend_page.html">추천 프로젝트</a>
-			</div>
-			<div class="planning_card_section">
-				<div class="directbox">
-					<img src="img/main_visual_prev.png" alt="" class="prev">
-				</div>
-				<div class="planbox1"></div>
-				<div class="planbox2"></div>
-				<div class="directbox">
-					<img src="img/main_visual_next.png" alt="" class="next">
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-
 		<div class="kind_1_project">
 			<div class="kind_1_header">
-				<a class="king_1" href="kind_1_page.html">카테고리1 프로젝트</a>
+				<a class="kind_1" href="">많이 사람들이 후원한 프로젝트</a>
 				<button></button>
 			</div>
 			<div class="kind_1_card_section">
@@ -307,9 +187,10 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="kind_2_project">
 			<div class="kind_2_header">
-				<a class="kind_2" href="kind_2_page.html">카테고리1 프로젝트</a>
+				<a class="kind_2" href="">신규 등록 프로젝트</a>
 				<button></button>
 			</div>
 			<div class="kind_2_card_section">
@@ -400,7 +281,100 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="kind_3_project">
+			<div class="kind_3_header">
+				<a class="kind_3" href="">좋아요를 많이 받은 프로젝트</a>
+				<button></button>
+			</div>
+			<div class="kind_3_card_section">
+				<div class="project_card_1"
+					onclick="location.href='https:www.google.com'">
+					
+					<div class="card_1_content">
+						<div class="imgbox">
+							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
+								alt="">
+						</div>
+						<div class="textbox">
+							<h2>제목</h2>
+							<h4>게시자</h4>
+						</div>
 
+						<progress value="20" max="100">
+							<a href="#"></a>
+						</progress>
+						<div class="nowbox">
+							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
+								href="#">퍼센트</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="project_card_2"
+					onclick="location.href='https:www.google.com'">
+					<div class="card_2_content">
+						<div class="imgbox">
+							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
+								alt="">
+						</div>
+						<div class="textbox">
+							<h2>제목</h2>
+							<h4>게시자</h4>
+						</div>
+
+						<progress value="20" max="100">
+							<a href="#"></a>
+						</progress>
+						<div class="nowbox">
+							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
+								href="#">퍼센트</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="project_card_3"
+					onclick="location.href='https:www.google.com'">
+					<div class="card_3_content">
+						<div class="imgbox">
+							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
+								alt="">
+						</div>
+						<div class="textbox">
+							<h2>제목</h2>
+							<h4>게시자</h4>
+						</div>
+
+						<progress value="20" max="100">
+							<a href="#"></a>
+						</progress>
+						<div class="nowbox">
+							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
+								href="#">퍼센트</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="project_card_4"
+					onclick="location.href='https:www.google.com'">
+					<div class="card_4_content">
+						<div class="imgbox">
+							<img src="img/city01.jpg" style="width: 200px; height: 150px;"
+								alt="">
+						</div>
+						<div class="textbox">
+							<h2>제목</h2>
+							<h4>게시자</h4>
+						</div>
+
+						<progress value="20" max="100">
+							<a href="#"></a>
+						</progress>
+						<div class="nowbox">
+							<span><a href="#">남은기한</a></span> <span style="float: right;"><a
+								href="#">퍼센트</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
@@ -435,33 +409,21 @@
 					<li><a href="#"
 						onclick="javascript:window.open
                             ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="./icon/sns_ka.png" width="30"></a></li>
+							src="<c:url value='/images/sns_ka.png'/>" width="30"></a></li>
 					<li><a href="#"
 						onclick="javascript:window.open
                             ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="./icon/sns_face.png" width="30"></a></li>
+							src="<c:url value='/images/sns_tw.png'/>" width="30"></a></li>
 					<li><a href="#"
 						onclick="javascript:window.open
                             ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="./icon/sns_tw.png" width="30"></a></li>
+							src="<c:url value='/images/sns_insta.png'/>" width="30"></a></li>
 					<li><a href="#"
 						onclick="javascript:window.open
                             ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="./icon/sns_insta.png" width="30"></a></li>
-					<li><a href="#"
-						onclick="javascript:window.open
-                            ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="./icon/sns_naver.png" width="30"></a></li>
-
+							src="<c:url value='/images/sns_naver.png'/>" width="30"></a></li>
 				</ul>
-
-				<ul>
-					<button type="button"
-						onclick="location.href='https://www.google.com'">문의하기</button>
-				</ul>
-
 			</div>
-			<!--sns /문의하기 박스-->
 		</div>
 		<div class="foot_4">
 			<span id="notice_1">000은 텀블벅은 플랫폼 제공자로서 프로젝트의 당사자가 아니며, 직접적인
@@ -476,25 +438,5 @@
 		</div>
 		<!--네번째 텍스트박스-->
 	</div>
-
-
-
-
-
-
-
-
-
-
-	<nav>
-		<ul>
-			<li><a href="<c:url value='/project/category.jsp' />">CATEGORY</a></li>
-			<li><a href="<c:url value='/main/main.jsp' />"><img
-					src="<c:url value='/images/logo.gif' />" alt="logo_image" /></a></li>
-			<li><a href="<c:url value='/project/search.jsp' />">SEARCH</a></li>
-			<li><a href="<c:url value='/user/loginForm.jsp' />">LOGIN</a></li>
-		</ul>
-	</nav>
-	<br>
 </body>
 </html>
