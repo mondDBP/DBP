@@ -23,7 +23,7 @@
 		<div class="leftproject-bar">
 			<a class="view-project" href="<c:url value='/project/category.jsp' />">프로젝트 둘러보기</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class="create-project" href="<c:url value='/project/creationForm.jsp' />">프로젝트 올리기</a>
+			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
 		</div>
 		
 		<c:choose>
