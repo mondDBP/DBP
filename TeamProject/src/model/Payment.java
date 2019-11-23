@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Payment {
+public class Payment {//º¯¼ö6°³
 	private String userId;		//USER_ID	  -FK
 	private int amount;			//AMOUNT
 	private String payment_id;  //PAYMENT_ID  -PK -CHAR(18 BYTE)

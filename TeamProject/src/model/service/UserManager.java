@@ -2,12 +2,14 @@ package model.service;
 
 import java.sql.SQLException;
 
+
 import java.util.List;
 
 import model.User;
+import model.Admin;
 import model.Project;
+import model.dao.AdminDAO;
 import model.dao.ProjectDAO;
-//import model.dao.UserDAO_ej;
 import model.dao.UserDAO;
 
 /**
@@ -21,12 +23,14 @@ public class UserManager {
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
 	private ProjectDAO projDAO;
+	private AdminDAO adminDAO;
 //	private UserAnalysis userAanlysis;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
 			projDAO = new ProjectDAO();
+			adminDAO = new AdminDAO();
 	//		userAanlysis = new UserAnalysis(userDAO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,13 +49,13 @@ public class UserManager {
 	}
 
 
-	/*public int update(User user) throws SQLException, UserNotFoundException {
+	public int update(User user) throws SQLException, UserNotFoundException {
 		return userDAO.update(user);
 	}	
 
 	public int remove(String userId) throws SQLException, UserNotFoundException {
 		return userDAO.remove(userId);
-	}*/
+	}
 
 	public User findUser(String userId)
 		throws SQLException, UserNotFoundException {
@@ -63,7 +67,17 @@ public class UserManager {
 		return user;
 	}
 
-/*	public List<User> findUserList() throws SQLException {
+	public Admin FindAdmin(String userId)
+			throws SQLException, UserNotFoundException {
+			Admin admin = adminDAO.findAdmin(userId);
+			
+			if (admin == null) {
+				throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
+			}		
+			return admin;
+		}
+	
+	public List<User> findUserList() throws SQLException {
 			return userDAO.findUserList();
 	}
 	
@@ -71,7 +85,7 @@ public class UserManager {
 		throws SQLException {
 		return userDAO.findUserList(currentPage, countPerPage);
 	}
-*/
+
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
 		User user = findUser(userId);
@@ -81,6 +95,19 @@ public class UserManager {
 		}
 		return true;
 	}
+	
+
+	public boolean Adminlogin(String userId, String password)
+			throws SQLException, UserNotFoundException, PasswordMismatchException {
+			Admin admin = FindAdmin(userId);
+
+			if (!admin.matchPassword(password)) {
+				throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+			}
+			return true;
+		}
+		
+		
 	
 	public int createProject(Project proj) throws SQLException {
 		return projDAO.create(proj);		
@@ -102,7 +129,4 @@ public class UserManager {
 		return projDAO.findUsersOnProject(project_id);
 	}
 
-	/*public UserDAO_ej getUserDAO() {
-		return this.userDAO;
-	}*/
 }

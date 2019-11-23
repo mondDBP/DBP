@@ -5,10 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.Controller;
+import model.dao.UserDAO;
 import model.service.UserManager;
 
 public class LoginController implements Controller {
+	private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String userId = request.getParameter("userId");
@@ -17,11 +22,19 @@ public class LoginController implements Controller {
 		try {
 			// 모델에 로그인 처리를 위임
 			UserManager manager = UserManager.getInstance();
-			manager.login(userId, password);
-	
+			if(userId.equals("admin1234"))
+				manager.Adminlogin(userId, password);
+			else
+				manager.login(userId, password);
+			
+			log.debug(userId);
+			log.debug(password);
+			
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            
+            request.setAttribute("curUserId", userId);
             
             return "/user/mainpage";			
 		} catch (Exception e) {

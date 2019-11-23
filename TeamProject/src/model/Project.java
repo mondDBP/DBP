@@ -2,9 +2,9 @@ package model;
 
 import java.sql.Date;
 
-public class Project {
+public class Project {//º¯¼ö12°³
 	private int project_id;			//PROJECT_ID
-	private String user_id;			//USER_ID
+	private int user_id_pk_seq;		//USER_ID		- NUMBER(10,0)
 	private String title;			//TITLE
 	private Date start_date; 		//START_DATE	- Date from imiport java.sql.Date
 	private String image;			//IMAGE			- Anytype	
@@ -16,19 +16,12 @@ public class Project {
 	private int total_money;		//TOTAL_MONEY
 	private String category_name;	//CATEGORY_NAME
 	
-	@Override
-	public String toString() {
-		return "Project [project_id=" + project_id + ", category_name=" + category_name + ", user_id=" + user_id
-				+ ", title=" + title + ", start_date=" + start_date + ", image=" + image + ", description="
-				+ description + ", goal=" + goal + ", fund_rate=" + fund_rate + ", rest_day=" + rest_day
-				+ ", funding_period=" + funding_period + ", total_money=" + total_money + "]";
-	}
+	
 	public Project() {};
-	public Project(int project_id, String category_name, String user_id, String title, Date start_date, String image,
-			String description, int goal, int fund_rate, int rest_day, int funding_period, int total_money) {
+	public Project(int project_id, int user_id_pk_seq, String title, Date start_date, String image, String description,
+			int goal, int fund_rate, int rest_day, int funding_period, int total_money, String category_name) {
 		this.project_id = project_id;
-		this.category_name = category_name;
-		this.user_id = user_id;
+		this.user_id_pk_seq = user_id_pk_seq;
 		this.title = title;
 		this.start_date = start_date;
 		this.image = image;
@@ -38,7 +31,9 @@ public class Project {
 		this.rest_day = rest_day;
 		this.funding_period = funding_period;
 		this.total_money = total_money;
+		this.category_name = category_name;
 	}
+	
 	public int getProject_id() {
 		return project_id;
 	}
@@ -51,11 +46,11 @@ public class Project {
 	public void setCategory_name(String category_name) {
 		this.category_name = category_name;
 	}
-	public String getUser_id() {
-		return user_id;
+	public int getUser_id_pk_seq() {
+		return user_id_pk_seq;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUser_id_pk_seq(int user_id_pk_seq) {
+		this.user_id_pk_seq = user_id_pk_seq;
 	}
 	public String getTitle() {
 		return title;

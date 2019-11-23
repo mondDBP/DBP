@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * 사용자 관리를 위해 필요한 도메인 클래스, dto
  */
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    
 	private int user_id_pk_seq;//users테이블의 시퀀스 값 int형 USER_ID
 	private String userId;//users테이블의 아이디 String형 ID
 	private String password; //PWD
@@ -78,6 +83,17 @@ public class User {
 		this.address = address;
 		this.email = email;
 		this.resid_id = resid_id;
+	}
+	
+	public User(String userId, String password, String name, String phone, String address,
+			String email) {
+		
+		this.userId = userId;
+		this.password = password;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
 	}
 
 	public User(int user_id_pk_seq, String userId, String password, String name, String phone, String address,

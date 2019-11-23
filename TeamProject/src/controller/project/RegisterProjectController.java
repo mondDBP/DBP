@@ -18,8 +18,7 @@ public class RegisterProjectController implements Controller{
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Project project = new Project( //int자료형은  Integer.parseInt()로 변환
 				Integer.parseInt(request.getParameter("project_id")),
-				request.getParameter("category_name"),
-				request.getParameter("user_id"),
+				Integer.parseInt(request.getParameter("user_id")),
 				request.getParameter("title"),
 				request.getParameter("start_date"),
 				request.getParameter("image"),
@@ -28,7 +27,8 @@ public class RegisterProjectController implements Controller{
 				Integer.parseInt(request.getParameter("fund_rate")),
 				Integer.parseInt(request.getParameter("rest_day")),
 				Integer.parseInt(request.getParameter("funding_period")),
-				Integer.parseInt(request.getParameter("total_money"))
+				Integer.parseInt(request.getParameter("total_money")),
+				request.getParameter("category_name")
 				);
 		
 		log.debug("Create Project : {}", project);
