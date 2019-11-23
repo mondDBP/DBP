@@ -36,22 +36,22 @@ public class LoginController implements Controller {
             
             request.setAttribute("curUserId", userId);
             
-            return "/user/mainpage";			
+            return "/user/mainpage";
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시
 			 * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력
 			 */
-			if (userId == "")
-				request.setAttribute("existId", 0);
-			if (password == "")
-				request.setAttribute("existPw", 0);
-			
 			request.setAttribute("existId", 1);
 			request.setAttribute("existPw", 1);
 			
+			if (userId == "" || userId == null)
+				request.setAttribute("existId", 0);
+			if (password == "" || password == null)
+				request.setAttribute("existPw", 0);
+			
             request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);
-            return "/user/login/login.jsp";			
+            return "/user/login/login.jsp";	
 		}	
     }
 }
