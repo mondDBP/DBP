@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+.project_card_section {
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	position: relative;
+	display: flex;
+}
+
+.project_card_1, .project_card_2, .project_card_3, .project_card_4 {
+	margin: 30px;
+	width: 200px;
+	height: 300px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+	flex-direction: column;
+}
+
+.project_card_1:hover, .project_card_2:hover, .project_card_3:hover,
+	.project_card_4:hover {
+	background-color: gray;
+	box-shadow: 0 5px 5px black;
+	cursor: pointer;
+}
+
+.project_card_1 .imgbox, .project_card_2 .imgbox, .project_card_3 .imgbox,
+	.project_card_4 .imgbox {
+	height: 150px;
+	/* background-color: white; */
+}
+
+.project_card_1 .textbox, .project_card_2 .textbox, .project_card_3 .textbox,
+	.project_card_4 .textbox {
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+progress {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.nowbox {
+	margin-bottom: 2px;
+	margin-right: 3px;
+	margin-left: 3px;
+	margin-top: 5px;
+}
+
+.kind_1_project {
+	margin: auto;
+	width: 1080px;
+	height: 400px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+	flex-direction: column;
+}
+
+.kind_1_header {
+	width: 1080px;
+	height: 40px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+}
+
+.kind_1_card_section {
+	width: 1080px;
+	height: 400px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	position: relative;
+	display: flex;
+}
+
+.kind_2_project {
+	margin: auto;
+	width: 1080px;
+	height: 400px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+	flex-direction: column;
+}
+
+.kind_2_header {
+	width: 1080px;
+	height: 40px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+}
+
+.kind_2_card_section {
+	width: 1080px;
+	height: 400px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	position: relative;
+	display: flex;
+}
+
+.kind_3_project {
+	margin: auto;
+	width: 1080px;
+	height: 400px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+	flex-direction: column;
+}
+
+.kind_3_header {
+	width: 1080px;
+	height: 40px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	display: flex;
+}
+
+.kind_3_card_section {
+	width: 1080px;
+	height: 400px;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	border-top: 1px solid #efefef;
+	position: relative;
+	display: flex;
+}
