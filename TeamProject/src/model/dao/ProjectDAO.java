@@ -11,9 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import model.Back_Order;
 import model.Project;
-import model.User;
 
 public class ProjectDAO {
 	
@@ -81,7 +79,7 @@ public class ProjectDAO {
 	}
 
 //	프로젝트 수정
-	public int update(Project p) throws SQLException {
+	public int updateProject(Project p) throws SQLException {
 		String sql = "UPDATE Project " + "SET PROJECT_ID=?, USER_ID=?, TITLE=?, START_DATE=?, IMAGE=?, "
 				+ "DESCRIPTION=?, GOAL=?, FUND_RATE=?, REST_DAY=?, FUNDING_PERIOD=?, TOTAL_MONEY=?, CATEGORY_NAME=? "
 				+ "WHERE project_id=? ; ";
@@ -151,17 +149,57 @@ public class ProjectDAO {
 		return false;
 	}
 	
-//	findUsersOnProject 미정
-	public List<User> findUsersOnProject(int project_id) {
-		String sql = "SELECT userid"
-				+ "FROM PROJECT "
-				+ "WHERE project_id=? ; ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});
+//	findUsersOnProject 
+//	public List<User> findUsersOnProject(int project_id) {
+//		String sql = "SELECT userid"
+//				+ "FROM PROJECT "
+//				+ "WHERE project_id=? ; ";
+//		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});
+//		try {
+//			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+//			if (rs.next()) {						
+////				Project proj = s.getString("user_id"),
+////				
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			jdbcUtil.close();		// resource 반환
+//		}
+//		return null;
+//	}
+	
+//	기본정보 포함하는 query문
+	static String query = "SELECT PROJECT_ID, USER_ID, TITLE, START_DATE, IMAGE, " +
+			"       DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, " +
+			"       TOTAL_MONEY, CATEGORY_NAME " +
+			"FROM Project ";
+//	이름(title)으로 프로젝트 검색 (like연산자) 1개반환
+	public Project findProject_returnOne(String title) throws SQLException {
+
+		String SearchQuery = query + "WHERE TITLE LIKE ? ";
+
+		String Like_w_title = "%" + title + "%";
+		jdbcUtil.setSqlAndParameters(SearchQuery, new Object[] {Like_w_title});
+
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						
-//				Project proj = s.getString("user_id"),
-//				
+				Project pj = new Project(		
+					rs.getInt("PROJECT_ID"),
+					rs.getInt("USER_ID"),
+					title,
+					rs.getDate("START_DATE"),
+					rs.getString("IMAGE"),
+					rs.getString("DESCRIPTION"),
+					rs.getInt("GOAL"),
+					rs.getInt("FUND_RATE"),
+					rs.getInt("REST_DAY"),
+					rs.getInt("FUNDING_PERIOD"),
+					rs.getInt("TOTAL_MONEY"),
+					rs.getString("CATEGORY_NAME")
+					);
+				return pj;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -170,61 +208,23 @@ public class ProjectDAO {
 		}
 		return null;
 	}
-//	이름(title)로 프로젝트 검색 --- 미완성
-	public Project findProject(String title) throws SQLException {
-		//pStmt를 위해 JDBC이용
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");	// JDBC 드라이버 로딩 및 등록
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		Connection conn = null;
-		PreparedStatement pStmt = null;
-		try {
-		conn = DriverManager.getConnection("202.20.119.117:1521:orcl", "dbp0108", "mond");
-		}catch(SQLException ex) {ex.printStackTrace(); }
-		
-		stmt = conn.createStatement();	
-		rs = stmt.executeQuery(query2);	
-		
-        String sql = "SELECT * "
-        			+ "FROM PROJECT "
-        			+ "WHERE TITLE LIKE ? ";    
-        System.out.println(sql);
-        pStmt = conn.prepareStatement(sql);
-        pStmt.setString(1, title);
+//	이름(title)으로 프로젝트 검색 (like연산자) 여러개 반환
+	public List<Project> findProjectList_ByTitle(String title) throws SQLException {
         
-        String pattern = "' " + title + "' ";
-        try {
-			String query2 = "SELECT * "
-        			+ "FROM PROJECT "
-					  	+ "WHERE TITLE LIKE '" + pattern + "'";	// 문자열 값 앞뒤에 작은따옴표 필요
-			System.out.println(query2);
-			
-			stmt = conn.createStatement();	
-			rs = stmt.executeQuery(query2);				// Statement 객체를 통한 질의 실행
-			System.out.println();
-			while (rs.next()) {							// 커서를 통해 한 행씩 fetch
-				String ename = rs.getString("ename");
-				String job = rs.getString("job");
-				String dname = rs.getString("dname");
-				System.out.println(ename + " " + job + " " + dname);
-			}
-			System.out.println();
-			rs.close();
-        
-        String name = title;
-        pstmt.setString(1, "%"+name+"%"); 
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {title});	// JDBCUtil에 query문과 매개 변수 설정
-
+		String findSql = "SELECT * " + "FROM PROJECT " + "WHERE TITLE LIKE ? ";
+		
+		String Like_w_title = "%" + title + "%";
+		jdbcUtil.setSqlAndParameters(findSql, new Object[] {Like_w_title});	// JDBCUtil에 query문과 매개 변수 설정
+		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			if (rs.next()) {						
-				Project proj = new Project(			
+			List<Project> projList = new ArrayList<Project>();	//리스트 생성
+			while (rs.next()) {
+				Project pj = new Project(			// 객체를 생성하여 현재 행의 정보를 저장
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
-						rs.getString("TITLE"),
-						rs.getDate("START_DATE"), //rs.getDate(columnLabel)로 선택
+						title,
+						rs.getDate("START_DATE"),
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
 						rs.getInt("GOAL"),
@@ -232,9 +232,12 @@ public class ProjectDAO {
 						rs.getInt("REST_DAY"),
 						rs.getInt("FUNDING_PERIOD"),
 						rs.getInt("TOTAL_MONEY"),
-						rs.getString("CATEGORY_NAME"));
-				return proj;
-			}
+						rs.getString("CATEGORY_NAME")
+						);
+				projList.add(pj);			// List에 생성된 객체 저장
+			}		
+			return projList;					
+				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -242,6 +245,7 @@ public class ProjectDAO {
 		}
 		return null;
 	}
+
 //	정렬조건
 	public List<Project> projectListOrderByCondition(String condition) throws SQLException {
 		String sql;
@@ -386,39 +390,38 @@ public class ProjectDAO {
 		}
 		return null;
 	}
-
+//	FK(외래키)로  검색하여 객체1개 가져감
 	public Project getProjectById(int PK_ID) {
-		String query = "SELECT project_id, category_name, user_id, title, start_date, " +
-				"       image, description, goal, fund_rate, rest_day, " +
-				"       funding_period, total_money " +
-				"FROM Project ";
-	
-	String searchQuery = query + "WHERE project_id = ?";
-	Object[] param = new Object[] {PK_ID};
-	
-	jdbcUtil.setSqlAndParameters(searchQuery, new Object[] {param});
-	
-	try {
-		ResultSet rs = jdbcUtil.executeQuery();
-		User dto = new User();
-		while (rs.next()) {
-			dto.setUser_id_pk_seq(rs.getInt("project_id"));
-			dto.setUserId(rs.getString("category_name"));
-			dto.setPassword(null); //비밀번호는 전송x
-			dto.setName(rs.getString("name"));
-			dto.setPhone(rs.getString("phone"));
-			dto.setAddress(rs.getString("address"));
-			dto.setEmail(rs.getString("email"));
-			dto.setEmail(rs.getString("email2"));
-			dto.setResid_id(rs.getString("resid_id"));
-			dto.setResid_id2(rs.getString("resid_id2"));	
+		String searchQuery = query + "WHERE project_id = ?";
+		
+//		Object[] param = new Object[] { PK_ID }; 매개변수 1개라서 괜찮다
+		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] { PK_ID });
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			Project proj = null; //= new Project();
+			while (rs.next()) 
+			{
+				proj = new Project();
+				proj.setProject_id(PK_ID);
+				proj.setUser_id_pk_seq(rs.getInt("USER_ID"));
+				proj.setTitle(rs.getString("TITLE"));
+				proj.setStart_date(rs.getDate("START_DATE"));
+				proj.setImage(rs.getString("IMAGE"));
+				proj.setDescription(rs.getString("DESCRIPTION"));
+				proj.setGoal(rs.getInt("GOAL"));
+				proj.setFund_rate(rs.getInt("FUND_RATE"));
+				proj.setRest_day(rs.getInt("REST_DAY"));
+				proj.setFunding_period(rs.getInt("FUNDING_PERIOD"));
+				proj.setTotal_money(rs.getInt("TOTAL_MONEY"));
+				proj.setCategory_name(rs.getString("CATEGORY_NAME"));
+			}
+			return proj;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
 		}
-		return dto;
-	} catch (Exception ex) {
-		ex.printStackTrace();
-	} finally {
-		jdbcUtil.close();
-	}
-	return null;
+		return null;
 	}
 }
