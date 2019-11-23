@@ -30,12 +30,11 @@ public class UserDAO {
 	 * 사용자 관리 테이블에 새로운 사용자 생성.
 	 */
 	public int update(User user) throws SQLException {
-		String sql = "UPDATE USERINFO "
-					+ "SET password=?, name=?, email=?, phone=?, address=? "
-					+ "WHERE userid=?";
-		Object[] param = new Object[] {user.getPassword(), user.getName(), 
-					user.getEmail(), user.getPhone(), 
-					user.getAddress(), user.getUserId()};				
+		String sql = "UPDATE USERS "
+					+ "SET pwd=?, name=?, phone_number=?, address=?, email=? "
+					+ "WHERE id=?";
+		Object[] param = new Object[] {user.getPassword(), user.getName(), user.getPhone(), 
+					user.getAddress(), user.getEmail(), user.getUserId()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 			
 		try {				
@@ -56,8 +55,10 @@ public class UserDAO {
 	 * 사용자 ID에 해당하는 사용자를 삭제.
 	 */
 	public int remove(String userId) throws SQLException {
-		String sql = "DELETE FROM USERINFO WHERE userid=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 delete문과 매개 변수 설정
+		String sql = "DELETE FROM USERS WHERE id=?";	
+		
+		Object[] param = new Object[] {userId};
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
 			int result = jdbcUtil.executeUpdate();	// delete 문 실행
@@ -74,9 +75,9 @@ public class UserDAO {
 	}
 	
 	public List<User> findUserList() throws SQLException {
-        String sql = "SELECT userId, name, email, phone, address " 
-        		   + "FROM USER "
-        		   + "ORDER BY name";
+        String sql = "SELECT id, pwd, name, phone_number, address, email, resid_id " 
+        		   + "FROM USERS "
+        		   + "ORDER BY resid_id";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
@@ -84,13 +85,13 @@ public class UserDAO {
 			List<User> userList = new ArrayList<User>();	// User들의 리스트 생성
 			while (rs.next()) {
 				User user = new User(			// User 객체를 생성하여 현재 행의 정보를 저장
-					rs.getString("userId"),
-					null,
+					rs.getString("id"),
+					rs.getString("pwd"),
 					rs.getString("name"),
-					rs.getString("email"),
-					rs.getString("phone"),
+					rs.getString("phone_number"),
 					rs.getString("address"),
-					null);
+					rs.getString("email"),
+					rs.getString("resid_id"));
 				userList.add(user);				// List에 User 객체 저장
 			}		
 			return userList;					

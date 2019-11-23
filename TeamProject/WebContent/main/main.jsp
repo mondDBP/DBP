@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("UTF-8");
+String curUserId = (String)request.getAttribute("curUserId");
+%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -27,7 +31,7 @@
 		</div>
 		
 		<c:choose>
-			<c:when test='${empty userId}'>
+			<c:when test='${empty curUserId}'>
 				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,12 +59,34 @@
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<span class="view-user" style="padding: 0 10px;">
+					<%
+						if(curUserId.equals("admin1234") == false){
+					%>
 					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					<%
+						}
+					%>
 					</span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<%
+						if(curUserId != null && curUserId.equals("admin1234")){
+					%>
+					<a href="<c:url value='/user/list' />" class="view-admin">관리자 페이지</a>
+					<%
+					}
+					%>
+					&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+					&nbsp;&nbsp;
+					<%
+						if(curUserId.equals("admin1234") == false){
+					%>
 					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
 					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
 					</a>
+					<%
+					}
+					%>
 				</div>
 			</c:otherwise>
 		</c:choose>
