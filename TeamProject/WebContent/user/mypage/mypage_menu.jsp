@@ -2,14 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	request.setCharacterEncoding("UTF-8");
-	String u_idx = (String) session.getAttribute("userId");
-	if (u_idx == null || u_idx.equals("")) {
-		response.sendRedirect("/main/main.jsp");
-	};
-%>
-
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +19,7 @@
 		<div class="container">
 			<div style="padding: 20px 0; text-align: center;">
 				<div style="float: right;">
-					<a href="<c:url value='/main/main.jsp' />" class="btn">닫기</a>
+					<div class="btn" onClick="history.back();">닫기</div>
 				</div>
 				<!-- X버튼 -->
 			</div>

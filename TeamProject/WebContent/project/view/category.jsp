@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <b>프로젝트 조회</b>
 	<nav>
 		<ul>
-			<li><a href="">전체</a></li>
+			<li><a href="<c:url value='/project/view/viewProjectList.jsp'/>" >전체</a></li>
 			<br>
 			<li><a href="">게임/취미</a></li>
 			<li><a href="">공연/컬쳐</a></li>
