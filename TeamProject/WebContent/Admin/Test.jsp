@@ -1,3 +1,6 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,6 +9,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -96,32 +102,11 @@ function userCreate() {
 
 </script>
 <style>
-table{
-	border-collapse : collapse;
-	margin : auto;
-	width : 450px;
-	height : 250px;
-}
-.title{
-	background-color : #ececec;
-	text-align : center;
-	font-weight : bold;
-	width:80px;
-}
-div{
-	text-align : center;
-}
-#text-area{
-	width :400px;
-	height : 70px;
-}
-#title{
-	text-align : center;
-}
+
 </style>
 <title>회원가입</title>
 </head>
-<body  bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<body>
 	<div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
@@ -149,120 +134,142 @@ div{
 				<br>
 				<br>
 <!-- registration form  -->
-<form name="form" method="POST" action="<c:url value='/user/register' />">
-  <table border="1">
-	<tr>
-		<td colspan= "2" class ="title">회원 가입</td>
-	</tr>
+<form  role="form" name="form" method="POST" action="<c:url value='/user/register' />">
 
 	    <!-- 회원가입이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
   
 	    <c:if test="${registerFailed}">
-		    <c:out value="${exception.getMessage()}" />   <!-- <script type='text/javascript'>alert(1);</script>-->
+		    <c:out value="${exception.getMessage()}" />  
 	    </c:if>
 	    
-	 <tr>
-		<td class="title">아이디<font color="red">*</font></td>
-		<td>
-			<input type="text" name="userId">
-		</td>
-	 </tr>
+	     <div  class="form-group" id="divId">
+                <label for="inputId" class="col-lg-2 control-label">아이디<font color="red">*</font></label>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control onlyAlphabetAndNumber" id="id" name="userId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                </div>
+         </div>
 	 
-	  <tr>
-		<td class="title">비밀번호<font color="red">*</font></td>
-		<td>
-			<input type="password" name="password">
-		</td>
-	 </tr>
-	  	  
-	  <tr>
-		<td class="title">비밀번호 확인</td>
-		<td>
-			<input type="password" name="password2">
-			<input type="button" value="비밀번호 확인" onclick="checkPw()">
-		</td>
-	 </tr>
-	   	  
-	  <tr>
-		<td class="title">이름<font color="red">*</font></td>
-		<td>
-			<input type="text" name="name" 
-			<c:if test="${registerFailed}"> value="${user.name}"</c:if>>
-			</td>
-	 </tr>
+ 		 <div class="form-group" id="divPassword">
+                <label for="inputPassword" class="col-lg-2 control-label">패스워드<font color="red">*</font></label>
+                <div class="col-lg-5">
+                    <input type="password" name="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                </div>
+         </div>
+         
+         <div class="form-group" id="divPasswordCheck">
+                <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
+                <div class="col-lg-5">
+                    <input type="password" name="password2" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+                			<input type="button" class="btn btn-default" value="비밀번호 확인" onclick="checkPw()">	
+                </div>
+         </div>
+         
+	   	      <div class="form-group" id="divName">
+                <label for="inputName" class="col-lg-2 control-label">이름<font color="red">*</font></label>
+                <div class="col-lg-5">
+                    <input type="text" name="name" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="이름" maxlength="1"
+                	<c:if test="${registerFailed}"> value="${user.name}"</c:if>>
+                </div>
+            </div>
+             
+               <div class="form-group" id="divPhone">
+                <label for="inputPhone" class="col-lg-2 control-label">전화번호<font color="red">*</font></label>
+                <div class="col-lg-6">
+                    <input type="text" name="phone" class="form-control" id="phone" data-rule-required="true" placeholder="전화번호" maxlength="15"
+                	<c:if test="${registerFailed}"> value="${user.phone}"</c:if>>
+                </div>
+            </div>
 	   
-	 <tr>
-		<td class="title">전화 번호<font color="red">*</font></td>
-		
-		<td>
-			<input type="text" name="phone" 
-			<c:if test="${registerFailed}">value="${user.phone}"</c:if>>
-		</td>
-	 </tr>
-	   		
-	 <tr>
-		<td class="title">주소</td>
-		<td>
-			<input type="text" name="address" 
-			<c:if test="${registerFailed}"> value="${user.address}"</c:if>>
-		</td>
-	 </tr>
-	    	
-	 <tr>
-		<td class="title">이메일<font color="red">*</font></td> 
-		<td>
-			<input type="text" name="email" 
-			<c:if test="${registerFailed}"> value="${user.email}"</c:if>>@
-			<select name ="email2">
-				<option>naver.com</option>
-				<option>daum.net</option>
-				<option>gmail.com</option>
-				<option>dongduk.ac.kr</option>
-			</select>
-		</td>
-	 </tr>
-	    		    	
-	    		
-	 <tr>
-		<td class="title">주민번호</td> <!-- 주민번호 유효성검사 -->
-		<td>
-			<input type="text" name="resid_id" id="resid_id"
-			<c:if test="${registerFailed}"> value="${user.resid_id}"</c:if>> - 
-			<input type="text" name="resid_id2" id="resid_id2"
-			<c:if test="${registerFailed}"> value="${user.resid_id2}"</c:if>>
-			<input type="button" value="체크" onClick="validate()">
-		</td>
-	 </tr>
-	    
-	 <tr>
-  	 	<td class = "title">관심분야</td>
-  		<td>
-    	 <input type = "checkbox" name = "interest" value = "게임">게임
-   		 <input type = "checkbox" name = "interest" value = "공연">공연
-   		 <input type = "checkbox" name = "interest" value = "디자인">디자인
-   		 <input type = "checkbox" name = "interest" value = "푸드">푸드
-   		 <br>
-   		 <input type = "checkbox" name = "interest" value = "출판">출판
-   		 <input type = "checkbox" name = "interest" value = "테크/가전">테크/가전
-   		 <input type = "checkbox" name = "interest" value = "패션">패션
-   		 <input type = "checkbox" name = "interest" value = "캠페인">캠페인
-   		 <br>
-    	 <input type = "checkbox" name = "interest" value = "반려동물">반려동물
-   		 <input type = "checkbox" name = "interest" value = "교육/키즈">교육/키즈
-   		 <input type = "checkbox" name = "interest" value = "여행/레져">여행/레져
-   		 <input type = "checkbox" name = "interest" value = "홈리빙">홈리빙
-   		</td>
-  	</tr>
-      
-	<tr>
-	  <td colspan = "2" style = "background-color : #ececec">
-	    <div>
-	  		 <input type="button" value="회원 가입" onClick="userCreate()"> 
-	    </div>
-	  </td>
-	</tr>
-  </table>  
+	     <div class="form-group" id="divAddress">
+                <label for="inputAddress" class="col-lg-2 control-label">주소<font color="red">*</font></label>
+                <div class="col-lg-7">
+                    <input type="text" name="address" class="form-control" id="address" data-rule-required="true" placeholder="주소" maxlength="15"
+                	<c:if test="${registerFailed}"> value="${user.address}"</c:if>>
+                </div>
+            </div>
+        
+                
+	     <div class="form-group" id="divEmail">
+                <label for="inputEmail" class="col-lg-2 control-label">이메일 주소<font color="red">*</font></label>
+            
+                <div class="col-lg-5">
+                 <div style="float:left">
+                    <input type="text" name="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="15"
+                	<c:if test="${registerFailed}"> value="${user.email}"</c:if>>
+                </div>
+                <div style="float:left">@</div>
+                
+                <div style="float:left">
+                	<select class="form-control" name ="email2">
+					<option>naver.com</option>
+					<option>daum.net</option>
+					<option>gmail.com</option>
+					<option>dongduk.ac.kr</option>
+					</select>
+				</div>
+                </div>
+            </div>          
+            
+          
+                
+	     <div class="form-group" id="divResid">
+                <label for="inputResid" class="col-lg-2 control-label">주민번호<font color="red">*</font></label>
+
+                <div class="col-lg-5">
+                 <div style="float:left">
+                    <input type="text" name="resid_id" class="form-control" id="resid_id" data-rule-required="true" placeholder="앞 6자리" maxlength="15"
+                	<c:if test="${registerFailed}"> value="${user.resid_id}"</c:if>>
+                	</div>
+                	<div style="float:left">&nbsp; - &nbsp;</div>
+
+ 					<div style="float:left">
+                	     <input type="text" name="resid_id2" class="form-control" id="resid_id2" data-rule-required="true" placeholder="뒤 7자리" maxlength="15"
+                	<c:if test="${registerFailed}"> value="${user.resid_id2}"</c:if>>
+         				 &nbsp;&nbsp;
+        		  </div>
+                	<input type="button" class="btn btn-default" value="체크" onClick="validate()">
+             
+                	</div>
+
+            </div>       
+
+            
+            <div class="checkbox" style="clear:both">
+            	<label for="inputCategory" class="col-lg-2 control-label">
+            	관심분야 </label>
+            	<br>
+            	<br>
+            	                <div class="col-lg-5">
+           <table border="1">
+           <tr>
+           <td>
+            	 <input type = "checkbox" name = "interest" value = "게임">게임 &nbsp;
+   			 <input type = "checkbox" name = "interest" value = "공연">공연 &nbsp;
+   			 <input type = "checkbox" name = "interest" value = "디자인">디자인 &nbsp;
+   			 <input type = "checkbox" name = "interest" value = "푸드">푸드 &nbsp;
+   			 <input type = "checkbox" name = "interest" value = "출판">출판 &nbsp;
+   			 <input type = "checkbox" name = "interest" value = "테크/가전">테크 &nbsp;
+   			 <br>
+ 	  		 <input type = "checkbox" name = "interest" value = "패션">패션 &nbsp;
+  	 		 <input type = "checkbox" name = "interest" value = "캠페인">캠페인 &nbsp;
+    		 <input type = "checkbox" name = "interest" value = "반려동물">반려동물 &nbsp;
+   			 <input type = "checkbox" name = "interest" value = "교육/키즈">교육/키즈&nbsp;
+   			 <input type = "checkbox" name = "interest" value = "여행/레져">여행/레져&nbsp;
+   			 <input type = "checkbox" name = "interest" value = "홈리빙">홈리빙&nbsp;
+   			 </td>
+   			 </tr>
+   			 </table>
+   			 </div>
+            
+            	
+            </div>   
+            
+               <br><br>         
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" class="btn btn-default" value="회원가입" onClick="userCreate()">
+                </div>
+            </div>  
 </form>
-	
 </body>
 </html>
