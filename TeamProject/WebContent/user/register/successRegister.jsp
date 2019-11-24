@@ -7,7 +7,7 @@
 <head>
 <meta charset="EUC-KR">
 <script type="text/javascript">
-	function redirect() {
+	function redirect() { 
 		form.submit();
 	}
 </script>

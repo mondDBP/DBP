@@ -107,16 +107,17 @@ div {
 		<c:out value="${exception.getMessage()}" />
 		<<script type='text/javascript'>alert(1);</script>
 	</c:if>
-
+<!-- 
 	<form method="post" enctype="multipart/form-data"
 		action="<c:url value='/project/register/imageUpload.jsp' />">
 		<input type="file" accept="image/jpg,image/gif,image/png"
-			name="projectImage" size="40"> <input type="submit"
+			name="projectImages" size="40"> <input type="submit"
 			value="업로드">
 	</form> 
+	-->
 
 	<!-- registration form  -->
-	<form name="form" method="POST" action="<c:url value='/project/register' />">
+	<form name="form" method="POST" enctype="multipart/form-data" action="<c:url value='/project/register/successRegister.jsp' />">
 		<table border="1" style="margin-top: 20px;">
 			<tr>
 				<td colspan="2" class="title">프로젝트 등록</td>
@@ -130,7 +131,8 @@ div {
 			<tr>
 				<td class="title">이미지</td>
 				<td>
-				
+					<input type="file" accept="image/jpg,image/gif,image/png"
+					name="filename1" size="40">
 				</td>
 			</tr>
 
@@ -196,7 +198,7 @@ div {
 			<tr>
 				<td colspan="2" style="background-color: #ececec">
 					<div>
-						<input type="button" value="확인" onClick="projectCreate()">
+						<input type="submit" value="확인" onClick="projectCreate()">
 					</div>
 				</td>
 			</tr>

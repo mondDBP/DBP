@@ -49,12 +49,10 @@ public class ProjectDAO {
 	public int create(Project p) throws SQLException {
 		String sql = "INSERT INTO Project (PROJECT_ID, USER_ID, TITLE, START_DATE , IMAGE, "
 				+ "DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+				+ "VALUES (PROJECT_ID_SEQ.nextval, ?, ?, TO_DATE(sysdate), ?, ?, ?, ?, ?, ?, ?, ?); ";
 		Object[] param = new Object[] { 
-					p.getProject_id(),
 					p.getUser_id_pk_seq(),
 					p.getTitle(),
-					p.getStart_date(),
 					p.getImage(),
 					p.getDescription(),
 					p.getGoal(),

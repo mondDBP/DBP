@@ -10,7 +10,7 @@
 <b>프로젝트 조회</b>
 	<nav>
 		<ul>
-			<li><a href="<c:url value='/project/view/viewProjectList.jsp'/>" >전체</a></li>
+			<li><a href="<c:url value='/project/list'/>" >전체</a></li>
 			<br>
 			<li><a href="">게임/취미</a></li>
 			<li><a href="">공연/컬쳐</a></li>

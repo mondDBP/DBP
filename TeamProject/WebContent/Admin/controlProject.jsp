@@ -34,7 +34,7 @@ function Delete(){
    <a class="nav-link" href="<c:url value='/user/list' />">회원 관리</a>
   </li>
  <li class="nav-item">
-   <a class="nav-link" href="<c:url value='/project/list' />">프로젝트 관리</a>
+   <a class="nav-link" href="<c:url value='/project/list/admin' />">프로젝트 관리</a>
   </li>
   <li class="nav-item">
    <a class="nav-link" href="<c:url value='/amount/graph' />">후원 현황</a>
@@ -94,7 +94,7 @@ if(proInfo == null){
 		  <%=pro.getProject_id() %>
 		  </td>
 		  <td>
-		  <a href="<c:url value='/project/view'>
+		  <a href="<c:url value='/project/view/admin'>
 					   <c:param name='projectTitle' value='<%=pro.getTitle()%>'/>
 			 		 </c:url>">
 			  <%=pro.getTitle() %></a>

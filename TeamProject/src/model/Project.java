@@ -15,7 +15,7 @@ public class Project {//변수12개
 	private int funding_period;		//FUNDING_PERIOD
 	private int total_money;		//TOTAL_MONEY
 	private String category_name;	//CATEGORY_NAME
-	// is_succes는 유도속성으로  rest_day=0으로 가정
+	
 	
 	public Project() {};
 	public Project(int project_id, int user_id_pk_seq, String title, Date start_date, String image, String description,
@@ -34,11 +34,25 @@ public class Project {//변수12개
 		this.category_name = category_name;
 	}
 	
-	public Project(int project_id, String title, Date start_date, String description,String image,
+	public Project(String title, String image, String description,
+			int goal, int fund_rate, int rest_day, int funding_period, int total_money, String category_name) {
+
+		this.title = title;
+		this.image = image;
+		this.description = description;
+		this.goal = goal;
+		this.fund_rate = fund_rate;
+		this.rest_day = rest_day;
+		this.funding_period = funding_period;
+		this.total_money = total_money;
+		this.category_name = category_name;
+	}
+	
+	public Project(int project_id, String title, Date start_date, String description, String image,
 			int goal, int fund_rate, int rest_day, int total_money, String category_name) {
 		this.project_id = project_id;
 		this.title = title;
-		this.start_date = start_date;
+		this.start_date = start_date; 
 		this.description = description;
 		this.image = image;
 		this.goal = goal;
