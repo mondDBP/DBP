@@ -104,7 +104,7 @@ if(proInfo == null){
 		  <%=pro.getStart_date() %>
 		  </td>
 		  <td>
-		   <img src="<%=pro.getImage()%>" width="50px" height="50px" /> 
+		   <img src="<%=pro.getImage()%>" width="50px" height='50px' /> 
 		  사진
 		  </td>
 		  

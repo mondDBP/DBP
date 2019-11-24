@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.ResultSet;
 
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,11 +43,11 @@ public class Back_OrderDAO {
 	 * 
 	 */
 //	후원정보 생성
-	/*public int insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
+	public int insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
 		int result = 0;
 
 		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pledged, reward_option, back_date, "+
-							 "rest_day, is_success, is_paid) " +
+							 "rest_day, is_success, is_paid) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
 
 		
 		DAOFactory factory = new DAOFactory();
@@ -85,6 +86,12 @@ public class Back_OrderDAO {
 		// rest_day - 프로젝트의 rest_day에서 가져옴
 		int rest_day = pj.getRest_day();
 		if (rest_day == 0) {
+		PaymentDAO PaymentDAO = factory.getPaymentDAO();
+		Payment pm = PaymentDAO.getPaymentBy2ID(user_id_pk_seq, project_id);
+		String payment_id = pm.getPayment_id(); // payment_date로 하고싶었지만 초기값을 알지못해 id로 대체
+		if(payment_id == null) {
+			System.out.println("결제가 제대로 이루어지지 않았습니다");
+			bo.setIs_paid(0);
 			System.out.println("모금기간이 만료되었습니다");
 			return 0;
 		}
@@ -94,13 +101,7 @@ public class Back_OrderDAO {
 			System.out.println("프로젝트 후원모금이 아쉽게 실패했습니다");
 			return 0;
 		}
-		// is_paid - Payment테이블의  payment_id의 존재여부로 판단 1이면 성공, 0이면 실패
-		PaymentDAO PaymentDAO = factory.getPaymentDAO();
-		Payment pm = PaymentDAO.getPaymentBy2ID(user_id_pk_seq, project_id);
-		String payment_id = pm.getPayment_id(); // payment_date로 하고싶었지만 초기값을 알지못해 id로 대체
-		if(payment_id == null) {
-			System.out.println("결제가 제대로 이루어지지 않았습니다");
-			bo.setIs_paid(0);
+		// is_paid - Payment테이블의  payment_id의 존재여부로 판단 1이면 성공, 0이면 
 			return 0;
 		}else bo.setIs_paid(1);
 		
@@ -131,7 +132,7 @@ public class Back_OrderDAO {
 		return result; // insert 에 의해 반영된 레코드 수 반환
 		
 	}
-*/
+
 	public List<Back_Order> findBackList(String today) throws SQLException {
         String sql = "SELECT amount_pledged " 
         		   + "FROM BACK_ORDER "
