@@ -22,7 +22,7 @@ function userRemove() {
   <table style="margin:auto;text-align:center;" border="1">
     <tr>
 	  <td>	  	    
-	  	<table>
+	  	<table border="1">
 	  	  <tr>
 			<td>회원 ID</td>
 			<td>

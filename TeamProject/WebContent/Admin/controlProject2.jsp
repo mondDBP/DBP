@@ -25,7 +25,7 @@ function projectRemove() {
   <table style="margin:auto;text-align:center;" border="1">
     <tr>
 	  <td>	  	      
-	  	<table>
+	  	<table border="1">
 	  	  <tr>
 			<td>프로젝트 ID</td>
 			<td>
@@ -87,7 +87,7 @@ function projectRemove() {
 			</td>
 		  </tr>		
 	 	</table>
- 	    
+ 	     	    <a href="<c:url value='/project/list/admin' />">목록</a>
 	 </td>
 	</tr>
  </table>

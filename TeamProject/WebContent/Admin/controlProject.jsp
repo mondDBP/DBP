@@ -76,7 +76,7 @@ function Delete(){
   <table style="margin:auto;">
    <tr>
     <td style="margin:auto;text-align:right">
-    <input onFocus="this.value='' " value="프로젝트 제목을 입력하세요" type ="text" name="proTitle">
+    <input onFocus="this.value='' " value="프로젝트 제목을 입력하세요" type ="text" name="proTitle" size="30">
      <input type="button" value="검색" onClick="Search()">
      	<c:if test="${SearchFailed}">
 	  				 <font color="red"><c:out value="${exception.getMessage()}" /></font>
