@@ -34,11 +34,12 @@ public class Project {//º¯¼ö12°³
 		this.category_name = category_name;
 	}
 	
-	public Project(int project_id, String title, Date start_date, String image,
+	public Project(int project_id, String title, Date start_date, String description,String image,
 			int goal, int fund_rate, int rest_day, int total_money, String category_name) {
 		this.project_id = project_id;
 		this.title = title;
 		this.start_date = start_date;
+		this.description = description;
 		this.image = image;
 		this.goal = goal;
 		this.fund_rate = fund_rate;

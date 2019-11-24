@@ -1,24 +1,27 @@
 package model.dao;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import model.Back_Order;
 import model.Project;
 import model.Reward_option;
 import model.User;
 
 public class Back_OrderDAO {
-	
+	private static final Logger log = LoggerFactory.getLogger(Back_OrderDAO.class);
 	private JDBCUtil jdbcUtil = null;
-	private static String query = "SELECT user_id, project_id, amount_pleded, reward_option, back_date, " +
+	private static String query = "SELECT user_id, project_id, amount_pledged, reward_option, back_date, " +
 								"       rest_day, is_success, is_paid " +
 										"FROM Back_Order ";
 
 	public Back_OrderDAO() {
-		this.jdbcUtil = jdbcUtil;
+		jdbcUtil = new JDBCUtil();
 	}
 	/* public int insertBack_Order(Back_Order bo) 
 	 * 후원정보를 보는곳이므로 수정(Update)는 이루어지지않는다
@@ -29,7 +32,7 @@ public class Back_OrderDAO {
 	
 	public int insertBack_Order(Back_Order bo) {
 		int result = 0;
-		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pleded, reward_option, back_date, "+
+		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pledged, reward_option, back_date, "+
 							 "rest_day, is_success, is_paid) " +
 							 "VALUES (?, ?, ?, ?, ?, ?, ?, ?); "; //예제에서 ; 없는데 들어가는지확인해보기
 		
@@ -51,7 +54,7 @@ public class Back_OrderDAO {
 			System.out.println("해당 프로젝트가 없습니다.(ID를 찾을수없음)");
 			return 0;
 		}
-		// amount_pleded - 리워드 옵션의 price에서 가져옴
+		// amount_pledged - 리워드 옵션의 price에서 가져옴
 		Reward_optionDAO Reward_optionDAO = factory.getReward_optionDAO();
 		Reward_option ro = Reward_optionDAO.getReward_optionById(bo.getProject_id());
 		int price = ro.getPrice();
@@ -100,6 +103,34 @@ public class Back_OrderDAO {
 		}
 	}
 
+	public List<Back_Order> findBackList(String today) throws SQLException {
+        String sql = "SELECT amount_pledged " 
+        		   + "FROM BACK_ORDER "
+        		   + "WHERE TO_CHAR(back_date, 'yy/mm/dd') = ?";
+
+		Object[] param = new Object[] {today};
+		
+		jdbcUtil.setSqlAndParameters(sql, param);		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Back_Order> backList = new ArrayList<Back_Order>();	// User들의 리스트 생성
+			while (rs.next()) {
+				Back_Order back = new Back_Order(			// User 객체를 생성하여 현재 행의 정보를 저장
+					rs.getInt("amount_pledged"));
+				backList.add(back);
+					log.debug(Integer.toString(back.getAmount_pledged()));// List에 User 객체 저장
+			}		
+			return backList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 	public int deleteBack_Order(Back_Order bo) {
 		String deleteQuery = "DELETE FROM BackOrder WHERE user_id = ? AND project_id=? AND";
 

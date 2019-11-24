@@ -4,19 +4,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.service.UserManager;
+import model.service.ProjectManager;
+import model.service.ProjectNotFoundException;
 import model.Project;
 
 public class ViewProjectController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-    	
-    	Project proj = null;
-		UserManager manager = UserManager.getInstance();
-		int proj_id = Integer.parseInt(request.getParameter("project_id"));
-		proj = manager.findProject(proj_id);		// 프로젝트 정보 검색			
+
+		ProjectManager manager = ProjectManager.getInstance();
+		String projectTitle = request.getParameter("projectTitle");
+
+    	Project project = null;
+    	try {
+			project = manager.findProject(projectTitle);	// 사용자 정보 검색
+		} catch (ProjectNotFoundException e) {				
+	        return "redirect:/project/list";
+		}	
 		
-		request.setAttribute("project", proj);	// 프로젝트 정보 저장				
-		return "/project/view.jsp";				// 프로젝트 보기 화면으로 이동
+    	request.setAttribute("project", project);		// 사용자 정보 저장				
+		return "/Admin/controlProject2.jsp";				// 사용자 보기 화면으로 이동
     }
 }

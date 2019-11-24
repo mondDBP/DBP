@@ -47,6 +47,9 @@ public class RequestMapping {
         mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/search", new SearchProjectController());
+        
+        
+        mappings.put("/amount/graph", new AmountGraphController());
 //        mappings.put("/project/create", new CreateCommunityController());
 //        mappings.put("/project/update/form", new UpdateCommunityController());
 //        mappings.put("/project/update", new UpdateCommunityController());
@@ -54,6 +57,7 @@ public class RequestMapping {
         mappings.put("/user/mainpage", new ForwardController("/main/main.jsp"));//메인페이지 화면 연결
         mappings.put("/user/terms", new ForwardController("/user/register/terms.jsp"));//동의약관화면 연결
         mappings.put("/user/successregister", new ForwardController("/user/register/successRegister.jsp"));//성공적인 회원가입시 뜨는 화면연결
+        
         
         logger.info("Initialized Request Mapping!");
     }
