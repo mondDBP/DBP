@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
 	function backProject() {
-		document.form.action="<c:url value='/project/view' />";
+		document.form.action = "<c:url value='/project/view' />";
 		document.form.submit();
 	}
-	
+
 	function backProject() {
-		document.form.action="' />";
+		document.form.action = "' />";
 		document.form.submit();
 	}
 </script>
@@ -47,7 +47,8 @@ div {
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
 	<form name="form" method="POST">
-	<br><br>
+		<br>
+		<br>
 		<table border="1">
 			<tr>
 				<td colspan="3">이미지</td>
