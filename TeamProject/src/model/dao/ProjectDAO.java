@@ -422,6 +422,22 @@ public class ProjectDAO {
 		return null;
 	}
 	
+	public int countingProjects() throws SQLException {
+		String sql = "SELECT count(project_id) as cnt from project";
+		int rslt = 0;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			if (rs.next()) {
+				rslt = rs.getInt("cnt");
+			}		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return rslt;
+	}
+	
 	//마이페이지에서 '내가 창작한 프로젝트' 들어가면 나오는 리스트를 위한 메소드
 	public List<Project> userCreateProjectList(int userId) {
 		String sql = "SELECT * " 

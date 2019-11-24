@@ -34,14 +34,18 @@ public class ProjectManager {//프로젝트 존재여부
 		return projDAO.create(proj);
 	}
 
-	public int update(Project proj) throws SQLException {
-		return projDAO.update(proj);
+	public int updateProject(Project proj) throws SQLException {
+		return projDAO.updateProject(proj);
 	}	
 
 	public int remove(int projID) throws SQLException {
 		return projDAO.remove(projID);
 	}
 
+	public int countingProjects() throws SQLException {
+		return projDAO.countingProjects();
+	}
+	
 	public Project findProject(String title)
 		throws SQLException, ProjectNotFoundException {
 		Project proj = projDAO.findProject(title);
