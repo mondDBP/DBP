@@ -20,12 +20,12 @@ public class ProjectDAO {
 	
 	private JDBCUtil jdbcUtil = null;
 
-//	»ý¼ºÀÚ
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public ProjectDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil °´Ã¼ »ý¼º
+		jdbcUtil = new JDBCUtil(); // JDBCUtil ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	}
 
-//	½ÃÄý½º »ý¼º
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int getSequence() throws SQLException{
 		int result = 1;
 		String sql = "SELECT project_id_seq.nextval FROM DUAL";
@@ -40,12 +40,12 @@ public class ProjectDAO {
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return result;
 	}
 
-//	»õ·Î¿î ÇÁ·ÎÁ§Æ® »ý¼º
+//	ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	public int create(Project p) throws SQLException {
 		String sql = "INSERT INTO Project (PROJECT_ID, USER_ID, TITLE, START_DATE , IMAGE, "
 				+ "DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME) "
@@ -62,17 +62,17 @@ public class ProjectDAO {
 					p.getTotal_money(),
 					p.getCategory_name()
 		};
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // insert ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹ÝÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
@@ -82,10 +82,10 @@ public class ProjectDAO {
      			+ "FROM PROJECT "
      			+ "WHERE title LIKE ?";              
 		 
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + title + "%"});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + title + "%"});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 			if (rs.next()) {						
 				Project project = new Project(		
 					rs.getInt("project_id"),
@@ -103,11 +103,11 @@ public class ProjectDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
-//	ÇÁ·ÎÁ§Æ® ¼öÁ¤
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	public int updateProject(Project p) throws SQLException {
 		String sql = "UPDATE Project " + "SET PROJECT_ID=?, USER_ID=?, TITLE=?, START_DATE=?, IMAGE=?, "
 				+ "DESCRIPTION=?, GOAL=?, FUND_RATE=?, REST_DAY=?, FUNDING_PERIOD=?, TOTAL_MONEY=?, CATEGORY_NAME=? "
@@ -126,46 +126,46 @@ public class ProjectDAO {
 				p.getTotal_money(),
 				p.getCategory_name()
 		};
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil¿¡ update¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtilï¿½ï¿½ updateï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹ÝÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
 
-//	ÇÁ·ÎÁ§Æ® »èÁ¦
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	public int remove(int project_id) throws SQLException {
 		String sql = "DELETE FROM project WHERE project_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtilï¿½ï¿½ deleteï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // delete ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹ÝÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
 
-// ÇÁ·ÎÁ§Æ®ID¿¡ ÇØ´çÇÏ´Â ÇÁ·ÎÁ§Æ®°¡ Á¸ÀçÇÏ´ÂÁö °Ë»ç
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®IDï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	public boolean existingProject(int project_id) throws SQLException {
 		String sql = "SELECT count(*) FROM Project WHERE project_id=? ; ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);
@@ -173,7 +173,7 @@ public class ProjectDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹ÝÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return false;
 	}
@@ -185,7 +185,7 @@ public class ProjectDAO {
 //				+ "WHERE project_id=? ; ";
 //		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});
 //		try {
-//			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+//			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 //			if (rs.next()) {						
 ////				Project proj = s.getString("user_id"),
 ////				
@@ -193,17 +193,17 @@ public class ProjectDAO {
 //		} catch (Exception ex) {
 //			ex.printStackTrace();
 //		} finally {
-//			jdbcUtil.close();		// resource ¹ÝÈ¯
+//			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 //		}
 //		return null;
 //	}
 	
-//	±âº»Á¤º¸ Æ÷ÇÔÇÏ´Â query¹®
+//	ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ queryï¿½ï¿½
 	static String query = "SELECT PROJECT_ID, USER_ID, TITLE, START_DATE, IMAGE, " +
 			"       DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, " +
 			"       TOTAL_MONEY, CATEGORY_NAME " +
 			"FROM Project ";
-//	ÀÌ¸§(title)À¸·Î ÇÁ·ÎÁ§Æ® °Ë»ö (like¿¬»êÀÚ) 1°³¹ÝÈ¯
+//	ï¿½Ì¸ï¿½(title)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ë»ï¿½ (likeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) 1ï¿½ï¿½ï¿½ï¿½È¯
 	public Project findProject_returnOne(String title) throws SQLException {
 
 		String SearchQuery = query + "WHERE TITLE LIKE ? ";
@@ -212,7 +212,7 @@ public class ProjectDAO {
 		jdbcUtil.setSqlAndParameters(SearchQuery, new Object[] {Like_w_title});
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 			if (rs.next()) {						
 				Project pj = new Project(		
 					rs.getInt("PROJECT_ID"),
@@ -233,7 +233,7 @@ public class ProjectDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
@@ -243,10 +243,10 @@ public class ProjectDAO {
 		   String sql = "SELECT PROJECT_ID, TITLE, START_DATE, DESCRIPTION, IMAGE, GOAL, FUND_RATE, REST_DAY, TOTAL_MONEY, CATEGORY_NAME " 
         		   + "FROM PROJECT "
         		   + "ORDER BY PROJECT_ID";
-		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			
+			ResultSet rs = jdbcUtil.executeQuery();			// query ï¿½ï¿½ï¿½ï¿½			
 			List<Project> proList = new ArrayList<Project>();	
 			while (rs.next()) {
 				Project project = new Project(
@@ -261,33 +261,33 @@ public class ProjectDAO {
 						rs.getInt("TOTAL_MONEY"),
 						rs.getString("CATEGORY_NAME")	
 				);
-				proList.add(project);				// List¿¡ User °´Ã¼ ÀúÀå
+				proList.add(project);				// Listï¿½ï¿½ User ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return proList;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 	
 	
 	
-//	ÀÌ¸§(title)À¸·Î ÇÁ·ÎÁ§Æ® °Ë»ö (like¿¬»êÀÚ) ¿©·¯°³ ¹ÝÈ¯
+//	ï¿½Ì¸ï¿½(title)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ë»ï¿½ (likeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 	public List<Project> findProjectList_ByTitle(String title) throws SQLException {
         
 		String findSql = "SELECT * " + "FROM PROJECT " + "WHERE TITLE LIKE ? ";
 		
 		String Like_w_title = "%" + title + "%";
-		jdbcUtil.setSqlAndParameters(findSql, new Object[] {Like_w_title});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(findSql, new Object[] {Like_w_title});	// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			List<Project> projList = new ArrayList<Project>();	//¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			List<Project> projList = new ArrayList<Project>();	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Project pj = new Project(			// °´Ã¼¸¦ »ý¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Project pj = new Project(			// ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
 						title,
@@ -301,19 +301,19 @@ public class ProjectDAO {
 						rs.getInt("TOTAL_MONEY"),
 						rs.getString("CATEGORY_NAME")
 						);
-				projList.add(pj);			// List¿¡ »ý¼ºµÈ °´Ã¼ ÀúÀå
+				projList.add(pj);			// Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return projList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
-//	Á¤·ÄÁ¶°Ç
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<Project> projectListOrderByCondition(String condition) throws SQLException {
 		String sql;
 
@@ -328,14 +328,14 @@ public class ProjectDAO {
 		}
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			List<Project> projList = new ArrayList<Project>();	// projectµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			List<Project> projList = new ArrayList<Project>();	// projectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
 				Project proj = new Project(			
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
 						rs.getString("TITLE"),
-						rs.getDate("START_DATE"), //rs.getDate(columnLabel)·Î ¼±ÅÃ
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
 						rs.getInt("GOAL"),
@@ -344,31 +344,31 @@ public class ProjectDAO {
 						rs.getInt("FUNDING_PERIOD"),
 						rs.getInt("TOTAL_MONEY"),
 						rs.getString("CATEGORY_NAME"));
-				projList.add(proj);			// List¿¡ project °´Ã¼ ÀúÀå
+				projList.add(proj);			// Listï¿½ï¿½ project ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return projList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
-//	ÆÝµù·ü±âÁØ Á¤·Ä
+//	ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public List<Project> projectListOrderByFundRate() throws SQLException {
       String sql = "SELECT * FROM Project "
    				+ "ORDER BY fund_rate desc";                         
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			List<Project> projList = new ArrayList<Project>();	// projectµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			List<Project> projList = new ArrayList<Project>();	// projectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
 				Project proj = new Project(			
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
 						rs.getString("TITLE"),
-						rs.getDate("START_DATE"), //rs.getDate(columnLabel)·Î ¼±ÅÃ
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
 						rs.getInt("GOAL"),
@@ -377,31 +377,31 @@ public class ProjectDAO {
 						rs.getInt("FUNDING_PERIOD"),
 						rs.getInt("TOTAL_MONEY"),
 						rs.getString("CATEGORY_NAME"));
-				projList.add(proj);			// List¿¡ project °´Ã¼ ÀúÀå
+				projList.add(proj);			// Listï¿½ï¿½ project ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return projList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
-//	ÃÖ½Å¼ø Á¤·Ä
+//	ï¿½Ö½Å¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public List<Project> projectListOrderByLatest() throws SQLException {
       String sql = "SELECT * FROM Project "
    				+ "ORDER BY start_date";                         
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			List<Project> projList = new ArrayList<Project>();	// projectµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
+			List<Project> projList = new ArrayList<Project>();	// projectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
 				Project proj = new Project(			
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
 						rs.getString("TITLE"),
-						rs.getDate("START_DATE"), //rs.getDate(columnLabel)·Î ¼±ÅÃ
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
 						rs.getInt("GOAL"),
@@ -410,14 +410,14 @@ public class ProjectDAO {
 						rs.getInt("FUNDING_PERIOD"),
 						rs.getInt("TOTAL_MONEY"),
 						rs.getString("CATEGORY_NAME"));
-				projList.add(proj);			// List¿¡ project °´Ã¼ ÀúÀå
+				projList.add(proj);			// Listï¿½ï¿½ project ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}		
 			return projList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
@@ -426,34 +426,34 @@ public class ProjectDAO {
 		String sql = "SELECT count(project_id) as cnt from project";
 		int rslt = 0;
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			
+			ResultSet rs = jdbcUtil.executeQuery();			// query ï¿½ï¿½ï¿½ï¿½			
 			if (rs.next()) {
 				rslt = rs.getInt("cnt");
 			}		
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return rslt;
 	}
 	
-	//¸¶ÀÌÆäÀÌÁö¿¡¼­ '³»°¡ Ã¢ÀÛÇÑ ÇÁ·ÎÁ§Æ®' µé¾î°¡¸é ³ª¿À´Â ¸®½ºÆ®¸¦ À§ÇÑ ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 'ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®' ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public List<Project> userCreateProjectList(int userId) {
 		String sql = "SELECT * " 
      		   + "FROM PROJECT "
      		   + "WHERE user_id = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});		// JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});		// JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			
-			List<Project> projectList = new ArrayList<Project>();	// UserµéÀÇ ¸®½ºÆ® »ý¼º
+			ResultSet rs = jdbcUtil.executeQuery();			// query ï¿½ï¿½ï¿½ï¿½			
+			List<Project> projectList = new ArrayList<Project>();	// Userï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Project project = new Project(			//°´Ã¼¸¦ »ý¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Project project = new Project(			//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
 						rs.getString("TITLE"),
-						rs.getDate("START_DATE"), //rs.getDate(columnLabel)·Î ¼±ÅÃ
+						rs.getDate("START_DATE"), //rs.getDate(columnLabel)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
 						rs.getInt("GOAL"),
@@ -463,21 +463,21 @@ public class ProjectDAO {
 						rs.getInt("TOTAL_MONEY"),
 						rs.getString("CATEGORY_NAME")
 						);
-				projectList.add(project);				// List¿¡ ÀúÀå
+				projectList.add(project);				// Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 			return projectList;					
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹ÝÈ¯
+			jdbcUtil.close();		// resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
-//	FK(¿Ü·¡Å°)·Î  °Ë»öÇÏ¿© °´Ã¼1°³ °¡Á®°¨
+//	FK(ï¿½Ü·ï¿½Å°)ï¿½ï¿½  ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½Ã¼1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Project getProjectById(int PK_ID) {
 		String searchQuery = query + "WHERE project_id = ?";
 		
-//		Object[] param = new Object[] { PK_ID }; ¸Å°³º¯¼ö 1°³¶ó¼­ ±¦Âú´Ù
+//		Object[] param = new Object[] { PK_ID }; ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] { PK_ID });
 
 		try {
@@ -507,24 +507,22 @@ public class ProjectDAO {
 		}
 		return null;
 	}
-// ÇÁ·ÎÁ§Æ® ÀüÃ¼°³¼ö Ãâ·Â
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public int getNumberofProjects() {
-	String sql = "SELECT count(*) FROM PROJECT ";
+	String sql = "SELECT * FROM PROJECT ";
 	jdbcUtil.setSqlAndParameters(sql, null);
-	
+	int count=0;
 	try {
-		int count=0;
-		ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+		ResultSet rs = jdbcUtil.executeQuery();		// query ï¿½ï¿½ï¿½ï¿½
 		while (rs.next()) 
 		{
 			count++;
 		}
-		return count;
 	} catch (Exception ex) {
 		ex.printStackTrace();
 	} finally {
-		jdbcUtil.close();		// resource ¹ÝÈ¯
+		jdbcUtil.close();		// resource ï¿½ï¿½È¯
 	}
-	return 0;
+	return count;
 	}
 }

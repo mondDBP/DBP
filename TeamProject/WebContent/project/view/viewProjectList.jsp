@@ -34,7 +34,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 	<form name="form" method="POST"
 		action="<c:url value='/project/view' />">
 		<div
-			style="text-align: right; width: auto; margin: auto; padding: 50px;">
+			style="text-align: right; width: auto; margin: auto; padding: 30px;">
 			<select name="sortProject">
 				<option value="fund_rate">모금률순</option>
 				<option value="latest">최신순</option>
@@ -42,8 +42,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 			</select>
 		</div>
 
-		<div style="text-align: center; width: auto; margin: auto;">${projectList.len}개의 프로젝트가 있습니다.</div>
-
+		<div style="text-align: center; width: auto; margin: 10px;">총 ${numOfProj }개의 프로젝트가 있습니다.</div>
 
 		<div class="kind_1_project">
 			<table>
