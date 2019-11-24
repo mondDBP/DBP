@@ -42,7 +42,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 			</select>
 		</div>
 
-		<div style="text-align: center; width: auto; margin: auto;">개의 프로젝트가 있습니다.</div>
+		<div style="text-align: center; width: auto; margin: auto;">${projectList.len}개의 프로젝트가 있습니다.</div>
 
 
 		<div class="kind_1_project">
