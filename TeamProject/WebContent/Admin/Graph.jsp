@@ -11,12 +11,17 @@
     int result = (int)request.getAttribute("result");
 	int amount = (int)request.getAttribute("amount");
 %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="<c:url value='/main/jquery-1.8.0.min.js' />"></script>
+<script src="<c:url value='/main/main.js' />"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css' />" media="all" />
 <title>관리자 페이지</title>
   <script type="text/javascript">
   window.onload = function () {
@@ -56,7 +61,7 @@
     	      {        
     	          type: "bar",
     	          dataPoints: [
-    	          { label: "누적 모금액", y: amount, color:"Orange" }
+    	          { label: "누적 판매량", y: amount, color:"Orange" }
 
     	          ]
     	        }
@@ -68,6 +73,30 @@
  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
+<div class="header-wrap">
+		<div class="header">
+			<div class="hpName-wrap">
+				<a class="hpName" href="<c:url value='/main/main.jsp' />">Bumblebug</a>
+			</div>
+			
+			<div class="leftproject-bar">
+			<a class="view-project" href="<c:url value='/project/view/category.jsp' />">프로젝트 둘러보기</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
+		</div>
+		<div class="rightproject-bar">
+					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+					&nbsp;&nbsp;
+
+				</div>
+				</div>
+				</div>
+				<br>
+				<br>
 <nav class="navbar navbar-expand-md bg-light">
  <ul class="navbar-nav">
   <li class="nav-item">

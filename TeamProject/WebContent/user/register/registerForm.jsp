@@ -98,6 +98,7 @@ function userCreate() {
 		return false;
 	}
 	form.submit();
+	
 }
 
 </script>
@@ -137,10 +138,7 @@ function userCreate() {
 <form  role="form" name="form" method="POST" action="<c:url value='/user/register' />">
 
 	    <!-- 회원가입이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-  
-	    <c:if test="${registerFailed}">
-		    <c:out value="${exception.getMessage()}" />  
-	    </c:if>
+
 	    
 	     <div  class="form-group" id="divId">
                 <label for="inputId" class="col-lg-2 control-label">아이디<font color="red">*</font></label>
@@ -148,7 +146,11 @@ function userCreate() {
                 (<font color="red">*</font>는 필수 입력 항목입니다.)
                 <div class="col-lg-5">
                     <input type="text" class="form-control onlyAlphabetAndNumber" id="id" name="userId" data-rule-required="true" placeholder="10자이내의 문자,숫자만 입력 가능합니다." maxlength="15">
-                </div>
+               &nbsp;&nbsp;  
+	    <c:if test="${registerFailed}">
+		    <c:out value="${exception.getMessage()}" />  
+	    </c:if>
+         </div>
          </div>
 	 
  		 <div class="form-group" id="divPassword">
@@ -163,7 +165,7 @@ function userCreate() {
                 <div class="col-lg-5">
                     <input type="password" name="password2" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
                     <br>
-                			<input type="button" class="btn btn-default" value="비밀번호 확인" onclick="checkPw()">	
+                			<button type="button" class="btn btn-default" onclick="checkPw()">비밀번호 확인</button>
                 </div>
          </div>
          
@@ -230,7 +232,7 @@ function userCreate() {
          				 &nbsp;&nbsp;
         		  </div>
         		  <div style="float:left">
-                	<input type="button" class="btn btn-default" value="체크" onClick="validate()">
+                	<button type="button" class="btn btn-default" onClick="validate()">체크</button>
              	 </div>
                 </div>
 
@@ -265,7 +267,7 @@ function userCreate() {
                <br><br>         
             <div class="form-group" style="clear:both;">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn-default" value="회원가입" onClick="userCreate()">
+                    <button type="button" class="btn btn-default"  onClick="userCreate()">회원가입</button>
                 </div>
             </div>  
 </form>

@@ -19,7 +19,7 @@ function userRemove() {
 
 <body>
   <br>
-  <table border="1">
+  <table style="margin:auto;text-align:center;" border="1">
     <tr>
 	  <td>	  	    
 	  	<table>

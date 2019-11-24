@@ -12,11 +12,11 @@ import controller.mypage.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
- // ê° ìš”ì²­ uriì— ëŒ€í•œ controller ê°ì²´ë¥¼ ì €ì¥í•  HashMap ìƒì„±
+ // °¢ ¿äÃ» uri¿¡ ´ëÇÑ controller °´Ã¼¸¦ ÀúÀåÇÒ HashMap »ı¼º
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// ê° uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ìƒì„± ë° ì €ì¥
+    	// °¢ uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ »ı¼º ¹× ÀúÀå
     	mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -30,13 +30,13 @@ public class RequestMapping {
         mappings.put("/user/mypage/back", new MyBackOrderListController());
         mappings.put("/user/mypage/likes", new MyLikesController());
         
-     // ì‚¬ìš©ì ì •ë³´ ìˆ˜ì • í¼ ìš”ì²­ê³¼ ìˆ˜ì • ìš”ì²­ ì²˜ë¦¬ ë³‘í•©
+     // »ç¿ëÀÚ Á¤º¸ ¼öÁ¤ Æû ¿äÃ»°ú ¼öÁ¤ ¿äÃ» Ã³¸® º´ÇÕ
 //      mappings.put("/user/update/form", new UpdateUserFormController());
         mappings.put("/user/update/form", new UpdateUserController());
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
         mappings.put("/user/search", new SearchUserController());//
-     // í”„ë¡œì íŠ¸ ê´€ë ¨ request URI ì¶”ê°€
+     // ÇÁ·ÎÁ§Æ® °ü·Ã request URI Ãß°¡
         mappings.put("/project/list/latest", new ListProjectFromLatestController());
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
         mappings.put("/project/list/likes", new ListProjectFromLikesController());
@@ -56,15 +56,15 @@ public class RequestMapping {
 //        mappings.put("/project/update/form", new UpdateCommunityController());
 //        mappings.put("/project/update", new UpdateCommunityController());
         
-        mappings.put("/user/mainpage", new ForwardController("/main/main.jsp"));//ë©”ì¸í˜ì´ì§€ í™”ë©´ ì—°ê²°
-        mappings.put("/user/terms", new ForwardController("/user/register/terms.jsp"));//ë™ì˜ì•½ê´€í™”ë©´ ì—°ê²°
-        mappings.put("/user/successregister", new ForwardController("/user/register/successRegister.jsp"));//ì„±ê³µì ì¸ íšŒì›ê°€ì…ì‹œ ëœ¨ëŠ” í™”ë©´ì—°ê²°        
+        mappings.put("/user/mainpage", new ForwardController("/main/main.jsp"));//¸ŞÀÎÆäÀÌÁö È­¸é ¿¬°á
+        mappings.put("/user/terms", new ForwardController("/user/register/terms.jsp"));//µ¿ÀÇ¾à°üÈ­¸é ¿¬°á
+        mappings.put("/user/successregister", new ForwardController("/user/register/successRegister.jsp"));//¼º°øÀûÀÎ È¸¿ø°¡ÀÔ½Ã ¶ß´Â È­¸é¿¬°á        
         
         logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
-    	// ì£¼ì–´ì§„ uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ì°¾ì•„ ë°˜í™˜
+    	// ÁÖ¾îÁø uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ Ã£¾Æ ¹İÈ¯
         return mappings.get(uri);
     }
 }

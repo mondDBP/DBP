@@ -11,12 +11,17 @@
 	String curUserId = (String)request.getAttribute("curUserId");//삭제
 	User userInfo = (User)request.getAttribute("user");
 %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="<c:url value='/main/jquery-1.8.0.min.js' />"></script>
+<script src="<c:url value='/main/main.js' />"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css' />" media="all" />
 <title>관리자 페이지</title>
 <script>
 function Search(){
@@ -28,6 +33,30 @@ function Delete(){
 </script>
 </head>
 <body>
+<div class="header-wrap">
+		<div class="header">
+			<div class="hpName-wrap">
+				<a class="hpName" href="<c:url value='/main/main.jsp' />">Bumblebug</a>
+			</div>
+			
+			<div class="leftproject-bar">
+			<a class="view-project" href="<c:url value='/project/view/category.jsp' />">프로젝트 둘러보기</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
+		</div>
+		<div class="rightproject-bar">
+					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+					&nbsp;&nbsp;
+
+				</div>
+				</div>
+				</div>
+				<br>
+				<br>
 <nav class="navbar navbar-expand-md bg-light">
  <ul class="navbar-nav">
   <li class="nav-item">
@@ -42,13 +71,10 @@ function Delete(){
  </ul>
 </nav>
  <form  name="form" method="POST" action="<c:url value='/user/search' />">
-  <table>
+ <br><br>
+  <table style="margin:auto;">
    <tr>
-   <td>
-  	회원 검색 &nbsp; &nbsp; &nbsp;
-   </td>
-
-    <td>
+    <td style="margin:auto;text-align:right">
     <input onFocus="this.value='' " value="회원ID를 입력하세요" type ="text" name="userId">
      <input type="button" value="검색" onClick="Search()">
      	<c:if test="${SearchFailed}">
@@ -58,14 +84,15 @@ function Delete(){
    </tr>
   </table>
  </form>
-
+<br>
+<br>
 <%
 if(userInfo == null){
 %>
 	<form method="post" name="form" id="form" action="<c:url value='/user/delete' />">	
-  <table border="1">
+  <table style="margin:auto;text-align:center;" border="1">
 		<tr>
-		  <td></td>
+		  <td><input type="submit" value="삭제" onClick="Delete()"></td>
 		  <td>회원 ID</td>
 		  <td>회원 PWD</td>
 		  <td>이름</td>
@@ -115,13 +142,13 @@ if(userInfo == null){
 	}
 %>	  	
 	  </table>	
-            <input type="submit" value="삭제" onClick="Delete()">
+
 	  </form>
 	  <%
 	  }
 	  else{
       %>
-	 <table border="1">
+	 <table style="margin:auto;text-align:center;" border="1">
 		<tr>
 		  <td>회원 ID</td>
 		  <td>회원 PWD</td>
