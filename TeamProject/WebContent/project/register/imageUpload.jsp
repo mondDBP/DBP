@@ -1,43 +1,39 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ page
 	import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*"%>
 <%@ page import="java.sql.*"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
 	request.setCharacterEncoding("euc-kr");
 	String realFolder = "";
-	String filename = "";
+	String filename1 = "";
 	int maxSize = 1024 * 1024 * 5;
 	String encType = "euc-kr";
-	String savefolder = "projectImages";
-	
-/* 	realFolder = request.getContextPath() + "/" + savefolder; */
-	realFolder = application.getRealPath(savefolder);
-	
+	String savefile = "projectImages";
+	ServletContext scontext = getServletContext();
+	realFolder = scontext.getRealPath(savefile);
+
 	try {
-		MultipartRequest multi = new MultipartRequest(request, realFolder);
+		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType,
+				new DefaultFileRenamePolicy());
 
 		Enumeration<?> files = multi.getFileNames();
-		String file = (String) files.nextElement();
-		filename = multi.getFilesystemName(file);
+		String file1 = (String) files.nextElement();
+		filename1 = multi.getFilesystemName(file1);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 
-	String fullpath = realFolder + "/" + filename;
-	
+	String fullpath = realFolder + "/" + filename1;
 %>
 
 </head>
 <body>
-	<img src="<%=fullpath%>"></img>
+	<img src="<%=fullpath%>" width=512 height=384></img>
 </body>
 </html>
 
