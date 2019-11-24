@@ -94,7 +94,7 @@ if(proInfo == null){
 		  <%=pro.getProject_id() %>
 		  </td>
 		  <td>
-		  <a href="<c:url value='/project/view'>
+		  <a href="<c:url value='/project/view/admin'>
 					   <c:param name='projectTitle' value='<%=pro.getTitle()%>'/>
 			 		 </c:url>">
 			  <%=pro.getTitle() %></a>
