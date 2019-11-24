@@ -56,7 +56,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 										style="width: 200px; height: 150px;" alt="">
 								</div>
 								<div class="textbox">
-									<h3>${project.title}</h3>
+									<h5>${project.title}</h5>
 									<div id="${project.title}"></div>
 								</div>
 								<progress value="${project.fund_rate }" max="100">
