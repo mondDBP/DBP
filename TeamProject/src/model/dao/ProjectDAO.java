@@ -49,19 +49,15 @@ public class ProjectDAO {
 	public int create(Project p) throws SQLException {
 		String sql = "INSERT INTO Project (PROJECT_ID, USER_ID, TITLE, START_DATE , IMAGE, "
 				+ "DESCRIPTION, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+				+ "VALUES (PROJECT_ID_SEQ.nextval, ?, ?, TO_DATE(sysdate), ?, ?, ?, 0, ?, ?, 0, ?); ";
 		Object[] param = new Object[] { 
-					p.getProject_id(),
 					p.getUser_id_pk_seq(),
 					p.getTitle(),
-					p.getStart_date(),
 					p.getImage(),
 					p.getDescription(),
 					p.getGoal(),
-					p.getFund_rate(),
 					p.getRest_day(),
 					p.getFunding_period(),
-					p.getTotal_money(),
 					p.getCategory_name()
 		};
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
