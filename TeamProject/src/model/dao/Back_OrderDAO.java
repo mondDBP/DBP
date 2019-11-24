@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.Back_Order;
 import model.Project;
+import model.Reward_option;
 import model.User;
 
 public class Back_OrderDAO {
@@ -36,10 +37,10 @@ public class Back_OrderDAO {
 		
 		// FK  - user_id_pk_seq값 알아오기
 		UserDAO UserDAO = factory.getUserDAO();	
-		User user = UserDAO.getUserById(bo.getUser_id());	
+		User user = UserDAO.getUserById(bo.getUser_id_pk_seq());	
 		int user_id_pk_seq = user.getUser_id_pk_seq();	
 		if (user_id_pk_seq == 0) {
-			System.out.println("해당 사용자가 없습니다.(ID를 찾을수없음)" + bo.getUser_id());
+			System.out.println("해당 사용자가 없습니다.(ID를 찾을수없음)" + bo.getUser_id_pk_seq());
 			return 0;
 		}
 		// FK  - project_id값 알아오기
@@ -52,14 +53,18 @@ public class Back_OrderDAO {
 		}
 		// amount_pleded - 리워드 옵션의 price에서 가져옴
 		Reward_optionDAO Reward_optionDAO = factory.getReward_optionDAO();
-		Reward_option Reward_option = Reward_optionDAO.getReward_optionById(bo.getProject_id());
-		int project_id = Project.getProject_id();
-		if (project_id == 0) {
-			System.out.println("해당 프로젝트가 없습니다.(ID를 찾을수없음)");
+		Reward_option ro = Reward_optionDAO.getReward_optionById(bo.getProject_id());
+		int price = ro.getPrice();
+		if (price == 0) {
+			System.out.println("후원금액을 찾을 수 없습니다");
 			return 0;
 		}
 		// reward_option - 리워드 옵션의 option_id에서 가져옴
-
+		int option_id = ro.getOption_id();
+		if(option_id == 0) {
+			System.out.println("리워드 옵션을 찾을 수 없습니다");
+			return 0;
+		}
 		// back_date
 
 		// rest_day - 프로젝트의 rest_day에서 가져옴
@@ -73,7 +78,7 @@ public class Back_OrderDAO {
 
 			// is_paid
 
-			Object[] param = new Object[] { user_id_pk_seq, project_id, bo.getAmount_pleded(), bo.getReward_option(),
+			Object[] param = new Object[] { user_id_pk_seq, project_id, price, option_id,
 					bo.getBack_date(), rest_day, bo.getIs_success(), bo.getIs_paid() };
 			jdbcUtil.setSqlAndParameters(insertQuery, param);
 
