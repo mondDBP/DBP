@@ -491,4 +491,24 @@ public class ProjectDAO {
 		}
 		return null;
 	}
+// 프로젝트 전체개수 출력
+	public int getNumberofProjects() {
+	String sql = "SELECT count(*) FROM PROJECT ";
+	jdbcUtil.setSqlAndParameters(sql, null);
+	
+	try {
+		int count=0;
+		ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+		while (rs.next()) 
+		{
+			count++;
+		}
+		return count;
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		jdbcUtil.close();		// resource 반환
+	}
+	return 0;
+	}
 }
