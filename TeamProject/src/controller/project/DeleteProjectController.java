@@ -1,6 +1,43 @@
 package controller.project;
-
 import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import controller.Controller;
+import model.Project;
+import model.service.ProjectManager;
+
+public class DeleteProjectController implements Controller {
+    private static final Logger log = LoggerFactory.getLogger(DeleteProjectController.class);
+
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
+		String deleteId = request.getParameter("projectId");
+    	log.debug("Delete Project : {}", deleteId);
+
+    	String[] name = request.getParameterValues("check");
+    	ProjectManager manager = ProjectManager.getInstance();		
+		
+    	for(int i = 0; i < name.length ; i++) {
+    		if(name != null) {
+    			manager.remove(Integer.parseInt(name[i]));
+    		}
+    	}
+    	
+    	if(deleteId != null)
+    		manager.remove(Integer.parseInt(deleteId));				
+			
+			
+		return "/project/list";	
+		
+    }
+}
+
+/*import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -43,7 +80,7 @@ public class DeleteProjectController implements Controller {
 //				return "redirect:/user/logout";		// logout 처리
 		}
 		
-		/* 삭제가 불가능한 경우 */
+		//삭제가 불가능한 경우 
 		Project project = projManager.findProject(deleteId);//프로젝트 정보 검색
 		request.setAttribute("project", project);						
 		request.setAttribute("deleteFailed", true);
@@ -53,4 +90,4 @@ public class DeleteProjectController implements Controller {
 		request.setAttribute("exception", new IllegalStateException(msg));            
 		return "/project/view.jsp";		// 프로젝트 화면으로 이동
 	}
-}
+}*/

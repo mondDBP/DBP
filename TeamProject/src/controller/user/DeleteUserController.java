@@ -20,11 +20,20 @@ public class DeleteUserController implements Controller {
 		String deleteId = request.getParameter("userId");
     	log.debug("Delete User : {}", deleteId);
 
+    	String[] name = request.getParameterValues("check");
     	UserManager manager = UserManager.getInstance();		
-		HttpSession session = request.getSession();	
-				
-			manager.remove(deleteId);				// 사용자 정보 삭제
-			return "/user/list";		// 사용자 리스트로 이동
+		
+    	for(int i = 0; i < name.length ; i++) {
+    		if(name != null) {
+    			manager.remove(name[i]);
+    		}
+    	}
+    	
+    	if(deleteId != null)
+    		manager.remove(deleteId);				// 사용자 정보 삭제
+			
+			
+		return "/user/list";		// 사용자 리스트로 이동
 		
     }
 }

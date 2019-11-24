@@ -81,10 +81,10 @@ public class UserManager {
 			return userDAO.findUserList();
 	}
 	
-	public List<User> findUserList(int currentPage, int countPerPage)
+	/*public List<User> findUserList(int currentPage, int countPerPage)
 		throws SQLException {
 		return userDAO.findUserList(currentPage, countPerPage);
-	}
+	}*/
 
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {

@@ -108,9 +108,9 @@ public class UserDAO {
 	 * 전체 사용자 정보를 검색한 후 현재 페이지와 페이지당 출력할 사용자 수를 이용하여
 	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
 	 */
-	public List<User> findUserList(int currentPage, int countPerPage) throws SQLException {
+	/*public List<User> findUserList(int currentPage, int countPerPage) throws SQLException {
 		String sql = "SELECT userId, name, email, phone, address " 
-					+ "FROM USER "
+					+ "FROM USERS "
 					+ "ORDER BY userId";
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
@@ -141,7 +141,7 @@ public class UserDAO {
 		}
 		return null;
 	}
-	
+	*/
 	public List<Back_Order> userBack_OrderList(int userId) {
 		String sql = "SELECT * " 
      		   + "FROM BACK_ORDER "

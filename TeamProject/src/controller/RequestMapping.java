@@ -35,7 +35,7 @@ public class RequestMapping {
         mappings.put("/user/update/form", new UpdateUserController());
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
-        
+        mappings.put("/user/search", new SearchUserController());//
         // 프로젝트 관련 request URI 추가
         mappings.put("/project/list/latest", new ListProjectFromLatestController());
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
@@ -43,6 +43,9 @@ public class RequestMapping {
         mappings.put("/project/view", new ViewProjectController());
         mappings.put("/project/create/form", new ForwardController("/project/creationForm.jsp"));
         
+        mappings.put("/project/delete", new DeleteProjectController());
+        mappings.put("/project/list", new ListProjectController());
+        mappings.put("/project/search", new SearchProjectController());
 //        mappings.put("/project/create", new CreateCommunityController());
 //        mappings.put("/project/update/form", new UpdateCommunityController());
 //        mappings.put("/project/update", new UpdateCommunityController());

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Project;
+import model.User;
 import model.dao.ProjectDAO;
 
 public class ProjectManager {//프로젝트 존재여부
@@ -41,16 +42,23 @@ public class ProjectManager {//프로젝트 존재여부
 		return projDAO.remove(projID);
 	}
 
-	public Project findProject(int projID)
-		throws SQLException, UserNotFoundException {
-		Project proj = projDAO.findProject(projID);
+	public Project findProject(String title)
+		throws SQLException, ProjectNotFoundException {
+		Project proj = projDAO.findProject(title);
 		
 		if (proj == null) {
-			throw new UserNotFoundException(projID + "는 존재하지 않는 프로젝트입니다.");
+			throw new ProjectNotFoundException(title + "는 존재하지 않는 프로젝트입니다.");
 		}		
 		return proj;
 	}
 	//검색조건이 없는 경우 초기값? - "start_date"
+	
+	
+	
+	public List<Project> findProList() throws SQLException {
+			return projDAO.findProList();
+	}
+	
 	public List<Project> findProjectList() throws SQLException {
 		return projDAO.projectListOrderByCondition("start_date");
 }
