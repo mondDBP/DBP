@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
+	var cnt = 2;
+	
 	function projectCreate() {
 		if (form.title.value == "") {
 			alert("제목을 입력하세요.");
@@ -35,11 +37,19 @@
 		form.submit();
 	}
 	
-	function uploadImage(img) {
-		
-		
+	function rowAdd() {
+		var table = document.getElementById("reward");
+		var rowlen = table.rows.length;
+		var row = table.insertRow(rowlen-1);
+		var rowItem = "<tr>";
+		rowItem += "<td height='10'>" + cnt++ + "</td>";
+		rowItem += "<td height='10'><input type='number' name='optPrice'></td>";
+		rowItem += "<td height='10'><input type='number' name='optShippingFee'></td>";
+		rowItem += "<td height='10'><input type='text' name='optDesc'></td>";
+		rowItem += "<td height='10'><input type='number' name='optLimit'></td>";
+		rowItem += "</tr>";
+		row.innerHTML += rowItem;
 	}
-	
 </script>
 <style>
 table {
@@ -47,6 +57,10 @@ table {
 	margin: auto;
 	width: 450px;
 	height: 250px;
+}
+
+#reward {
+	height: 100px;
 }
 
 .title {
@@ -70,38 +84,35 @@ div {
 }
 </style>
 </head>
-<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
-	marginwidth=0 marginheight=0>
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 	<!-- 로그인 하지 않은 사용자는 프로젝트 등록 불가 -->
 	<c:if test="${userId eq null or userid eq ''}">
 		<c:redirect url="/main/main.jsp" />
 		<!-- <script type='text/javascript'>alert(1);</script>-->
 	</c:if>
-	<br>
 
 	<!-- 프로젝트 등록이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 	<c:if test="${registerFailed}">
 		<c:out value="${exception.getMessage()}" />
 		<<script type='text/javascript'>alert(1);</script>
 	</c:if>
-	<br>
 
-	<form method="post" enctype="multipart/form-data"
+<%-- 	<form method="post" enctype="multipart/form-data"
 		action="<c:url value='/project/register/imageUpload.jsp' />">
 		<input type="file" accept="image/jpg,image/gif,image/png"
 			name="projectImage" size="40"> <input type="submit"
 			value="업로드">
-	</form>
+	</form> --%>
 
 	<!-- registration form  -->
 	<form name="form" method="POST" action="<c:url value='/project/register' />">
-		<table border="1">
+		<table border="1" style="margin-top: 20px;">
 			<tr>
 				<td colspan="2" class="title">프로젝트 등록</td>
 			</tr>
 			<tr>
 				<td class="title">제목<font color="red">*</font></td>
-				<td><textarea name="title" cols="50"></textarea></td>
+				<td><textarea name="title" cols="90"></textarea></td>
 			</tr>
 
 			<!-- 이미지 삽입 -->
@@ -114,7 +125,7 @@ div {
 
 			<tr>
 				<td class="title">설명<font color="red">*</font></td>
-				<td><textarea name="description" cols="50" rows="10"></textarea>
+				<td><textarea name="description" cols="90" rows="10"></textarea>
 				</td>
 			</tr>
 
@@ -125,8 +136,7 @@ div {
 
 			<tr>
 				<td class="title">모금기간<font color="red">*</font></td>
-				<td><input type="number" name="funding_period" min="1" step="1"
-					value="1">일</td>
+				<td><input type="number" name="funding_period" min="1" step="1" value="1">일</td>
 			</tr>
 
 			<tr>
@@ -151,19 +161,36 @@ div {
 			<tr>
 				<td class="title">리워드 옵션<font color="red">*</font></td>
 				<td>
-					<table>
-
+					<table id="reward" border="1" style="margin-top: 20px;">		
+						<tr height="30">
+							<td align='center'></td>
+							<td align='center'>가격</td>
+							<td align='center'>배송비</td>
+							<td align='center'>설명</td>
+							<td align='center'>한정수량</td>
+						</tr>
+						<tr>
+							<td height="10">1</td>
+							<td height="10"><input type="number" name="optPrice"></td>
+							<td height="10"><input type="number" name="optShippingFee"></td>
+							<td height="10"><input type="text" name="optDesc"></td>
+							<td height="10"><input type="number" name="optLimit"></td>
+						</tr>
+						<tr>
+							<td align='center' colspan='5'><input type="button" value="추가" onClick="rowAdd()"></td>
+						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" style="background-color: #ececec">
 					<div>
-						<input type="button" value="확인" onClick="projectCreate();">
+						<input type="button" value="확인" onClick="projectCreate()">
 					</div>
 				</td>
 			</tr>
 		</table>
+		
 	</form>
 </body>
 </html>
