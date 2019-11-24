@@ -15,7 +15,7 @@ public class Project {//변수12개
 	private int funding_period;		//FUNDING_PERIOD
 	private int total_money;		//TOTAL_MONEY
 	private String category_name;	//CATEGORY_NAME
-	
+	// is_succes는 유도속성으로  rest_day=0으로 가정
 	
 	public Project() {};
 	public Project(int project_id, int user_id_pk_seq, String title, Date start_date, String image, String description,

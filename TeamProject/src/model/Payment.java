@@ -3,18 +3,18 @@ package model;
 import java.sql.Date;
 
 public class Payment {//변수6개
-	private String userId;		//USER_ID	  -FK
+	private int user_id_pk_seq;		//USER_ID	  -FK
 	private int amount;			//AMOUNT
 	private String payment_id;  //PAYMENT_ID  -PK -CHAR(18 BYTE)
 	private int project_id;		//PROJECT_ID  -FK
-	private Date payment_date;  //PAYMENT_DATE -DATE
+	private Date payment_date ;  //PAYMENT_DATE -DATE
 	private int card_number;	//CARD_NUMBER
 	
 //	생성자
 	public Payment() {}
-	public Payment(String user_id, int amount, String payment_id, int project_id, Date payment_date, int card_number) {
+	public Payment(int user_id_pk_seq, int amount, String payment_id, int project_id, Date payment_date, int card_number) {
 		super();
-		this.userId = user_id;
+		this.user_id_pk_seq = user_id_pk_seq;
 		this.amount = amount;
 		this.payment_id = payment_id;
 		this.project_id = project_id;
@@ -24,15 +24,15 @@ public class Payment {//변수6개
 //	toString
 	@Override
 	public String toString() {
-		return "Payment [user_id=" + userId + ", amount=" + amount + ", payment_id=" + payment_id + ", project_id="
+		return "Payment [user_id_pk_seq=" + user_id_pk_seq + ", amount=" + amount + ", payment_id=" + payment_id + ", project_id="
 				+ project_id + ", payment_date=" + payment_date + ", card_number=" + card_number + "]";
 	}
 //	getter, setter
-	public String getUserId() {
-		return userId;
+	public int getUser_id_pk_seq() {
+		return user_id_pk_seq;
 	}
-	public void setUserId(String user_id) {
-		this.userId = user_id;
+	public void setUser_id_pk_seq(int user_id_pk_seq) {
+		this.user_id_pk_seq = user_id_pk_seq;
 	}
 	public int getAmount() {
 		return amount;

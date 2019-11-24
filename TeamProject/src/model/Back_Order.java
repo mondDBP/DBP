@@ -1,12 +1,11 @@
 package model;
 
-public class Back_Order {
-	//변수8개
-	private int user_id_pk_seq;			//USER_ID
-	private int project_id;//PK 1번		//PROJECT_ID
+public class Back_Order {//변수8개
+	private int user_id_pk_seq;	//PK	//USER_ID
+	private int project_id;		//PK 	//PROJECT_ID
 	private int amount_pleded;			//AMOUNT_PLEDGED
-	private int reward_option;//PK 1번	//REWARD_OPTION
-	private String back_date;			//BACK_DATE
+	private int reward_option;			//REWARD_OPTION
+	private String back_date;//후원날짜	//BACK_DATE
 	private int rest_day;				//REST_DAY
 	private int is_success;				//IS_SUCCESS
 	private int is_paid;				//IS_PAID
@@ -14,7 +13,6 @@ public class Back_Order {
 	public Back_Order() {}
 	public Back_Order(int user_id_pk_seq, int project_id, int amount_pleded, int reward_option, String back_date,
 			int rest_day, int is_success, int is_paid) {
-		super();
 		this.user_id_pk_seq = user_id_pk_seq;
 		this.project_id = project_id;
 		this.amount_pleded = amount_pleded;

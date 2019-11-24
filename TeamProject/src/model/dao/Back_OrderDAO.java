@@ -6,17 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Back_Order;
+import model.Payment;
 import model.Project;
 import model.Reward_option;
 import model.User;
 
 public class Back_OrderDAO {
-	
 	private JDBCUtil jdbcUtil = null;
-	private static String query = "SELECT user_id, project_id, amount_pleded, reward_option, back_date, " +
-								"       rest_day, is_success, is_paid " +
-										"FROM Back_Order ";
-
+	
+//	기본정보를 포함하는 query문 2개
+	String SelectAllQuery = "USER_ID, PROJECT_ID, AMOUNT_PLEDGED, REWARD_OPTION, BACK_DATE, "+
+							"REST_DAY, IS_SUCCESS, IS_PAID " +
+							"FROM Back_Order ";
+	String allColumns = "USER_ID, PROJECT_ID, AMOUNT_PLEDGED, REWARD_OPTION, BACK_DATE, "+
+						"REST_DAY, IS_SUCCESS, IS_PAID ";
+//	생성자
 	public Back_OrderDAO() {
 		this.jdbcUtil = jdbcUtil;
 	}
@@ -26,11 +30,10 @@ public class Back_OrderDAO {
 	 * public List<Back_Order> getBack_OrderListByuserID() 회원1명이 후원한 모든 프로젝트 보여주기
 	 * 
 	 */
-	
-	public int insertBack_Order(Back_Order bo) {
+//	후원정보 생성
+	public int insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
 		int result = 0;
-		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pleded, reward_option, back_date, "+
-							 "rest_day, is_success, is_paid) " +
+		String insertQuery = "INSERT INTO ( " + allColumns + ") " +
 							 "VALUES (?, ?, ?, ?, ?, ?, ?, ?); "; //예제에서 ; 없는데 들어가는지확인해보기
 		
 		DAOFactory factory = new DAOFactory();
@@ -45,8 +48,8 @@ public class Back_OrderDAO {
 		}
 		// FK  - project_id값 알아오기
 		ProjectDAO ProjectDAO = factory.getProjectDAO();		
-		Project Project = ProjectDAO.getProjectById(bo.getProject_id());		
-		int project_id = Project.getProject_id();			
+		Project pj = ProjectDAO.getProjectById(bo.getProject_id());		
+		int project_id = pj.getProject_id();			
 		if (project_id == 0) {						
 			System.out.println("해당 프로젝트가 없습니다.(ID를 찾을수없음)");
 			return 0;
@@ -65,45 +68,61 @@ public class Back_OrderDAO {
 			System.out.println("리워드 옵션을 찾을 수 없습니다");
 			return 0;
 		}
-		// back_date
 
 		// rest_day - 프로젝트의 rest_day에서 가져옴
-		ProjectDAO = factory.getProjectDAO();
-		Project = ProjectDAO.getProjectById(bo.getProject_id());
-		int rest_day = Project.getRest_day();
+		int rest_day = pj.getRest_day();
 		if (rest_day == 0) {
 			System.out.println("모금기간이 만료되었습니다");
 			return 0;
-			// is_success
-
-			// is_paid
-
-			Object[] param = new Object[] { user_id_pk_seq, project_id, price, option_id,
-					bo.getBack_date(), rest_day, bo.getIs_success(), bo.getIs_paid() };
-			jdbcUtil.setSqlAndParameters(insertQuery, param);
-
-			try {
-				result = jdbcUtil.executeUpdate(); // insert 문 실행
-				System.out.println("후원자님이 밀어준 프로젝트가 후원정보에 등록되었습니다.");
-			} catch (SQLException ex) {
-				System.out.println("입력오류 발생!!!");
-				if (ex.getErrorCode() == 1)
-					System.out.println("동일한  후원정보가 이미 존재합니다.");
-			} catch (Exception ex) {
-				jdbcUtil.rollback();
-				ex.printStackTrace();
-			} finally {
-				jdbcUtil.commit();
-				jdbcUtil.close(); // ResultSet, PreparedStatement, Connection 반환
-			}
-			return result; // insert 에 의해 반영된 레코드 수 반환
 		}
+		// is_success - 프로젝트의 is_success(=rest_day) 1이면 성공, 0이면 실패
+		int is_success = pj.getRest_day();
+		if(is_success == 0) {
+			System.out.println("프로젝트 후원모금이 아쉽게 실패했습니다");
+			return 0;
+		}
+		// is_paid - Payment테이블의  payment_id의 존재여부로 판단 1이면 성공, 0이면 실패
+		PaymentDAO PaymentDAO = factory.getPaymentDAO();
+		Payment pm = PaymentDAO.getPaymentBy2ID(user_id_pk_seq, project_id);
+		String payment_id = pm.getPayment_id(); // payment_date로 하고싶었지만 초기값을 알지못해 id로 대체
+		if(payment_id == null) {
+			System.out.println("결제가 제대로 이루어지지 않았습니다");
+			bo.setIs_paid(0);
+			return 0;
+		}else bo.setIs_paid(1);
+		
+		Object[] param = new Object[] { 
+				user_id_pk_seq,
+				project_id, 
+				price, 
+				option_id,
+				bo.getBack_date(), 
+				rest_day, 
+				bo.getIs_success(), 
+				bo.getIs_paid() };
+		jdbcUtil.setSqlAndParameters(insertQuery, param);
+
+		try {
+			result = jdbcUtil.executeUpdate(); // insert 문 실행
+			System.out.println("후원자님이 밀어준 프로젝트가 후원정보에 등록되었습니다.");
+		} catch (SQLException ex) {
+			System.out.println("입력오류 발생!!!");
+			if (ex.getErrorCode() == 1)
+				System.out.println("동일한  후원정보가 이미 존재합니다.");
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();				jdbcUtil.close(); // ResultSet, PreparedStatement, Connection 반환
+		}
+		return result; // insert 에 의해 반영된 레코드 수 반환
+		
 	}
 
-	public int deleteBack_Order(Back_Order bo) {
-		String deleteQuery = "DELETE FROM BackOrder WHERE user_id = ? AND project_id=? AND";
+	public int deleteBack_Order(int user_id_pk_seq, int project_id, int reward_option) {
+		String deleteQuery = "DELETE FROM BackOrder WHERE USER_ID = ? AND PROJECT_ID=? AND REWARD_OPTION=? ";
 
-		Object[] param = new Object[] { stuNo };
+		Object[] param = new Object[] { user_id_pk_seq,  project_id, reward_option};
 		jdbcUtil.setSqlAndParameters(deleteQuery, param);
 
 		try {
