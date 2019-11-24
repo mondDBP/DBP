@@ -15,18 +15,15 @@ import model.Reward_option;
 import model.User;
 
 public class Back_OrderDAO {
-<<<<<<< HEAD
+
 	private static final Logger log = LoggerFactory.getLogger(Back_OrderDAO.class);
-=======
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
+
 	private JDBCUtil jdbcUtil = null;
-<<<<<<< HEAD
+
 	private static String query = "SELECT user_id, project_id, amount_pledged, reward_option, back_date, " +
 								"       rest_day, is_success, is_paid " +
 										"FROM Back_Order ";
 
-=======
-	
 //	기본정보를 포함하는 query문 2개
 	String SelectAllQuery = "USER_ID, PROJECT_ID, AMOUNT_PLEDGED, REWARD_OPTION, BACK_DATE, "+
 							"REST_DAY, IS_SUCCESS, IS_PAID " +
@@ -34,7 +31,7 @@ public class Back_OrderDAO {
 	String allColumns = "USER_ID, PROJECT_ID, AMOUNT_PLEDGED, REWARD_OPTION, BACK_DATE, "+
 						"REST_DAY, IS_SUCCESS, IS_PAID ";
 //	생성자
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
+
 	public Back_OrderDAO() {
 		jdbcUtil = new JDBCUtil();
 	}
@@ -45,15 +42,12 @@ public class Back_OrderDAO {
 	 * 
 	 */
 //	후원정보 생성
-	public int insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
+	/*public int insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
 		int result = 0;
-<<<<<<< HEAD
+
 		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pledged, reward_option, back_date, "+
 							 "rest_day, is_success, is_paid) " +
-=======
-		String insertQuery = "INSERT INTO ( " + allColumns + ") " +
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
-							 "VALUES (?, ?, ?, ?, ?, ?, ?, ?); "; //예제에서 ; 없는데 들어가는지확인해보기
+
 		
 		DAOFactory factory = new DAOFactory();
 		
@@ -137,8 +131,7 @@ public class Back_OrderDAO {
 		return result; // insert 에 의해 반영된 레코드 수 반환
 		
 	}
-
-<<<<<<< HEAD
+*/
 	public List<Back_Order> findBackList(String today) throws SQLException {
         String sql = "SELECT amount_pledged " 
         		   + "FROM BACK_ORDER "
@@ -166,13 +159,10 @@ public class Back_OrderDAO {
 		}
 		return null;
 	}
-	
-	public int deleteBack_Order(Back_Order bo) {
-		String deleteQuery = "DELETE FROM BackOrder WHERE user_id = ? AND project_id=? AND";
-=======
+
 	public int deleteBack_Order(int user_id_pk_seq, int project_id, int reward_option) {
 		String deleteQuery = "DELETE FROM BackOrder WHERE USER_ID = ? AND PROJECT_ID=? AND REWARD_OPTION=? ";
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
+
 
 		Object[] param = new Object[] { user_id_pk_seq,  project_id, reward_option};
 		jdbcUtil.setSqlAndParameters(deleteQuery, param);
