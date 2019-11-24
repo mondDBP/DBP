@@ -28,46 +28,56 @@ String curUserId = (String)request.getAttribute("curUserId");
 </script>
 
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/viewProject.css' />" media="all" />
+	href="<c:url value='/css/viewProjectList.css' />" media="all" />
 </head>
 <body>
-<form name="form" method="POST" action="<c:url value='/project/view' />">
-	<div style="text-align: right; width: auto; margin: auto; padding: 50px;">
-		<select name="sortProject">
-			<option value="fund_rate">모금률순</option>
-			<option value="latest">최신순</option>
-			<option value="likes">좋아요순</option>
-		</select>
-	</div>
-	
-	<div style="text-align: center; width: auto; margin: auto;">개의 프로젝트가 있습니다.</div>
-		
-	<div class="kind_1_project">
-		<div class="kind_1_card_section">
-			<c:forEach var="project" items="${projectList }">
-				<div class="kind_1_card_section">
-					<div class="project_card_1" onClick="viewProj('${project.title}')">
-						<div class="card_1_content">
-							<div class="imgbox">
-								<img src="${project.image }" style="width: 200px; height: 150px;" alt="">
-							</div>
-							<div class="textbox">
-								<h3>${project.title}</h3>
-								<div id="${project.title}">
+	<form name="form" method="POST"
+		action="<c:url value='/project/view' />">
+		<div
+			style="text-align: right; width: auto; margin: auto; padding: 50px;">
+			<select name="sortProject">
+				<option value="fund_rate">모금률순</option>
+				<option value="latest">최신순</option>
+				<option value="likes">좋아요순</option>
+			</select>
+		</div>
+
+		<div style="text-align: center; width: auto; margin: auto;">개의 프로젝트가 있습니다.</div>
+
+
+		<div class="kind_1_project">
+			<table>
+				<tr>
+					<c:forEach var="project" items="${projectList }" varStatus="vs">
+						<td>
+							<div class="project_card_1"
+								onClick="viewProj('${project.title}')">
+								<div class="imgbox">
+									<img src="${project.image }"
+										style="width: 200px; height: 150px;" alt="">
+								</div>
+								<div class="textbox">
+									<h3>${project.title}</h3>
+									<div id="${project.title}"></div>
+								</div>
+								<progress value="${project.fund_rate }" max="100">
+									<a href="#"></a>
+								</progress>
+								<div class="nowbox">
+									<span>${project.rest_day }일 남음</span> <span
+										style="float: right;">${project.fund_rate }%</span>
 								</div>
 							</div>
-							<progress value="${project.fund_rate }" max="100">
-								<a href="#"></a>
-							</progress>
-							<div class="nowbox">
-								<span>${project.rest_day }일 남음</span> <span style="float: right;">${project.fund_rate }%</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
+						</td>
+						<c:if test="${vs.count % 4 == 0}">
+							<c:out value="</tr><tr>" escapeXml="false" />
+						</c:if>
+						<c:if test="${vs.last }">
+							<c:out value="</tr>" escapeXml="false" />
+						</c:if>
+					</c:forEach>
+			</table>
 		</div>
-	</div>
-</form>
+	</form>
 </body>
 </html>
