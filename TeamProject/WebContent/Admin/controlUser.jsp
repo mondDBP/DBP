@@ -36,6 +36,9 @@ function Delete(){
  <li class="nav-item">
    <a class="nav-link" href="<c:url value='/project/list' />">프로젝트 관리</a>
   </li>
+   <li class="nav-item">
+   <a class="nav-link" href="<c:url value='/amount/graph' />">후원 현황</a>
+  </li>
  </ul>
 </nav>
  <form  name="form" method="POST" action="<c:url value='/user/search' />">

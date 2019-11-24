@@ -18,7 +18,7 @@ public class Reward_optionDAO {
 
 	private JDBCUtil jdbcUtil = null;
 //	생성자
-	public Reward_optionDAO(JDBCUtil jdbcUtil) {
+	public Reward_optionDAO() {
 		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
 	}
 //	기본정보를 포함하는 query문 2개

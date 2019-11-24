@@ -36,6 +36,9 @@ function Delete(){
  <li class="nav-item">
    <a class="nav-link" href="<c:url value='/project/list' />">프로젝트 관리</a>
   </li>
+  <li class="nav-item">
+   <a class="nav-link" href="<c:url value='/amount/graph' />">후원 현황</a>
+  </li>
  </ul>
 </nav>
  <form  name="form" method="POST" action="<c:url value='/project/search' />">
@@ -91,8 +94,8 @@ if(proInfo == null){
 		  <%=pro.getProject_id() %>
 		  </td>
 		  <td>
-		  <a href="<c:url value='/user/view'>
-					   <c:param name='userId' value='<%=pro.getProject_id()%>'/>
+		  <a href="<c:url value='/project/view'>
+					   <c:param name='projectTitle' value='<%=pro.getTitle()%>'/>
 			 		 </c:url>">
 			  <%=pro.getTitle() %></a>
 			
@@ -101,7 +104,7 @@ if(proInfo == null){
 		  <%=pro.getStart_date() %>
 		  </td>
 		  <td>
-		<!--   <img src=" 여기 < %추가 해야함 pro.getImage() "/> -->
+		   <img src="<%=pro.getImage()%>" width="50px" height='50px' /> 
 		  사진
 		  </td>
 		  
@@ -146,14 +149,14 @@ if(proInfo == null){
 	   </tr>
 	   <tr>
 	    <td><%= proInfo.getProject_id() %></td>
-	    <td>	  <a href="<c:url value='/user/view'>
-					   <c:param name='userId' value='<%=proInfo.getProject_id()%>'/>
+	    <td>	  <a href="<c:url value='/project/view'>
+					   <c:param name='projectTitle' value='<%=proInfo.getTitle()%>'/>
 			 		 </c:url>">
 			  <%=proInfo.getTitle() %></a>
 			</td>
 	    <td><%= proInfo.getStart_date()%></td>
-	    <!--  <td><img src="<%= proInfo.getImage() %>"></td> -->
-	    <td>사진</td>
+	     <td><img src="<%= proInfo.getImage() %>" width="50px" height="50px"></td> 
+	    <!--  <td>사진</td>-->
 	    <td><%= proInfo.getGoal() %></td>
 	    <td><%= proInfo.getFund_rate() %></td>
 	    <td><%= proInfo.getRest_day() %></td>

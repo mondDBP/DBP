@@ -78,7 +78,7 @@ public class ProjectDAO {
 	}
 //
 	public Project findProject(String title) throws SQLException{
-		 String sql = "SELECT project_id, title, start_date, image, goal, fund_rate, rest_day, total_money, category_name "
+		 String sql = "SELECT project_id, title, start_date, description, image, goal, fund_rate, rest_day, total_money, category_name "
      			+ "FROM PROJECT "
      			+ "WHERE title LIKE ?";              
 		 
@@ -91,6 +91,7 @@ public class ProjectDAO {
 					rs.getInt("project_id"),
 					rs.getString("title"),
 					rs.getDate("start_date"),
+					rs.getString("description"),
 					rs.getString("image"),//?
 					rs.getInt("goal"),
 					rs.getInt("fund_rate"),
@@ -239,7 +240,7 @@ public class ProjectDAO {
 	
 	
 	public List<Project> findProList() throws SQLException{
-		   String sql = "SELECT PROJECT_ID, TITLE, START_DATE, IMAGE, GOAL, FUND_RATE, REST_DAY, TOTAL_MONEY, CATEGORY_NAME " 
+		   String sql = "SELECT PROJECT_ID, TITLE, START_DATE, DESCRIPTION, IMAGE, GOAL, FUND_RATE, REST_DAY, TOTAL_MONEY, CATEGORY_NAME " 
         		   + "FROM PROJECT "
         		   + "ORDER BY PROJECT_ID";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
@@ -252,6 +253,7 @@ public class ProjectDAO {
 						rs.getInt("PROJECT_ID"),
 						rs.getString("TITLE"),
 						rs.getDate("START_DATE"),
+						rs.getString("DESCRIPTION"),
 						rs.getString("IMAGE"),
 						rs.getInt("GOAL"),
 						rs.getInt("FUND_RATE"),
@@ -488,5 +490,25 @@ public class ProjectDAO {
 			jdbcUtil.close();
 		}
 		return null;
+	}
+// 프로젝트 전체개수 출력
+	public int getNumberofProjects() {
+	String sql = "SELECT count(*) FROM PROJECT ";
+	jdbcUtil.setSqlAndParameters(sql, null);
+	
+	try {
+		int count=0;
+		ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+		while (rs.next()) 
+		{
+			count++;
+		}
+		return count;
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		jdbcUtil.close();		// resource 반환
+	}
+	return 0;
 	}
 }
