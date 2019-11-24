@@ -31,10 +31,11 @@
 		e.printStackTrace();
 	}
 
-	String fullpath = realFolder + "/" + filename;
+	String fullpath = realFolder + "\\" + filename;
 	
 %>
 
+<title>Insert title here</title>
 </head>
 <body>
 	<img src="<%=fullpath%>"></img>

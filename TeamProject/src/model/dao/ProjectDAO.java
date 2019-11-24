@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import model.Project;
+import model.User;
 
 public class ProjectDAO {
 	
@@ -77,7 +78,36 @@ public class ProjectDAO {
 		}
 		return 0;
 	}
+//
+	public Project findProject(String title) throws SQLException{
+		 String sql = "SELECT project_id, title, start_date, image, goal, fund_rate, rest_day, total_money, category_name "
+     			+ "FROM PROJECT "
+     			+ "WHERE title LIKE ?";              
+		 
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + title + "%"});	// JDBCUtil에 query문과 매개 변수 설정
 
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						
+				Project project = new Project(		
+					rs.getInt("project_id"),
+					rs.getString("title"),
+					rs.getDate("start_date"),
+					rs.getString("image"),//?
+					rs.getInt("goal"),
+					rs.getInt("fund_rate"),
+					rs.getInt("rest_day"),
+					rs.getInt("total_money"),
+					rs.getString("category_name"));
+				return project;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 //	프로젝트 수정
 	public int updateProject(Project p) throws SQLException {
 		String sql = "UPDATE Project " + "SET PROJECT_ID=?, USER_ID=?, TITLE=?, START_DATE=?, IMAGE=?, "
@@ -114,7 +144,7 @@ public class ProjectDAO {
 
 //	프로젝트 삭제
 	public int remove(int project_id) throws SQLException {
-		String sql = "DELETE FROM Project WHERE project_id=? ; ";
+		String sql = "DELETE FROM project WHERE project_id=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { project_id }); // JDBCUtil에 delete문과 매개 변수 설정
 
 		try {
@@ -208,6 +238,43 @@ public class ProjectDAO {
 		}
 		return null;
 	}
+	
+	
+	public List<Project> findProList() throws SQLException{
+		   String sql = "SELECT PROJECT_ID, TITLE, START_DATE, IMAGE, GOAL, FUND_RATE, REST_DAY, TOTAL_MONEY, CATEGORY_NAME " 
+        		   + "FROM PROJECT "
+        		   + "ORDER BY PROJECT_ID";
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Project> proList = new ArrayList<Project>();	
+			while (rs.next()) {
+				Project project = new Project(
+						rs.getInt("PROJECT_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"),
+						rs.getString("IMAGE"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME")	
+				);
+				proList.add(project);				// List에 User 객체 저장
+			}		
+			return proList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
+	
+	
 //	이름(title)으로 프로젝트 검색 (like연산자) 여러개 반환
 	public List<Project> findProjectList_ByTitle(String title) throws SQLException {
         
