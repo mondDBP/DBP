@@ -72,24 +72,14 @@ public class LikesDAO {
 						
 			try {
 				ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-				List<Project> projectList = new ArrayList<Project>();	// User들의 리스트 생성
+				List<Likes> likesList = new ArrayList<Likes>();	// User들의 리스트 생성
 				while (rs.next()) {
-					Project project = new Project(			// User 객체를 생성하여 현재 행의 정보를 저장
-							rs.getInt("project_id"),
-							rs.getString("category_name"),
-							rs.getString("user_id"),
-							rs.getString("title"),
-							rs.getString("start_date"),
-							rs.getString("image"),
-							rs.getString("description"),
-							rs.getInt("goal"),
-							rs.getInt("fund_rate"),
-							rs.getInt("rest_day"),
-							rs.getInt("funding_period"),
-							rs.getInt("total_money"));
-						projectList.add(project);				// List에 User 객체 저장
+					Likes Likes = new Likes(			// User 객체를 생성하여 현재 행의 정보를 저장
+							rs.getInt("user_id_pk_seq"),
+							rs.getInt("project_id"));
+					likesList.add(Likes);				// List에 User 객체 저장
 				}		
-				return projectList;					
+				return likesList;					
 				
 			} catch (Exception ex) {
 				ex.printStackTrace();

@@ -41,7 +41,8 @@ public class RequestMapping {
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
         mappings.put("/project/list/likes", new ListProjectFromLikesController());
         mappings.put("/project/view", new ViewProjectController());
-        mappings.put("/project/create/form", new ForwardController("/project/creationForm.jsp"));
+        mappings.put("/project/register", new RegisterProjectController());
+        mappings.put("/project/successregister", new ForwardController("/project/register/successRegister.jsp"));
         
         mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/list", new ListProjectController());

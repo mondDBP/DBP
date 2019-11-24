@@ -1,6 +1,6 @@
 package model;
 
-public class Reward_option {
+public class Reward_option {//7개
 	private int option_id;	//OPTION_ID ->Oracle CHAR에서 NUMBER(10)으로변경 ->완료
 	private int project_id;	 	//PROJECT_ID
 	private int price;			//PRICE
