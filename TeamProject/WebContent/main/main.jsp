@@ -37,7 +37,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/login/loginForm.jsp' />" class="view-login">
+					<a href="<c:url value='/user/login/login.jsp' />" class="view-login">
 					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
 					</a>
 				</div>

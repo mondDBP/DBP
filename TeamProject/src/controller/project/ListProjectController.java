@@ -22,7 +22,7 @@ public class ListProjectController implements Controller{
 			currentPage = Integer.parseInt(currentPageStr);
 		}		
     	*/
-    	
+		
     	ProjectManager manager = ProjectManager.getInstance();
 		List<Project> ProjectList = manager.findProList();
 		// List<User> userList = manager.findUserList(currentPage, countPerPage);
@@ -34,8 +34,7 @@ public class ListProjectController implements Controller{
 				
 		request.setAttribute("project", project);
 
-		// 프로젝트 리스트 화면으로 이동(forwarding)
-		return "/Admin/controlProject.jsp";
+		return "/project/view/viewProjectList.jsp";
 	}
 
 }

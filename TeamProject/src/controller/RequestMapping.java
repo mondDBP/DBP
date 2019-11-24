@@ -12,11 +12,11 @@ import controller.mypage.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
-    // °¢ ¿äÃ» uri¿¡ ´ëÇÑ controller °´Ã¼¸¦ ÀúÀåÇÒ HashMap »ı¼º
+    // å ì™ì˜™ å ì™ì˜™ì²­ uriå ì™ì˜™ å ì™ì˜™å ì™ì˜™ controller å ì™ì˜™ì²´å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ HashMap å ì™ì˜™å ì™ì˜™
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// °¢ uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ »ı¼º ¹× ÀúÀå//
+    	// å ì™ì˜™ uriå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¤ëŒì˜™ controller å ì™ì˜™ì²´å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™//
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -30,21 +30,23 @@ public class RequestMapping {
         mappings.put("/user/mypage/back", new MyBackOrderListController());
         mappings.put("/user/mypage/likes", new MyLikesController());
         
-        // »ç¿ëÀÚ Á¤º¸ ¼öÁ¤ Æû ¿äÃ»°ú ¼öÁ¤ ¿äÃ» Ã³¸® º´ÇÕ
+        // å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™ì²­å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì²­ ì²˜å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 //      mappings.put("/user/update/form", new UpdateUserFormController());
         mappings.put("/user/update/form", new UpdateUserController());
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
         mappings.put("/user/search", new SearchUserController());//
-        // ÇÁ·ÎÁ§Æ® °ü·Ã request URI Ãß°¡
+        // å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™å ì™ì˜™ request URI å ìŒ©ê³¤ì˜™
         mappings.put("/project/list/latest", new ListProjectFromLatestController());
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
         mappings.put("/project/list/likes", new ListProjectFromLikesController());
+        mappings.put("/project/view/admin", new AdminViewProjectController());
         mappings.put("/project/view", new ViewProjectController());
         mappings.put("/project/register", new RegisterProjectController());
         mappings.put("/project/successregister", new ForwardController("/project/register/successRegister.jsp"));
         
         mappings.put("/project/delete", new DeleteProjectController());
+        mappings.put("/project/list/admin", new AdminListProjectController());
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/search", new SearchProjectController());
         
@@ -54,16 +56,16 @@ public class RequestMapping {
 //        mappings.put("/project/update/form", new UpdateCommunityController());
 //        mappings.put("/project/update", new UpdateCommunityController());
         
-        mappings.put("/user/mainpage", new ForwardController("/main/main.jsp"));//¸ŞÀÎÆäÀÌÁö È­¸é ¿¬°á
-        mappings.put("/user/terms", new ForwardController("/user/register/terms.jsp"));//µ¿ÀÇ¾à°üÈ­¸é ¿¬°á
-        mappings.put("/user/successregister", new ForwardController("/user/register/successRegister.jsp"));//¼º°øÀûÀÎ È¸¿ø°¡ÀÔ½Ã ¶ß´Â È­¸é¿¬°á
+        mappings.put("/user/mainpage", new ForwardController("/main/main.jsp"));//å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ í™”å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+        mappings.put("/user/terms", new ForwardController("/user/register/terms.jsp"));//å ì™ì˜™å ì‹¤ì–µì˜™å ì‹«ï¿½å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+        mappings.put("/user/successregister", new ForwardController("/user/register/successRegister.jsp"));//å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì™ì˜™å ìŒ‰ì™ì˜™ å ìŒ©ëŒì˜™ í™”å ì½ì—°å ì™ì˜™
         
         
         logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
-    	// ÁÖ¾îÁø uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ Ã£¾Æ ¹İÈ¯
+    	// å ìŒì–µì˜™å ì™ì˜™ uriå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¤ëŒì˜™ controller å ì™ì˜™ì²´å ì™ì˜™ ì°¾å ì™ì˜™ å ì™ì˜™í™˜
         return mappings.get(uri);
     }
 }
