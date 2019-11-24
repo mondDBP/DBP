@@ -16,14 +16,14 @@ public class DeleteProjectController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		String deleteId = request.getParameter("projectId");
+		String deleteId = request.getParameter("proTitle");
     	log.debug("Delete Project : {}", deleteId);
 
     	String[] name = request.getParameterValues("check");
     	ProjectManager manager = ProjectManager.getInstance();		
 		
     	for(int i = 0; i < name.length ; i++) {
-    		if(name != null) {
+    		if(name[i] != null) {
     			manager.remove(Integer.parseInt(name[i]));
     		}
     	}
@@ -32,7 +32,7 @@ public class DeleteProjectController implements Controller {
     		manager.remove(Integer.parseInt(deleteId));				
 			
 			
-		return "/project/list";	
+		return "/project/list/admin";	
 		
     }
 }

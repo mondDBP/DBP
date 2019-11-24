@@ -19,7 +19,7 @@ public class AdminViewProjectController implements Controller {
     	try {
 			project = manager.findProject(projectTitle);	// 사용자 정보 검색
 		} catch (ProjectNotFoundException e) {				
-	        return "redirect:/project/list";
+	        return "redirect:/project/list/admin";
 		}	
 		
     	request.setAttribute("project", project);		// 사용자 정보 저장				

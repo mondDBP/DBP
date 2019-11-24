@@ -91,7 +91,7 @@ function Delete(){
 if(proInfo == null){
 %>
 <form method="post" name="form" id="form" action="<c:url value='/project/delete' />">	
-  <table style="margin:auto;text-align:center;" border="1">
+  <table style="margin:auto;text-align:center;" border="1" class="table table-striped">
 		<tr>
 		  <td><input type="submit" value="삭제" onClick="Delete()"></td>
 		  <td>프로젝트ID</td>	  
@@ -133,7 +133,6 @@ if(proInfo == null){
 		  </td>
 		  <td>
 		   <img src="<%=pro.getImage()%>" width="50px" height='50px' /> 
-		  사진
 		  </td>
 		  
 		<td>
@@ -163,7 +162,7 @@ if(proInfo == null){
 	  }
 	  else{
       %>
-	 <table style="margin:auto;text-align:center;" border="1">
+	 <table style="margin:auto;text-align:center;" border="1" class="table table-striped">
 		<tr>
 		  <td>프로젝트ID</td>	  
 		  <td>제목</td>
@@ -177,7 +176,7 @@ if(proInfo == null){
 	   </tr>
 	   <tr>
 	    <td><%= proInfo.getProject_id() %></td>
-	    <td>	  <a href="<c:url value='/project/view'>
+	    <td>	  <a href="<c:url value='/project/view/admin'>
 					   <c:param name='projectTitle' value='<%=proInfo.getTitle()%>'/>
 			 		 </c:url>">
 			  <%=proInfo.getTitle() %></a>

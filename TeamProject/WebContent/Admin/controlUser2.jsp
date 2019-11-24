@@ -5,9 +5,15 @@
 	request.setCharacterEncoding("UTF-8");
 	User user = (User)request.getAttribute("user");
 %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <script>
@@ -19,7 +25,7 @@ function userRemove() {
 
 <body>
   <br>
-  <table style="margin:auto;text-align:center;" border="1">
+  <table style="margin:auto;text-align:center;">
     <tr>
 	  <td>	  	    
 	  	<table border="1">

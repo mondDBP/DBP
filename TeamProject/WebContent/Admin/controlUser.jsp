@@ -90,7 +90,7 @@ function Delete(){
 if(userInfo == null){
 %>
 	<form method="post" name="form" id="form" action="<c:url value='/user/delete' />">	
-  <table style="margin:auto;text-align:center;" border="1">
+  <table style="margin:auto;text-align:center;" border="1" class="table table-striped">
 		<tr>
 		  <td><input type="submit" value="삭제" onClick="Delete()"></td>
 		  <td>회원 ID</td>
@@ -148,7 +148,7 @@ if(userInfo == null){
 	  }
 	  else{
       %>
-	 <table style="margin:auto;text-align:center;" border="1">
+	 <table style="margin:auto;text-align:center;" border="1" class="table table-striped">
 		<tr>
 		  <td>회원 ID</td>
 		  <td>회원 PWD</td>

@@ -24,7 +24,7 @@ public class DeleteUserController implements Controller {
     	UserManager manager = UserManager.getInstance();		
 		
     	for(int i = 0; i < name.length ; i++) {
-    		if(name != null) {
+    		if(name[i] != null) {
     			manager.remove(name[i]);
     		}
     	}
