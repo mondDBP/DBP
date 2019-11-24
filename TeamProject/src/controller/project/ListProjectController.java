@@ -33,6 +33,10 @@ public class ListProjectController implements Controller{
 		Project project = (Project)request.getAttribute("project");
 				
 		request.setAttribute("project", project);
+		
+		int numOfProj = manager.getNumberofProjects();
+		
+		request.setAttribute("numOfProj", numOfProj);
 
 		return "/project/view/viewProjectList.jsp";
 	}

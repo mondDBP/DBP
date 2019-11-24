@@ -97,4 +97,8 @@ public class ProjectManager {//프로젝트 존재여부
 	public ProjectDAO getProjectDAO() {
 		return this.projDAO;
 	}
+	
+	public int getNumberofProjects() {
+		return projDAO.getNumberofProjects();
+	}
 }
