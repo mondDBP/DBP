@@ -34,6 +34,20 @@ public class Project {//º¯¼ö12°³
 		this.category_name = category_name;
 	}
 	
+	public Project(String title, String image, String description,
+			int goal, int fund_rate, int rest_day, int funding_period, int total_money, String category_name) {
+
+		this.title = title;
+		this.image = image;
+		this.description = description;
+		this.goal = goal;
+		this.fund_rate = fund_rate;
+		this.rest_day = rest_day;
+		this.funding_period = funding_period;
+		this.total_money = total_money;
+		this.category_name = category_name;
+	}
+	
 	public Project(int project_id, String title, Date start_date, String image,
 			int goal, int fund_rate, int rest_day, int total_money, String category_name) {
 		this.project_id = project_id;
