@@ -73,7 +73,7 @@
 				</div>
 
 				<a class="idExist" href="<c:url value='/user/register/terms.jsp' />"><span
-					style="color: #757575;" data-reactid="57">아직 계정이 없으신가요?</span> 텀블벅 가입하기
+					style="color: #757575;" data-reactid="57">아직 계정이 없으신가요?</span> 회원 가입하기
 				</a>
 			</form>
 

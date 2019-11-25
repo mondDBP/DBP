@@ -24,7 +24,7 @@
 <div class="header-wrap">
 	<div class="header">
 		<div class="hpName-wrap">
-			<a class="hpName" href="<c:url value='/main/main.jsp' />">Bumblebug</a>
+			<a class="hpName" href="<c:url value='/main/main.jsp' />">FUNDAY</a>
 		</div>
 		
 		<div class="leftproject-bar">

@@ -21,7 +21,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 	<div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
-				<a class="hpName" href="<c:url value='/main/page' />">Bumblebug</a>
+				<a class="hpName" href="<c:url value='/main/page' />">FUNDAY</a>
 			</div>
 		
 		<div class="leftproject-bar">
@@ -47,7 +47,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png'/>" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<span class="view-user" style="padding: 0 10px;">
-					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}님</a>
 					</span>
 					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
 					<img src="<c:url value='/images/${u_img}' />" alt="profile" style="width: auto; height: 35px;">
@@ -62,7 +62,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 					<%
 						if(curUserId.equals("admin1234") == false){
 					%>
-					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}</a>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}님</a>
 					<%
 						}
 					%>

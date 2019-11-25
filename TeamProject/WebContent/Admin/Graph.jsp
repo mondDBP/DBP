@@ -36,7 +36,7 @@
     var chart = new CanvasJS.Chart("chartContainer",
     {
       title:{
-      text: "일일별 누적 후원자 수(명)"  
+      text: "일별 누적 후원자 수(명)"  
       },
       data: [
   
@@ -54,7 +54,7 @@
     var chart = new CanvasJS.Chart("chartContainer2",
     	    {
     	      title:{
-    	      text: "일일별 누적 모금액(원)"  
+    	      text: "일별 누적 모금액(원)"  
     	      },
     	      data: [
     	  
@@ -76,7 +76,7 @@
 <div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
-				<a class="hpName" href="<c:url value='/main/page' />">Bumblebug</a>
+				<a class="hpName" href="<c:url value='/main/page' />">FUNDAY</a>
 			</div>
 			
 			<div class="leftproject-bar">
