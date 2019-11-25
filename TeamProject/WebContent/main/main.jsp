@@ -122,7 +122,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 
 		<div class="kind_1_project">
 			<div class="kind_1_header">
-				<a class="kind_1" href="">많이 사람들이 후원한 프로젝트</a>
+				<a class="kind_1" href="">사람들이 많이 후원한 프로젝트</a>
 				<button></button>
 			</div>
 			<div class="kind_1_card_section">

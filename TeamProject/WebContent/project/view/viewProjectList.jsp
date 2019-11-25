@@ -49,8 +49,16 @@ String curUserId = (String)request.getAttribute("curUserId");
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 					&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+			<c:choose>
+			 <c:when test='${empty curUserId}'>			
+			 <a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
+				
+			</c:when>
+			<c:otherwise>
+				<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
 					&nbsp;&nbsp;
+</c:otherwise>
+			</c:choose>
 
 				</div>
 				</div>

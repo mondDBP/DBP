@@ -1,6 +1,7 @@
 package controller.project;
 import javax.servlet.http.HttpServletRequest;
 
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,8 +17,8 @@ public class DeleteProjectController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		String deleteId = request.getParameter("proTitle");
-    	log.debug("Delete Project : {}", deleteId);
+		//String deleteId = request.getParameter("proTitle");
+    	//log.debug("Delete Project : {}", deleteId);
 
     	String[] name = request.getParameterValues("check");
     	ProjectManager manager = ProjectManager.getInstance();		
@@ -28,8 +29,8 @@ public class DeleteProjectController implements Controller {
     		}
     	}
     	
-    	if(deleteId != null)
-    		manager.remove(Integer.parseInt(deleteId));				
+    //	if(deleteId != null)
+    //		manager.remove(Integer.parseInt(deleteId));				
 			
 			
 		return "/project/list/admin";	

@@ -42,7 +42,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 					&nbsp;&nbsp;&nbsp;
-					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+					<a href="<c:url value='/user/login/login.jsp' />">로그인</a>
 					&nbsp;&nbsp;
 
 				</div>

@@ -3,6 +3,8 @@ package controller.project;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import controller.Controller;
 
 import controller.user.UserSessionUtils;
@@ -22,6 +24,11 @@ public class ListProjectController implements Controller{
 			currentPage = Integer.parseInt(currentPageStr);
 		}		
     	*/
+		HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY);
+        
+        request.setAttribute("curUserId", userId);
+        
 		
     	ProjectManager manager = ProjectManager.getInstance();
 		List<Project> ProjectList = manager.findProList();
