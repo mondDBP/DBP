@@ -21,7 +21,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 	<div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
-				<a class="hpName" href="<c:url value='/main/main.jsp' />">Bumblebug</a>
+				<a class="hpName" href="<c:url value='/main/page' />">Bumblebug</a>
 			</div>
 		
 		<div class="leftproject-bar">

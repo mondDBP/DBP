@@ -13,6 +13,8 @@ String curUserId = (String)request.getAttribute("curUserId");
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css' />" media="all" />
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -31,6 +33,28 @@ String curUserId = (String)request.getAttribute("curUserId");
 	href="<c:url value='/css/viewProjectList.css' />" media="all" />
 </head>
 <body>
+<div class="header-wrap">
+		<div class="header">
+			<div class="hpName-wrap">
+				<a class="hpName" href="<c:url value='/main/page' />">Bumblebug</a>
+			</div>
+			
+			<div class="leftproject-bar">
+			<a class="view-project" href="<c:url value='/project/view/category.jsp' />">프로젝트 둘러보기</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
+		</div>
+		<div class="rightproject-bar">
+					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+					&nbsp;&nbsp;
+
+				</div>
+				</div>
+				</div>
 	<form name="form" method="POST"
 		action="<c:url value='/project/view' />">
 		<div

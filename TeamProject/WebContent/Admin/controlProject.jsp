@@ -8,7 +8,6 @@
 <%
 	@SuppressWarnings("unchecked") 
 	List<Project> projectList = (List<Project>)request.getAttribute("projectList");
-	String curProId = (String)request.getAttribute("curProId");//삭제
 	Project proInfo = (Project)request.getAttribute("project");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -37,7 +36,7 @@ function Delete(){
 <div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
-				<a class="hpName" href="<c:url value='/main/main.jsp' />">Bumblebug</a>
+				<a class="hpName" href="<c:url value='/main/page' />">Bumblebug</a>
 			</div>
 			
 			<div class="leftproject-bar">

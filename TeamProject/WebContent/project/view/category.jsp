@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<b>프로젝트 조회</b>
+<h2>프로젝트 조회</h2>
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/project/list'/>" >전체</a></li>
