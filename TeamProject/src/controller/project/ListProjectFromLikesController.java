@@ -12,10 +12,13 @@ public class ListProjectFromLikesController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		
     	ProjectManager manager = ProjectManager.getInstance();
+    	
 		List<Project> projList = manager.findProjectList("likes");
+		request.setAttribute("projList", projList);
 		
-		// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
-		request.setAttribute("projList", projList);				
+		int numOfProj = manager.getNumberofProjects();
+		request.setAttribute("numOfProj", numOfProj);
+		
 		return "/project/view/listBylikes.jsp";
 		
     }

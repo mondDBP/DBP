@@ -31,6 +31,7 @@ public class RequestMapping {
         mappings.put("/user/mypage/likes", new MyLikesController());
         
         mappings.put("/main/page", new MainController());
+        mappings.put("/main/preview", new PreviewListProjectController());
         
      // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
 //      mappings.put("/user/update/form", new UpdateUserFormController());
