@@ -12,9 +12,13 @@ public class ListProjectFromFundRateController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		
     	ProjectManager manager = ProjectManager.getInstance();
+    	
 		List<Project> projList = manager.findProjectList("fund_rate");
+		request.setAttribute("projList", projList);
 		
-		request.setAttribute("projList", projList);				
+		int numOfProj = manager.getNumberofProjects();
+		request.setAttribute("numOfProj", numOfProj);
+		
 		return "/project/view/listByFundrate.jsp";
     
     }
