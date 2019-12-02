@@ -307,7 +307,7 @@ public class ProjectDAO {
 	}
 
 	public List<Project> projectListOrderByCondition(String condition) throws SQLException {
-		String sql;
+		String sql = "";
 
 		if (condition.equals("start_date")) {
 			sql = "SELECT * FROM Project ORDER BY start_date";
@@ -319,6 +319,8 @@ public class ProjectDAO {
 					+ "GROUP BY project_id ORDER BY cnt_likes desc";
 		}
 
+		jdbcUtil.setSqlAndParameters(sql, null);	
+		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
 			List<Project> projList = new ArrayList<Project>();	

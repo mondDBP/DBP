@@ -45,7 +45,7 @@ public class ListProjectController implements Controller{
 		
 		request.setAttribute("numOfProj", numOfProj);
 
-		return "/project/view/viewProjectList.jsp";
+		return "/project/view/list.jsp";
 	}
 
 }

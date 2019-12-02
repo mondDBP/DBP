@@ -11,7 +11,9 @@ import model.service.ProjectManager;
 import model.Project;
 
 public class ViewProjectController implements Controller {
+	
 	private static final Logger log = LoggerFactory.getLogger(ViewProjectController.class);
+	
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
     	
@@ -25,6 +27,7 @@ public class ViewProjectController implements Controller {
 		proj = manager.findProject(proj_title);		// 프로젝트 정보 검색
 		
 		request.setAttribute("project", proj);	// 프로젝트 정보 저장				
-		return "/project/view/viewProject.jsp";				// 프로젝트 보기 화면으로 이동
+		return "/project/view/project.jsp";				// 프로젝트 보기 화면으로 이동
+		
     }
 }

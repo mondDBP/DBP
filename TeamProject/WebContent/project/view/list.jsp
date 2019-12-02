@@ -27,6 +27,25 @@ String curUserId = (String)request.getAttribute("curUserId");
 		hidden.innerHTML += str;
 		form.submit();
 	}
+	
+	
+	function selectSorting(){
+	    var obj = document.getElementById("sortProj");
+	    var selectValue = obj.options[obj.selectedIndex].value;
+	    
+	    if (selectValue == "fund_rate") {
+	    	form.action = "<c:url value='/project/list/fundrate' />";
+	    } else if (selectValue == "latest") {
+	    	form.action = "<c:url value='/project/list/latest' />";
+	    } else if (selectValue == "likes") {
+	    	form.action = "<c:url value='/project/list/likes' />";
+	    } else {
+	    	form.action = "<c:url value='/project/list' />";
+	    }
+	    
+		form.submit();
+	}
+	
 </script>
 
 <link rel="stylesheet" type="text/css"
@@ -65,9 +84,9 @@ String curUserId = (String)request.getAttribute("curUserId");
 				</div>
 	<form name="form" method="POST"
 		action="<c:url value='/project/view' />">
-		<div
-			style="text-align: right; width: auto; margin: auto; padding: 30px;">
-			<select name="sortProject">
+		<div style="text-align: right; width: auto; margin: auto; padding: 30px;">
+			<select id="sortProj" onchange="selectSorting()">
+				<option value="default" selected></option>
 				<option value="fund_rate">모금률순</option>
 				<option value="latest">최신순</option>
 				<option value="likes">좋아요순</option>

@@ -30,9 +30,7 @@ public class RequestMapping {
         mappings.put("/user/mypage/back", new MyBackOrderListController());
         mappings.put("/user/mypage/likes", new MyLikesController());
         
-        
         mappings.put("/main/page", new MainController());
-        
         
      // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
 //      mappings.put("/user/update/form", new UpdateUserFormController());
@@ -40,6 +38,7 @@ public class RequestMapping {
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
         mappings.put("/user/search", new SearchUserController());//
+        
      // 프로젝트 관련 request URI 추가
         mappings.put("/project/list/latest", new ListProjectFromLatestController());
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
@@ -53,7 +52,6 @@ public class RequestMapping {
         mappings.put("/project/list/admin", new AdminListProjectController());
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/search", new SearchProjectController());
-        
         
         mappings.put("/amount/graph", new AmountGraphController());
 //        mappings.put("/project/create", new CreateCommunityController());
