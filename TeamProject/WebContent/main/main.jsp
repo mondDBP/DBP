@@ -118,9 +118,10 @@ String curUserId = (String)request.getAttribute("curUserId");
 				</div>
 			</div>
 		</div>
-		<!-- ..........................................................................-->
+	</div>
+	<!-- ..........................................................................-->
 		
-		<iframe src="<c:url value='/main/preview' />" width="100%" height="1200" frameborder="0" allowfullscreen scrolling="no"></iframe>
+	<iframe src="<c:url value='/main/preview' />" width="100%" height="1200" frameborder="0" allowfullscreen scrolling="no"></iframe>
 
 	<!--//////////////////////////////////////////////////////////////////////////////////-->
 	<div class="footer">
