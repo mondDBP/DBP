@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.Project;
 import model.service.ProjectManager;
 
@@ -13,11 +15,27 @@ public class MyCreateProjectListController implements Controller {
 	 @Override
 	    public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 			
-		 	ProjectManager manager = ProjectManager.getInstance();
-			List<Project> projList = manager.userCreateProjectList(Integer.parseInt(request.getParameter("user_id")));
+		 	HttpSession session = request.getSession();
+	        String userId = (String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY);
+	        
+	        request.setAttribute("curUserId", userId);
+	        
 			
-			// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
-			request.setAttribute("projList", projList);				
-			return "/user/mypage/project.jsp";       
+	        ProjectManager manager = ProjectManager.getInstance();
+			List<Project> ProjectList = manager.userCreateProjectList(userId);
+			// List<User> userList = manager.findUserList(currentPage, countPerPage);
+			
+
+			request.setAttribute("projectList", ProjectList);				
+
+			Project project = (Project)request.getAttribute("project");
+					
+			request.setAttribute("project", project);
+			
+			int numOfProj = manager.getNumberofProjects();
+			
+			request.setAttribute("numOfProj", numOfProj);
+
+			return "/user/mypage/project_list.jsp";
 	    }
 }
