@@ -64,12 +64,12 @@ String curUserId = (String)request.getAttribute("curUserId");
 				</div>
 				</div>
 				</div>
-	<form name="form" method="POST"/>">
+	<form name="form" method="POST" action="<c:url value='/user/mypage/project' />"/>
 		
 
 		<div style="text-align: center; width: auto; margin: 10px;">총 ${numOfProj }개의 프로젝트를 창작하셨습니다.</div>
 
-		<div class="create_1_project">
+		<div class="kind_1_project">
 			<table>
 				<tr>
 					<c:forEach var="project" items="${projList }" varStatus="vs">
