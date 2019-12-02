@@ -70,7 +70,7 @@ function Delete(){
   </li>
  </ul>
 </nav>
- <form  name="form" method="POST" action="<c:url value='/project/search' />">
+ <form  name="form" method="POST" action="<c:url value='/project/search/admin' />">
  <br><br>
   <table style="margin:auto;">
    <tr>

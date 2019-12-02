@@ -52,7 +52,7 @@ public class RequestMapping {
         mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/list/admin", new AdminListProjectController());
         mappings.put("/project/list", new ListProjectController());
-        mappings.put("/project/search", new SearchProjectController());
+        mappings.put("/project/search/admin", new AdminSearchProjectController());
         
         mappings.put("/amount/graph", new AmountGraphController());
 //        mappings.put("/project/create", new CreateCommunityController());
