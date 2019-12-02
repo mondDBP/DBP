@@ -433,10 +433,45 @@ public class ProjectDAO {
 	}
 	
 	
-	public List<Project> userCreateProjectList(int userId) {
+	public List<Project> userCreateProjectList(int user_id) {
 		String sql = "SELECT * " 
      		   + "FROM PROJECT "
      		   + "WHERE user_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {user_id});	
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();				
+			List<Project> projectList = new ArrayList<Project>();	
+			while (rs.next()) {
+				Project project = new Project(			
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"), 
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME")
+						);
+				projectList.add(project);			
+			}
+			return projectList;					
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
+	public List<Project> userCreateProjectList(String userId) {
+		String sql = "SELECT PROJECT_ID, TITLE, START_DATE, DESCRIPTION, IMAGE, GOAL, FUND_RATE, REST_DAY, TOTAL_MONEY, CATEGORY_NAME " 
+     		   + "FROM PROJECT p JOIN USERS u IN p.user_id = u.user_id_pk_seq "
+     		   + "WHERE u.userId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	
 					
 		try {
