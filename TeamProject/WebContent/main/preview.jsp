@@ -36,8 +36,8 @@ String curUserId = (String)request.getAttribute("curUserId");
 	<form name="form" method="POST"
 		action="<c:url value='/project/view'/>" target="_top">
 		<br>
+		<div><br><font style="font-size:1.5em; font-weight: bold; padding-left:300px;" >많은 사람들이 후원한 프로젝트</font></div>
 		<div class="kind_1_project">
-		<div><br><font style="font-size:1.5em; font-weight: bold;">많은 사람들이 후원한 프로젝트</font></div>
 			<table>
 				<tr>
 					<c:forEach var="project" items="${projListByFundrate }" begin="0" end="3" varStatus="vs">
@@ -65,8 +65,8 @@ String curUserId = (String)request.getAttribute("curUserId");
 			</table>
 		</div>
 		<br>
+		<div><br><font style="font-size:1.5em; font-weight: bold; padding-left:300px;" >신규 추천 프로젝트</font></div>
 		<div class="kind_1_project">
-			<div><br><font style="font-size:1.5em; font-weight: bold;">신규 추천 프로젝트</font></div>
 			<table>
 				<tr>
 					<c:forEach var="project" items="${projListByLatest }" begin="0" end="3" varStatus="vs">
@@ -94,8 +94,8 @@ String curUserId = (String)request.getAttribute("curUserId");
 			</table>
 		</div>
 		<br>
+		<div><br><font style="font-size:1.5em; font-weight: bold; padding-left:300px;" >인기 추천 프로젝트</font></div>
 		<div class="kind_1_project">
-			<div><br><font style="font-size:1.5em; font-weight: bold;">인기 추천 프로젝트</font></div>
 			<table>
 				<tr>
 					<c:forEach var="project" items="${projListByLikes }" begin="0" end="3" varStatus="vs">
