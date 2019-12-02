@@ -15,9 +15,9 @@
 </head>
 <body>
 <b>프로젝트 검색</b>
-<form name="search" method="post" action="<c:url value='' />">
+<form name="search" method="post" action="<c:url value='/project/resultProject.jsp' />">
 	<input type="text" style="width:200" name="keywd">
-	<input type="button" value="검색" onClick="search()"><br>
+	<a href="<c:url value='/project/list/result'/>" ><input type="button" value="검색" onClick="search()" ></a><br>
 	<input type="button" value="취소" onClick="back()">
 </form>
 </body>

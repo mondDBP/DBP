@@ -44,6 +44,7 @@ public class RequestMapping {
         mappings.put("/project/list/latest", new ListProjectFromLatestController());
         mappings.put("/project/list/fundrate", new ListProjectFromFundRateController());
         mappings.put("/project/list/likes", new ListProjectFromLikesController());
+        mappings.put("/project/list/result", new SearchProjectController_user());
         mappings.put("/project/view/admin", new AdminViewProjectController());
         mappings.put("/project/view", new ViewProjectController());
         mappings.put("/project/register", new RegisterProjectController());
