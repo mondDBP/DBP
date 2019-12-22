@@ -21,7 +21,6 @@
 		document.form.action = "<c:url value='/project/like' />";
 		document.form.submit();
 	} */
-	function 
 </script>
 <style>
 table {
