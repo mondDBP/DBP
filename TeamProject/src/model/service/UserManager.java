@@ -68,6 +68,11 @@ public class UserManager {
 		return user;
 	}
 
+	public int userId(String userId) throws SQLException, ExistingLikesException {
+		
+		return userDAO.findUserIdSeq(userId);
+	}
+	
 	public Admin FindAdmin(String userId)
 			throws SQLException, UserNotFoundException {
 			Admin admin = adminDAO.findAdmin(userId);
@@ -82,6 +87,7 @@ public class UserManager {
 			return userDAO.findUserList();
 	}
 	
+
 	/*public List<User> findUserList(int currentPage, int countPerPage)
 		throws SQLException {
 		return userDAO.findUserList(currentPage, countPerPage);

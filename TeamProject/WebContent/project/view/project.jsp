@@ -10,10 +10,14 @@
 		document.form.submit();
 	}
 
-	function likeProject() {
-		document.form.action = "' />";
+/* 	function likeProject(vs) {
+
+		 
+		
+		document.form.action = "<c:url value='/project/like' />";
 		document.form.submit();
-	}
+	} */
+	function 
 </script>
 <style>
 table {
@@ -66,7 +70,24 @@ div {
 				<td colspan="3" style="background-color: #ececec">
 					<div>
 						<input type="button" value="후원하기" onClick="backProject()">
-						<input type="button" value="좋아요" onClick="likeProject()">
+					<!-- 	<input type="button" value="좋아요" onClick="likeProject('${project.title}')"> -->
+			 	 <a href="<c:url value='/project/like' >
+	     		   <c:param name='title' value='${project.title}'/>
+			 	 </c:url>">좋아요</a> &nbsp;
+					
+						 <c:choose>
+						  <c:when test="${registerFailed}">
+						   <c:out value="좋아요를 이미 누르셨습니다!" />  
+						  </c:when>
+						  <c:when test="${not registerFailed}">
+						   <c:out value="좋아요가 성공적으로 등록되었습니다!"/>
+						  </c:when>
+					      <c:when test="${kk=='hi'}">
+						   <c:out value="좋아요를 누르세요"/>
+						  </c:when> 
+						 </c:choose>
+				
+	    				   
 					</div>
 				</td>
 			</tr>
