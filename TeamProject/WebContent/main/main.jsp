@@ -123,65 +123,6 @@ String curUserId = (String)request.getAttribute("curUserId");
 		
 	<iframe src="<c:url value='/main/preview' />" width="100%" height="1200" frameborder="0" allowfullscreen scrolling="no"></iframe>
 
-	<!--//////////////////////////////////////////////////////////////////////////////////-->
-	<div class="footer">
-		<div class="footerSet">
-			<div class="foot_1">
-				<a class="notice"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">공지사항</a><br>
-				<a class="hire"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">채용</a><br>
-				<a class="createGuide"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">창작자가이드</a><br>
-				<a class="settlement"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">결산</a>
-			</div>
-			<!--첫번째 텍스트박스-->
-			<div class="foot_2">
-				<a class="termsOfService"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">이용약관</a><br>
-				<a class="privacyPolicy"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">개인정보
-					처리방침</a><br> <a class="feePolicy"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">수수료
-					정책</a><br> <a class="helpCenter"
-					href="C:\Users\user\Desktop\Project\footer\noticePage.html">헬프
-					센터</a><br>
-			</div>
-			<!--두번째 텍스트박스-->
-			<div class="foot_3">
-				<ul>
-					<li><a href="#"
-						onclick="javascript:window.open
-                            ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="<c:url value='/images/sns_ka.png'/>" width="30"></a></li>
-					<li><a href="#"
-						onclick="javascript:window.open
-                            ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="<c:url value='/images/sns_tw.png'/>" width="30"></a></li>
-					<li><a href="#"
-						onclick="javascript:window.open
-                            ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="<c:url value='/images/sns_insta.png'/>" width="30"></a></li>
-					<li><a href="#"
-						onclick="javascript:window.open
-                            ('https://www.kakaocorp.com/service/KakaoTalk')"><img
-							src="<c:url value='/images/sns_naver.png'/>" width="30"></a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="foot_4">
-			<span id="notice_1">000은 텀블벅은 플랫폼 제공자로서 프로젝트의 당사자가 아니며, 직접적인
-				통신판매를 진행하지 않습니다. 프로젝트의 완수 및 선물제공의 책임은 해당 프로젝트의 창작자에게 있으며, 프로젝트와 관련하여
-				후원자와 발생하는 법적 분쟁에 대한 책임은 해당 창작자가 부담합니다. </span>
-		</div>
-		<!--세번째텍스트박스-->
-		<div class="foot_5">
-			<span id="notice_2"> 텀블벅(주) | 대표 염재승 105-87-52823 | 서울시 강남구
-				강남대로 364, 12층 1201호 (역삼동) | 통신판매업 2019-서울강남-00797 | 대표전화
-				02-6080-0760 </span>
-		</div>
-		<!--네번째 텍스트박스-->
-	</div>
+	
 </body>
 </html>
