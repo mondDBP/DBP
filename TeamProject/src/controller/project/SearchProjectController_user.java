@@ -1,5 +1,7 @@
 package controller.project;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,8 +22,9 @@ public class SearchProjectController_user implements Controller {
     	ProjectManager manager = ProjectManager.getInstance();		
 		HttpSession session = request.getSession();	
 		
-			Project project = manager.findProject(searchPro);		
-			request.setAttribute("project", project);
+			List<Project> projList = manager.findProjectList_ByTitle(searchPro);		
+			request.setAttribute("projectList", projList);
+			request.setAttribute("numOfProj", projList.size());
 			return "/project/resultProject.jsp";	
 		}catch(Exception e) {
 		    request.setAttribute("SearchFailed", true);

@@ -283,7 +283,7 @@ public class ProjectDAO {
 				Project pj = new Project(		
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
-						title,
+						rs.getString("TITLE"),
 						rs.getDate("START_DATE"),
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
@@ -315,7 +315,7 @@ public class ProjectDAO {
 			sql = "SELECT * FROM Project ORDER BY fund_rate desc";
 		} else if (condition.equals("likes")) {
 			sql = "SELECT project_id, count(user_id) as cnt_likes "
-					+ "FROM Project p JOIN Likes l On p.project_id = l.project.id "
+					+ "FROM Project p LEFT OUTER JOIN Likes l On p.project_id = l.project.id "
 					+ "GROUP BY project_id ORDER BY cnt_likes desc";
 		}
 
@@ -505,6 +505,7 @@ public class ProjectDAO {
 
 	public Project getProjectById(int PK_ID) {
 		String searchQuery = query + "WHERE project_id = ?";
+
 		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] { PK_ID });
 
 		try {
@@ -536,20 +537,20 @@ public class ProjectDAO {
 	}
 
 	public int getNumberofProjects() {
-		String sql = "SELECT * FROM PROJECT ";
-		jdbcUtil.setSqlAndParameters(sql, null);
-		int count=0;
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();	
-			while (rs.next()) 
-			{
-				count++;
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		
+	String sql = "SELECT * FROM PROJECT ";
+	jdbcUtil.setSqlAndParameters(sql, null);
+	int count=0;
+	try {
+		ResultSet rs = jdbcUtil.executeQuery();	
+		while (rs.next()) 
+		{
+			count++;
 		}
-		return count;
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		jdbcUtil.close();		
+	}
+	return count;
 	}
 }

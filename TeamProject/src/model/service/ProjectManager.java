@@ -71,6 +71,10 @@ public class ProjectManager {//프로젝트 존재여부
 			return projDAO.projectListOrderByCondition(condition);
 	}
 	
+	public List<Project> findProjectList_ByTitle(String title) throws SQLException {
+		return projDAO.findProjectList_ByTitle(title);
+	}
+	
 	public List<Project> findProjectList(int currentPage, int countPerPage)
 		throws SQLException {
 		return proMan.findProjectList(currentPage, countPerPage);
