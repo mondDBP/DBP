@@ -51,6 +51,7 @@ public class RequestMapping {
         mappings.put("/project/successregister", new ForwardController("/project/register/successRegister.jsp"));
         
         mappings.put("/project/back", new BackProjectController());
+        mappings.put("/project/back/success", new SuccessBackProjectController());        
         
         mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/list/admin", new AdminListProjectController());

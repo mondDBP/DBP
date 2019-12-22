@@ -109,18 +109,18 @@ public class PaymentDAO {
 	
 	
 //	FK(외래키)복합키 2개  검색하여 객체1개 가져감
-	public Payment getPaymentBy2ID(int user_id_pk_seq, int project_id) {
+	public Payment getPaymentBy2ID(String user_id, int project_id) {
 
 		String searchQuery = SelectAllQuery + "WHERE USER_ID=? AND PROJECT_ID=? ";
 		
-		Object[] param = new Object[] {user_id_pk_seq, project_id};
+		Object[] param = new Object[] {user_id, project_id};
 		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] {param});
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			Payment dto = new Payment();
 			while (rs.next()) {
-				dto.setUser_id_pk_seq(rs.getInt("USER_ID"));
+				dto.setUser_id(rs.getString("USER_ID"));
 				dto.setAmount(rs.getInt("AMOUNT"));
 				dto.setPayment_id(rs.getString("PAYMENT_ID"));
 				dto.setProject_id(rs.getInt("PROJECT_ID"));
