@@ -52,17 +52,17 @@ public class BackProjectController implements Controller {
         log.debug(rewardOptList.get(0).getDescription());
         
         // 카드 정보
-//        CardDAO cardDao = new CardDAO();
-//        List<Card> card = cardDao.findCardListById(userId);
-//        
-//        log.debug(card.get(0).getCard_company());
+        CardDAO cardDao = new CardDAO();
+        List<Card> card = cardDao.findCardListById(userId);
+        
+        log.debug(card.get(0).getCard_company());
         
         // 리턴 값 
         request.setAttribute("curUserId", userId);
         request.setAttribute("project", proj);
         request.setAttribute("rewardOptList", rewardOptList);
         request.setAttribute("user", user);
-//        request.setAttribute("card", card);
+        request.setAttribute("card", card);
         
         return "/project/back/backingForm.jsp";
 	}

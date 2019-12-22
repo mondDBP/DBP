@@ -139,7 +139,7 @@ div {
 								<td height="10">${opt.price }</td>
 								<td height="10">${opt.shipping_fee }</td>
 								<td height="10">${opt.description }</td>
-								<!-- 한정 수량?? -->
+								<td height="10">${opt.amount_limit }</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -166,9 +166,9 @@ div {
 							<td align='center'>카드 유효기간</td>
 						</tr>
 						<tr>
-							<td height="10"><input type="text" name="card_company" value="${card.card_company }"></td>
-							<td height="10"><input type="text" name="card_number" value="${card.card_number }"></td>
-							<td height="10"><input type="date" name="card_expiration" value="${card.expiration }"></td>
+							<td height="10"><input type="text" name="card_company" value="${card[0].card_company }"></input></td>
+							<td height="10"><input type="text" name="card_number" value="${card[0].card_number }"></td>
+							<td height="10"><input type="date" name="card_expiration" value="${card[0].expiration }"></td>
 						</tr>
 					</table>
 				</td>
