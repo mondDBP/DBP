@@ -74,6 +74,24 @@ public class UserDAO {
 		return 0;
 	}
 	
+	public int findUserIdSeq(String userId) throws SQLException {
+		String sql = "SELECT user_id from users where id LIKE ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + userId + "%"});	
+
+		int rslt = 0;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			
+			if (rs.next()) {
+				rslt = rs.getInt("user_id");
+			}		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return rslt;
+	}
+	
 	public List<User> findUserList() throws SQLException {
         String sql = "SELECT id, pwd, name, phone_number, address, email, resid_id " 
         		   + "FROM USERS "

@@ -125,7 +125,8 @@ div{
 	    <!-- 회원가입이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
   
 	    <c:if test="${registerFailed}">
-		    <c:out value="${exception.getMessage()}" />   <!-- <script type='text/javascript'>alert(1);</script>-->
+		    <c:out value="${exceptio
+		    n.getMessage()}" />   <!-- <script type='text/javascript'>alert(1);</script>-->
 	    </c:if>
 	    
 	 <tr>

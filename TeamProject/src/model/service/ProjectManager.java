@@ -57,7 +57,9 @@ public class ProjectManager {//프로젝트 존재여부
 	}
 	//검색조건이 없는 경우 초기값? - "start_date"
 	
-	
+	public int projectId(String title) throws SQLException{
+		return projDAO.findProjectId(title);
+	}
 	
 	public List<Project> findProList() throws SQLException {
 			return projDAO.findProList();

@@ -25,7 +25,8 @@ public class ViewProjectController implements Controller {
 		log.debug("프로젝트 제목: " + proj_title);
 		
 		proj = manager.findProject(proj_title);		// 프로젝트 정보 검색
-		
+
+		request.setAttribute("kk", "hi");
 		request.setAttribute("project", proj);	// 프로젝트 정보 저장				
 		return "/project/view/project.jsp";				// 프로젝트 보기 화면으로 이동
 		

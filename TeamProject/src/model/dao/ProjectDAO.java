@@ -73,6 +73,24 @@ public class ProjectDAO {
 		return 0;
 	}
 //
+	public int findProjectId(String title) throws SQLException{
+		String sql = "SELECT project_id from project where title LIKE ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%" + title + "%"});	
+
+		int rslt = 0;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			
+			if (rs.next()) {
+				rslt = rs.getInt("project_id");
+			}		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return rslt;
+	}
+
 	public Project findProject(String title) throws SQLException{
 		 String sql = "SELECT project_id, title, start_date, description, image, goal, fund_rate, rest_day, total_money, category_name "
      			+ "FROM PROJECT "
