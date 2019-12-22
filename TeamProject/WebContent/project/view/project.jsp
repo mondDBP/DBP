@@ -1,12 +1,16 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String curUserId = (String) request.getAttribute("curUserId");
+%>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
 	function backProject() {
-		document.form.action = "<c:url value='/project/view' />";
+		document.form.action = "<c:url value='/project/back'><c:param name='title' value='${project.title}'/></c:url>";
 		document.form.submit();
 	}
 

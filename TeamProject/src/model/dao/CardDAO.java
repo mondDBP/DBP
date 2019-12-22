@@ -11,15 +11,13 @@ public class CardDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public CardDAO() {
-		this.jdbcUtil = jdbcUtil;
+		jdbcUtil = new JDBCUtil(); 
 	}
 	
 	public int create(Card card) throws SQLException {
 		String sql = "INSERT INTO Card (user_id, , card_company, card_number, expiration)"
 					+"VALUES (?, ?, ?, ?)";	
-
-		
-		
+	
 		Object[] param = new Object[] {
 				user_id,
 				card.getCard_number(),
@@ -102,7 +100,7 @@ public class CardDAO {
 				Card card = new Card(			// User 객체를 생성하여 현재 행의 정보를 저장
 					rs.getString("user_id"),
 					rs.getString("card_company"),
-					rs.getInt("card_number"),
+					rs.getString("card_number"),
 					rs.getDate("expiration")
 					);
 				cardList.add(card);				// List에 User 객체 저장
@@ -117,6 +115,31 @@ public class CardDAO {
 		return null;
 	}
 	
-//	
+	public List<Card> findCardListById(String userId) throws SQLException {
+        String sql = "SELECT user_id, card_company, card_number, expiration " + 
+        			"FROM card " + 
+        			"WHERE user_id=? ";
+        
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId });	// JDBCUtil에 delete문과 매개 변수 설정	
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행
+			List<Card> cardList = new ArrayList<Card>();	// User들의 리스트 생성
+			while (rs.next()) {
+				Card card = new Card(			// User 객체를 생성하여 현재 행의 정보를 저장
+					rs.getString("user_id"),
+					rs.getString("card_company"),
+					rs.getString("card_number"),
+					rs.getDate("expiration"));
+				cardList.add(card);				// List에 User 객체 저장
+			}		
+			return cardList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 	
 }

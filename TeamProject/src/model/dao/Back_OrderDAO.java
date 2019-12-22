@@ -48,7 +48,6 @@ public class Back_OrderDAO {
 
 		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pledged, reward_option, back_date, "+
 							 "rest_day, is_success, is_paid) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
-
 		
 		DAOFactory factory = new DAOFactory();
 		

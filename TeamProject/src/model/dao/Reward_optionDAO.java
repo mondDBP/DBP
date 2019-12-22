@@ -47,7 +47,7 @@ public class Reward_optionDAO {
 		return result;
 	}
 //	생성
-	public int create(Reward_option ro) {
+	public int create(Reward_option ro) throws SQLException {
 		String createSql = "INSERT INTO Reward_option ( " + allColumns + ") "
 						 + "VALUES (?, ?, ?, ?, ?, ?, ? )"  ;
 		
@@ -142,25 +142,32 @@ public class Reward_optionDAO {
 	}
 //	프로젝트에 해당하는 리워드옵션 모두출력
 	public List<Reward_option> findReward_optionListbyProject(int project_id){
-		String sql = SelectAllQuery + "WHERE PROJECT_ID = ?" + "ORDER BY option_id ";
+		//String sql = SelectAllQuery + "WHERE PROJECT_ID=? " + "ORDER BY option_id";
+		
+		String sql = "SELECT OPTION_ID, PROJECT_ID, PRICE, SHIPPING_FEE, DESCRIPTION, BACKER_COUNT, AMOUNT_LIMIT " + 
+				"FROM REWARD_OPTION " + 
+				"WHERE PROJECT_ID=? " + 
+				"ORDER BY option_id ";
+		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id});
-		try 
-		{
-			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<Reward_option> Reward_optionList = new ArrayList<Reward_option>();	// User들의 리스트 생성
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행
+			
+			List<Reward_option> Reward_optionList = new ArrayList<Reward_option>();
+			
 			while (rs.next()) {
-				Reward_option ro = new Reward_option
-					(			
+				Reward_option ro = new Reward_option(			
 					rs.getInt("OPTION_ID"),
 					rs.getInt("PROJECT_ID"),
 					rs.getInt("PRICE"),
 					rs.getInt("SHIPPING_FEE"),
 					rs.getString("DESCRIPTION"),
 					rs.getInt("BACKER_COUNT"),
-					rs.getInt("AMOUNT_LIMIT")
-					);
-					Reward_optionList.add(ro);				
-			}		
+					rs.getInt("AMOUNT_LIMIT"));
+				Reward_optionList.add(ro);				
+			}
+			
 			return Reward_optionList;
 		}catch (Exception ex) {
 			ex.printStackTrace();

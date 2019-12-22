@@ -523,7 +523,6 @@ public class ProjectDAO {
 
 	public Project getProjectById(int PK_ID) {
 		String searchQuery = query + "WHERE project_id = ?";
-
 		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] { PK_ID });
 
 		try {
@@ -555,20 +554,20 @@ public class ProjectDAO {
 	}
 
 	public int getNumberofProjects() {
-	String sql = "SELECT * FROM PROJECT ";
-	jdbcUtil.setSqlAndParameters(sql, null);
-	int count=0;
-	try {
-		ResultSet rs = jdbcUtil.executeQuery();	
-		while (rs.next()) 
-		{
-			count++;
+		String sql = "SELECT * FROM PROJECT ";
+		jdbcUtil.setSqlAndParameters(sql, null);
+		int count=0;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			while (rs.next()) 
+			{
+				count++;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
 		}
-	} catch (Exception ex) {
-		ex.printStackTrace();
-	} finally {
-		jdbcUtil.close();		
-	}
-	return count;
+		return count;
 	}
 }

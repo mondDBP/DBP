@@ -227,9 +227,10 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
 	public int getSequence() throws SQLException{
 		int result = 1;
-		String sql = "SELECT user_id_seq.nextval FROM DUAL";
+		String sql = "SELECT user_id_seq.nextval FROM DUAL ";
 		jdbcUtil.setSqlAndParameters(sql, null);
 		try {				
 			ResultSet rs = jdbcUtil.executeQuery();

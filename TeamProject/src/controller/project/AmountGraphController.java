@@ -24,12 +24,9 @@ public class AmountGraphController implements Controller{
 	private static final Logger log = LoggerFactory.getLogger(AmountGraphController.class);
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-    	
+		
     	BackOrderManager backmanager = BackOrderManager.getInstance();
 
-
-		
 		SimpleDateFormat format1 = new SimpleDateFormat("yy/MM/dd");
 				
 		Date time = new Date();
