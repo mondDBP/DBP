@@ -11,12 +11,15 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import controller.user.UserSessionUtils;
+import model.Back_Order;
 import model.Card;
 import model.Project;
 import model.Reward_option;
 import model.User;
+import model.dao.Back_OrderDAO;
 import model.dao.CardDAO;
 import model.dao.Reward_optionDAO;
+import model.service.ExistingUserException;
 import model.service.ProjectManager;
 import model.service.UserManager;
 
@@ -33,29 +36,20 @@ public class BackProjectController implements Controller {
         UserManager userMan = UserManager.getInstance();
         User user = userMan.findUser(userId);
         
-        log.debug(userId);
-        //log.debug(String.valueOf(user.getUser_id_pk_seq()));
-        
-		
         // 프로젝트 정보 
         ProjectManager projMan = ProjectManager.getInstance();
         String proj_title = request.getParameter("title");
         
         Project proj = projMan.findProject(proj_title);
-        
-        log.debug(String.valueOf(proj.getProject_id()));
+        int projectId = proj.getProject_id();
         
         // 리워드 옵션 
         Reward_optionDAO rewardOpt = new Reward_optionDAO();
-        List<Reward_option> rewardOptList = rewardOpt.findReward_optionListbyProject(proj.getProject_id());
-        
-        log.debug(rewardOptList.get(0).getDescription());
+        List<Reward_option> rewardOptList = rewardOpt.findReward_optionListbyProject(projectId);
         
         // 카드 정보
         CardDAO cardDao = new CardDAO();
         List<Card> card = cardDao.findCardListById(userId);
-        
-        log.debug(card.get(0).getCard_company());
         
         // 리턴 값 
         request.setAttribute("curUserId", userId);
@@ -63,8 +57,9 @@ public class BackProjectController implements Controller {
         request.setAttribute("rewardOptList", rewardOptList);
         request.setAttribute("user", user);
         request.setAttribute("card", card);
-        
+
         return "/project/back/backingForm.jsp";
+
 	}
 
 }

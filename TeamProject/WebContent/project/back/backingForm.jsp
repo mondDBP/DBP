@@ -11,60 +11,49 @@
 <script>
 	var cnt = 2;
 	
-	function projectCreate() {
-		if (form.title.value == "") {
-			alert("제목을 입력하세요.");
+	function backProject() {
+		if (form.rewardOpt.value == "") {
+			alert("리워드 옵션을 입력하세요.");
 			form.title.focus();
 			return false;
 		}
-		if (form.description.value == "") {
-			alert("설명을 입력하세요.");
-			form.description.focus();
+		
+		if (form.amount_pledged.value == "") {
+			alert("후원 금액을 입력하세요.");
+			form.amount_pledged.focus();
 			return false;
 		}
-
-		if (form.goal.value == "") {
-			alert("목표금액을 입력하세요.");
-			form.goal.focus();
+		if (form.address.value == "") {
+			alert("주소를 입력하세요.");
+			form.address.focus();
 			return false;
 		}
-		if (form.funding_period.value == "") {
-			alert("모금기간을 입력하세요.");
-			form.period.focus();
+		if (form.card_company.value == "") {
+			alert("카드사를 입력하세요.");
+			form.card_company.focus();
 			return false;
 		}
-		if (form.category_name.value == "") {
-			alert("카테고리를 선택하세요.");
+		if (form.card_number.value == "") {
+			alert("카드번호를 입력하세요.");
+			form.card_number.focus();
 			return false;
 		}
-
-		form.submit();
+		if (form.card_exp.value == "") {
+			alert("카드 유효기간을 입력하세요.");
+			form.card_exp.focus();
+			return false;
+		}
+		
+		//document.form.action = "<c:url value='/project/back/success'><c:param name='title' value='${project.title}'/></c:url>";
+		document.form.submit();
 	}
 	
-	function rowAdd() {
-		var table = document.getElementById("reward");
-		var rowlen = table.rows.length;
-		var row = table.insertRow(rowlen-1);
-		var rowItem = "<tr>";
-		rowItem += "<td height='10'>" + cnt++ + "</td>";
-		rowItem += "<td height='10'><input type='number' name='optPrice'></td>";
-		rowItem += "<td height='10'><input type='number' name='optShippingFee'></td>";
-		rowItem += "<td height='10'><input type='text' name='optDesc'></td>";
-		rowItem += "<td height='10'><input type='number' name='optLimit'></td>";
-		rowItem += "</tr>";
-		row.innerHTML += rowItem;
+	function selectOpt(){
+	    var obj = document.getElementById("rewardOpt");
+	    var selectValue = obj.options[obj.selectedIndex].value;
+	   
+		document.form.option.value = selectValue;
 	}
-
-	$("#gdsImg").change(
-			function() {
-				if (this.files && this.files[0]) {
-					var reader = new FileReader;
-					reader.onload = function(data) {
-						$(".select_img img").attr("src", data.target.result).width(500);
-					}
-					reader.readAsDataURL(this.files[0]);
-				}
-			});
 </script>
 <style>
 table {
@@ -112,14 +101,15 @@ div {
 		<<script type='text/javascript'>alert(1);</script>
 	</c:if>
 
-	<form name="form" method="POST" enctype="multipart/form-data" action="<c:url value='/project/backSuccess' />">
+	<form name="form" enctype="multipart/form-data" action = "<c:url value='/project/back/success'/>" >
 		<table border="1" style="margin-top: 20px;">
 			<tr>
 				<td colspan="2" class="title">프로젝트 후원</td>
 			</tr>
 			<tr>
 				<td class="title">제목</td>
-				<td>${project.title }</td>
+				<td>${project.title }
+				<input type="hidden" name="title" value="${project.title}"></td>
 			</tr>
 
 			<tr>
@@ -135,8 +125,8 @@ div {
 						</tr>
 						<c:forEach var="opt" items="${rewardOptList }" varStatus="vs">
 							<tr>
-								<td height="10">${vs.index }</td>
-								<td height="10">${opt.price }</td>
+								<td height="10">${vs.count }</td>
+								<td height="10">${opt.price }~</td>
 								<td height="10">${opt.shipping_fee }</td>
 								<td height="10">${opt.description }</td>
 								<td height="10">${opt.amount_limit }</td>
@@ -147,8 +137,19 @@ div {
 			</tr>
 
 			<tr>
-				<td class="title">리워드 옵션 입력<font color="red">*</font></td>
-				<td><input type="text" name="rewardOpt"></td>
+				<td class="title">리워드 옵션 선택<font color="red">*</font></td>
+				<td>
+				<input type='hidden' value='${rewardOptList[0].option_id }' name='option' />
+				<select id="rewardOpt" onchange="selectOpt()">
+					<c:forEach var="opt" items="${rewardOptList }" varStatus="vs">
+						<option value="${opt.option_id }">${vs.count }</option>
+					</c:forEach>
+				</select>번</td>
+			</tr>
+			
+			<tr>
+				<td class="title">후원 금액 입력<font color="red">*</font></td>
+				<td><input type="text" name="amount_pledged">원</td>
 			</tr>
 			
 			<tr>
@@ -176,13 +177,12 @@ div {
 
 			<tr>
 				<td colspan="2" style="background-color: #ececec">
-					<div>
-						<input type="submit" value="확인" onClick="projectCreate()">
+					<div id="submit">
+						<input type="submit" value="확인" onClick="backProject()">
 					</div>
 				</td>
 			</tr>
 		</table>
-		
 	</form>
 </body>
 </html>

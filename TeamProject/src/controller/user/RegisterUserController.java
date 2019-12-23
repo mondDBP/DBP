@@ -28,7 +28,6 @@ public class RegisterUserController implements Controller {
 
 			String[] name = request.getParameterValues("interest");//interest 테이블에 들어갈 checkbox선택 내용
 
-
 			log.debug("Create User : {}", user);
 
 		try {

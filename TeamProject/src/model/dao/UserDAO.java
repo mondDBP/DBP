@@ -192,13 +192,13 @@ public class UserDAO {
 		return null;
 	}
 //	¿Ü·¡Å° from Backorder
-	public User getUserById(int PK_ID) {
+	public User getUserById(String user_id) {
 		String query = "SELECT user_id_pk_seq, userId, password, name, phone, " +
 					"       address, email, email2, resid_id, resid_id2" +
 					"FROM USER ";
 		
-		String searchQuery = query + "WHERE user_id_pk_seq = ?";
-		Object[] param = new Object[] {PK_ID};
+		String searchQuery = query + "WHERE userId = ?";
+		Object[] param = new Object[] {user_id};
 		
 		jdbcUtil.setSqlAndParameters(searchQuery, new Object[] {param});
 //		jdbcUtil.setSql(searchQuery);

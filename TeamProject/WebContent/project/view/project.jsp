@@ -16,6 +16,16 @@
 		document.form.submit();
 	}
 
+<<<<<<< HEAD
+=======
+/* 	function likeProject(vs) {
+
+		 
+		
+		document.form.action = "<c:url value='/project/like' />";
+		document.form.submit();
+	} */
+>>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
 </script>
 <style>
 table {

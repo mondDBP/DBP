@@ -27,7 +27,6 @@
 		form.submit();
 	}
 	
-	
 	function selectSorting(){
 	    var obj = document.getElementById("sortProj");
 	    var selectValue = obj.options[obj.selectedIndex].value;
@@ -75,7 +74,7 @@
 			<c:otherwise>
 				<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
 					&nbsp;&nbsp;
-</c:otherwise>
+			</c:otherwise>
 			</c:choose>
 
 				</div>
