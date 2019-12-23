@@ -8,7 +8,7 @@ import model.Project;
 import model.dao.LikesDAO;
 import model.dao.UserDAO;
 
-public class LikesManager {//프로젝트 존재여부
+public class LikesManager {
 	private static LikesManager likesMan = new LikesManager();
 	private LikesDAO likesDAO;
 	private UserDAO userDAO;
@@ -27,7 +27,7 @@ public class LikesManager {//프로젝트 존재여부
 	}
 	
 	public int create(Likes likes) throws SQLException, ExistingLikesException {//좋아요 누르면 실행되는 메소드
-//		ProjectDAO에 extistingProject 메소드를 생성해야 한다
+
 		if (likesDAO.existingLikes(likes) == true) { 
 			throw new ExistingLikesException("이미 좋아요를 누른 프로젝트입니다.");
 		}

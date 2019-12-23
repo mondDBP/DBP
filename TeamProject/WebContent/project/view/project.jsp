@@ -1,8 +1,10 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 	String curUserId = (String) request.getAttribute("curUserId");
+
 %>
 
 <html>
@@ -14,14 +16,6 @@
 		document.form.submit();
 	}
 
-/* 	function likeProject(vs) {
-
-		 
-		
-		document.form.action = "<c:url value='/project/like' />";
-		document.form.submit();
-	} */
-	function 
 </script>
 <style>
 table {
@@ -74,11 +68,12 @@ div {
 				<td colspan="3" style="background-color: #ececec">
 					<div>
 						<input type="button" value="후원하기" onClick="backProject()">
-					<!-- 	<input type="button" value="좋아요" onClick="likeProject('${project.title}')"> -->
+				<!-- 	 	<input type="button" value="좋아요" onClick="likeProject()">  -->
 			 	 <a href="<c:url value='/project/like' >
 	     		   <c:param name='title' value='${project.title}'/>
 			 	 </c:url>">좋아요</a> &nbsp;
 					
+					<c:if test="${kk != 'hi' }">
 						 <c:choose>
 						  <c:when test="${registerFailed}">
 						   <c:out value="좋아요를 이미 누르셨습니다!" />  
@@ -86,12 +81,11 @@ div {
 						  <c:when test="${not registerFailed}">
 						   <c:out value="좋아요가 성공적으로 등록되었습니다!"/>
 						  </c:when>
-					      <c:when test="${kk=='hi'}">
-						   <c:out value="좋아요를 누르세요"/>
-						  </c:when> 
 						 </c:choose>
-				
-	    				   
+					</c:if>
+	    		    <c:if test="${kk=='hi'}">
+					   <c:out value="좋아요를 누르세요"/>
+				    </c:if> 
 					</div>
 				</td>
 			</tr>
