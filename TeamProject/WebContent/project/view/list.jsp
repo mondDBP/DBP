@@ -53,33 +53,77 @@
 <div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
-				<a class="hpName" href="<c:url value='/' />">FUNDAY</a>
+				<a class="hpName" href="<c:url value='/main/page' />">FUNDAY</a>
 			</div>
-			
-			<div class="leftproject-bar">
+		
+		<div class="leftproject-bar">
 			<a class="view-project" href="<c:url value='/project/view/category.jsp' />">프로젝트 둘러보기</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
 		</div>
-		<div class="rightproject-bar">
+		
+		<c:choose>
+			<c:when test='${empty curUserId}'>
+				<div class="rightproject-bar">
 					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-					&nbsp;&nbsp;&nbsp;
-			<c:choose>
-			 <c:when test='${empty curUserId}'>			
-			 <a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
-				
+					<a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/login/login.jsp' />" class="view-login">
+					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
+					</a>
+				</div>
+			</c:when>
+			<c:when test='${!empty u_img}'>
+				<div class="rightproject-bar">
+					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png'/>" style="width: auto; height: 35px;"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class="view-user" style="padding: 0 10px;">
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}님</a>
+					</span>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
+					<img src="<c:url value='/images/${u_img}' />" alt="profile" style="width: auto; height: 35px;">
+					</a>
+				</div>
 			</c:when>
 			<c:otherwise>
-				<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+				<div class="rightproject-bar">
+					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class="view-user" style="padding: 0 10px;">
+					<%
+						if(curUserId.equals("admin1234") == false){
+					%>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">${userId}님</a>
+					<%
+						}
+					%>
+					</span>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<%
+						if(curUserId != null && curUserId.equals("admin1234")){
+					%>
+					<a href="<c:url value='/user/list' />" class="view-admin">관리자 페이지</a>
+					<%
+					}
+					%>
+					&nbsp;&nbsp;&nbsp;
+					<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
 					&nbsp;&nbsp;
+					<%
+						if(curUserId.equals("admin1234") == false){
+					%>
+					<a href="<c:url value='/user/mypage/mypage_menu.jsp' />" class="view-mypage">
+					<img src="<c:url value='/images/user_account.png' />" alt="profile" style="width: auto; height: 35px;">
+					</a>
+					<%
+					}
+					%>
+				</div>
 			</c:otherwise>
-			</c:choose>
-
-				</div>
-				</div>
-				</div>
+		</c:choose>
+	</div>
+	</div>
 	<form name="form" method="POST"
 		action="<c:url value='/project/view' />">
 		<div style="text-align: right; width: auto; margin: auto; padding: 30px;">
