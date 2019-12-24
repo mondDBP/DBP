@@ -8,7 +8,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="title" value="${project.title}" />
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
