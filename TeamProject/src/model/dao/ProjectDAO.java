@@ -301,7 +301,7 @@ public class ProjectDAO {
 				Project pj = new Project(		
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
-						rs.getString("TITLE"),
+						title,
 						rs.getDate("START_DATE"),
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
@@ -586,6 +586,22 @@ public class ProjectDAO {
 			jdbcUtil.close();		
 		}
 		return rs;
+	}
+	
+	public int updateFundRate(int proj_id, int money) {
+		String sql = "UPDATE PROJECT SET fund_rate = total_money / goal * 100 WHERE project_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { money, proj_id} );
 		
+		int rs = 0;
+		
+		try {
+			rs = jdbcUtil.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();		
+		}
+		return rs;
 	}
 }
