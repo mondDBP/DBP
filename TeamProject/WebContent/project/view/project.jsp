@@ -21,7 +21,7 @@
 		document.form.action = "<c:url value='/project/back'><c:param name='title' value='${project.title}'/></c:url>";
 		document.form.submit();
 	}
-
+//
 	/* 	function likeProject(vs) {
 
 		 
