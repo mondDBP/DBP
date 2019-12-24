@@ -98,7 +98,7 @@ div {
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 	<!-- 로그인 하지 않은 사용자는 프로젝트 등록 불가 -->
 	<c:if test="${userId eq null or userid eq ''}">
-		<c:redirect url="/main/main.jsp" />
+		<c:redirect url="/user/login/login.jsp" />
 		<!-- <script type='text/javascript'>alert(1);</script>-->
 	</c:if>
 

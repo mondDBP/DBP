@@ -58,14 +58,16 @@ public class UserManager {
 		return userDAO.remove(userId);
 	}
 
-	public User findUser(String userId)
-		throws SQLException, UserNotFoundException {
-		User user = userDAO.findUser(userId);
-		
-		if (user == null) {
-			throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
-		}		
-		return user;
+	public User findUser(String userId) {
+		User user;
+		try {
+			user = userDAO.findUser(userId);
+			return user;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public int userId(String userId) throws SQLException, ExistingLikesException {

@@ -4,18 +4,23 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String curUserId = (String) request.getAttribute("curUserId");
-
 %>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css' />" media="all" />
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="<c:url value='/main/jquery-1.8.0.min.js' />"></script>
+<script src="<c:url value='/main/main.js' />"></script>
 <script>
 	function backProject() {
 		document.form.action = "<c:url value='/project/back'><c:param name='title' value='${project.title}'/></c:url>";
 		document.form.submit();
 	}
-
 
 	/* 	function likeProject(vs) {
 
@@ -54,9 +59,41 @@ div {
 	text-align: center;
 }
 </style>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/viewProjectList.css' />" media="all" />
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>
+	<div class="header-wrap">
+		<div class="header">
+			<div class="hpName-wrap">
+				<a class="hpName" href="<c:url value='/' />">FUNDAY</a>
+			</div>
+			
+			<div class="leftproject-bar">
+			<a class="view-project" href="<c:url value='/project/view/category.jsp' />">프로젝트 둘러보기</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
+		</div>
+		<div class="rightproject-bar">
+					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					&nbsp;&nbsp;&nbsp;
+			<c:choose>
+			 <c:when test='${empty curUserId}'>			
+			 <a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
+				
+			</c:when>
+			<c:otherwise>
+				<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
+					&nbsp;&nbsp;
+			</c:otherwise>
+			</c:choose>
+
+				</div>
+				</div>
+				</div>
 	<form name="form" method="POST">
 		<table border="1" style="text-align:center; margin-top: 20px;">
 			<tr>

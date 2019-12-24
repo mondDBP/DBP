@@ -90,15 +90,8 @@ div {
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 	<!-- 로그인 하지 않은 사용자는 프로젝트 후원 불가 -->
-	<c:if test="${userId eq null or userid eq ''}">
-		<c:redirect url="/main/main.jsp" />
-		<!-- <script type='text/javascript'>alert(1);</script>-->
-	</c:if>
-
-	<!-- 프로젝트 등록이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-	<c:if test="${registerFailed}">
-		<c:out value="${exception.getMessage()}" />
-		<<script type='text/javascript'>alert(1);</script>
+	<c:if test="${curUserId eq null}">
+		<c:redirect url="/user/login/login.jsp" />
 	</c:if>
 
 	<form name="form" enctype="multipart/form-data" action = "<c:url value='/project/back/success'/>" >
