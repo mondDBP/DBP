@@ -16,11 +16,8 @@ public class ViewUserController implements Controller {
 		String userId = request.getParameter("userId");
 
     	User user = null;
-    	try {
-			user = manager.findUser(userId);	// 사용자 정보 검색
-		} catch (UserNotFoundException e) {				
-	        return "redirect:/user/list";
-		}	
+		user = manager.findUser(userId);	// 사용자 정보 검색
+		
 		
     	request.setAttribute("user", user);		// 사용자 정보 저장				
 		return "/Admin/controlUser2.jsp";				// 사용자 보기 화면으로 이동

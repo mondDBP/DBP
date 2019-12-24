@@ -25,10 +25,7 @@ public class UserDAO {
 	public UserDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
-		
-	/**
-	 * 사용자 관리 테이블에 새로운 사용자 생성.
-	 */
+
 	public int update(User user) throws SQLException {
 		String sql = "UPDATE USERS "
 					+ "SET pwd=?, name=?, phone_number=?, address=?, email=? "
@@ -126,41 +123,8 @@ public class UserDAO {
 	 * 전체 사용자 정보를 검색한 후 현재 페이지와 페이지당 출력할 사용자 수를 이용하여
 	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
 	 */
-	/*public List<User> findUserList(int currentPage, int countPerPage) throws SQLException {
-		String sql = "SELECT userId, name, email, phone, address " 
-					+ "FROM USERS "
-					+ "ORDER BY userId";
-		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
-				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
-				ResultSet.CONCUR_READ_ONLY);						
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();				// query 실행			
-			int start = ((currentPage-1) * countPerPage) + 1;	// 출력을 시작할 행 번호 계산
-			if ((start >= 0) && rs.absolute(start)) {			// 커서를 시작 행으로 이동
-				List<User> userList = new ArrayList<User>();	// User들의 리스트 생성
-				do {
-					User user = new User(			// User 객체를 생성하여 현재 행의 정보를 저장
-							rs.getString("userId"),
-							null,
-							rs.getString("name"),
-							rs.getString("email"),
-							rs.getString("phone"),
-							rs.getString("address"),
-							null);
-					userList.add(user);							// 리스트에 User 객체 저장
-				} while ((rs.next()) && (--countPerPage > 0));		
-				return userList;							
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return null;
-	}
-	*/
-	public List<Back_Order> userBack_OrderList(int userId) {
+
+/*	public List<Back_Order> userBack_OrderList(int userId) {
 		String sql = "SELECT * " 
      		   + "FROM BACK_ORDER "
      		   + "WHERE user_id = ?"
@@ -190,7 +154,7 @@ public class UserDAO {
 			jdbcUtil.close();		// resource 반환
 		}
 		return null;
-	}
+	}*/
 //	외래키 from Backorder
 	public User getUserById(String user_id) {
 		String query = "SELECT user_id_pk_seq, userId, password, name, phone, " +

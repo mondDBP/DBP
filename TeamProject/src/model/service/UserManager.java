@@ -122,7 +122,7 @@ public class UserManager {
 		return projDAO.create(proj);		
 	}
 
-	public int updateCommunity(Project proj) throws SQLException {
+	/*public int updateCommunity(Project proj) throws SQLException {
 		return projDAO.update(proj);				
 	}
 	
@@ -136,6 +136,6 @@ public class UserManager {
 	
 	public List<User> findProjectBackers(int project_id) throws SQLException {
 		return projDAO.findUsersOnProject(project_id);
-	}
+	}*/
 
 }
