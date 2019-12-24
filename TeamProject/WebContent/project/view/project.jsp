@@ -9,6 +9,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -31,6 +35,11 @@
 	}
 
 /* 	function likeProject(vs) {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f1322af29da5c2c9ffa6ae58e84bd3a6533fff21
+>>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
 	/* 	function likeProject(vs) {
 		
 		document.form.action = "<c:url value='/project/like' />";
@@ -74,7 +83,10 @@ div {
 	<div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
 				<a class="hpName" href="<c:url value='/main/page' />">FUNDAY</a>
 			</div>
 		
@@ -145,8 +157,12 @@ div {
 			</c:otherwise>
 		</c:choose>
 	</div>
+<<<<<<< HEAD
 	</div>
 
+=======
+				</div>
+>>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
 	<form name="form" method="POST">
 		<table border="1" style="text-align:center; margin-top: 20px;">
 			<tr>

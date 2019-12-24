@@ -100,6 +100,10 @@ public class ProjectManager {//프로젝트 존재여부
 		return projDAO.userCreateProjectList(userId);
 	}
 	
+	public List<Project> findProjectList_ByTitle(String title) throws SQLException {
+		return projDAO.findProjectList_ByTitle(title);
+	}
+	
 	public ProjectDAO getProjectDAO() {
 		return this.projDAO;
 	}
@@ -107,4 +111,9 @@ public class ProjectManager {//프로젝트 존재여부
 	public int getNumberofProjects() {
 		return projDAO.getNumberofProjects();
 	}
+	
+	public int updateTotalMoney(int proj_id, int money) {
+		return projDAO.updateTotalMoney(proj_id, money);
+	}
+	
 }

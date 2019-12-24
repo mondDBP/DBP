@@ -570,4 +570,38 @@ public class ProjectDAO {
 		}
 		return count;
 	}
+	
+	public int updateTotalMoney(int proj_id, int money) {
+		String sql = "UPDATE PROJECT SET total_money = total_money + ? WHERE project_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { money, proj_id} );
+		
+		int rs = 0;
+		
+		try {
+			rs = jdbcUtil.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();		
+		}
+		return rs;
+	}
+	
+	public int updateFundRate(int proj_id, int money) {
+		String sql = "UPDATE PROJECT SET fund_rate = total_money / goal * 100 WHERE project_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { money, proj_id} );
+		
+		int rs = 0;
+		
+		try {
+			rs = jdbcUtil.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();		
+		}
+		return rs;
+	}
 }
