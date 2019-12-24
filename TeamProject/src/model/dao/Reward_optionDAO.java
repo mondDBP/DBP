@@ -204,6 +204,25 @@ public class Reward_optionDAO {
 		return null;
 	}
 	
-
+	public int updateReWardOption(int optId) {
+		String sql = "UPDATE REWARD_OPTION SET amount_limit = amount_limit - 1 AND backer_count = backer_count + 1 WHERE option_id = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {optId});
+		
+		int rs = 0;
+		try {
+			rs = jdbcUtil.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		
+		return rs;
+	}
 
 }

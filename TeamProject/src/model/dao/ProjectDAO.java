@@ -588,9 +588,9 @@ public class ProjectDAO {
 		return rs;
 	}
 	
-	public int updateFundRate(int proj_id, int money) {
+	public int updateFundRate(int proj_id) {
 		String sql = "UPDATE PROJECT SET fund_rate = total_money / goal * 100 WHERE project_id = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { money, proj_id} );
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { proj_id} );
 		
 		int rs = 0;
 		

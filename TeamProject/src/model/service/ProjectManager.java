@@ -116,4 +116,7 @@ public class ProjectManager {//프로젝트 존재여부
 		return projDAO.updateTotalMoney(proj_id, money);
 	}
 	
+	public int updateFundRate(int proj_id) {
+		return projDAO.updateFundRate(proj_id);
+	}
 }
