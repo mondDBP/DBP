@@ -171,6 +171,11 @@ div {
 					
 					<c:if test="${kk != 'hi' }">
 						 <c:choose>
+						  <c:when test="${empty curUserId}">
+						  <script>
+						   alert('<c:out value="로그인해주세요"/>')
+						   </script>
+						   </c:when>
 						  <c:when test="${registerFailed}">
 							<script>
 							alert('<c:out value="좋아요를 이미 누르셨습니다!"/>')
