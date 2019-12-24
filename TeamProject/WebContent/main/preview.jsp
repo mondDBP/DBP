@@ -104,9 +104,9 @@ String curUserId = (String)request.getAttribute("curUserId");
 			</table>
 		</div>
 		<br>
-		<div>
+		<div style="text-align:center;">
 			<br><a href="<c:url value='/project/list/likes' />" target="_top">
-				<font style="font-size:1.5em; font-weight: bold; padding-left:300px;" >인기 추천 프로젝트</font>
+				<font style="font-size:1.5em; font-weight: bold;" >인기 추천 프로젝트</font>
 			</a>
 		</div>
 		<div class="kind_1_project">
