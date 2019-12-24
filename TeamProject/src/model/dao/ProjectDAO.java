@@ -332,9 +332,9 @@ public class ProjectDAO {
 		} else if (condition.equals("fund_rate")) {
 			sql = "SELECT * FROM Project ORDER BY fund_rate desc";
 		} else if (condition.equals("likes")) {
-			sql = "SELECT project_id, count(user_id) as cnt_likes "
-					+ "FROM Project p JOIN Likes l On p.project_id = l.project.id "
-					+ "GROUP BY project_id ORDER BY cnt_likes desc";
+			sql = "SELECT p.PROJECT_ID, p.USER_ID, TITLE, START_DATE, DESCRIPTION, IMAGE, GOAL, FUND_RATE, REST_DAY, FUNDING_PERIOD, TOTAL_MONEY, CATEGORY_NAME " + 
+					   "FROM Project p JOIN (SELECT p.project_id, count(l.user_id) as cnt_likes FROM Project p LEFT OUTER JOIN Likes l ON p.project_id = l.project_id GROUP BY p.project_id) l ON p.project_id = l.project_id " + 
+					   "ORDER BY l.cnt_likes desc";
 		}
 
 		jdbcUtil.setSqlAndParameters(sql, null);	
@@ -368,6 +368,40 @@ public class ProjectDAO {
 		return null;
 	}
 
+	public List<Project> projectListOrderByLikes() throws SQLException {
+	      String sql = "SELECT p.PROJECT_ID, TITLE, START_DATE, DESCRIPTION, IMAGE, GOAL, FUND_RATE, REST_DAY, TOTAL_MONEY, CATEGORY_NAME " + 
+				   "FROM Project p JOIN (SELECT p.project_id, count(l.user_id) as cnt_likes FROM Project p LEFT OUTER JOIN Likes l ON p.project_id = l.project_id GROUP BY p.project_id) l ON p.project_id = l.project_id " + 
+				   "ORDER BY l.cnt_likes desc";                 
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		
+				List<Project> projList = new ArrayList<Project>();	
+				while (rs.next()) {
+					Project proj = new Project(			
+							rs.getInt("PROJECT_ID"),
+							rs.getInt("USER_ID"),
+							rs.getString("TITLE"),
+							rs.getDate("START_DATE"), 
+							rs.getString("IMAGE"),
+							rs.getString("DESCRIPTION"),
+							rs.getInt("GOAL"),
+							rs.getInt("FUND_RATE"),
+							rs.getInt("REST_DAY"),
+							rs.getInt("FUNDING_PERIOD"),
+							rs.getInt("TOTAL_MONEY"),
+							rs.getString("CATEGORY_NAME"));
+					projList.add(proj);			
+				}		
+				return projList;					
+					
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		
+			}
+			return null;
+		}
+	
 	public List<Project> projectListOrderByFundRate() throws SQLException {
       String sql = "SELECT * FROM Project "
    				+ "ORDER BY fund_rate desc";                         
