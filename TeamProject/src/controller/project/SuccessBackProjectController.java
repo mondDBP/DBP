@@ -34,18 +34,24 @@ public class SuccessBackProjectController implements Controller {
         Project proj = projMan.findProject(proj_title);
         int projectId = proj.getProject_id();
         
+        int money = Integer.parseInt(request.getParameter("amount_pledged"));
+        
+        // 총 모금액 업데이트
+        projMan.updateTotalMoney(projectId, money);
+        
+        // 후원 정보 등록
         Date date_now = new Date(System.currentTimeMillis()); // 현재시간을 가져와 Date형으로 저장한다
         SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy/MM/dd");
         
         Back_Order backOrder = new Back_Order(
-        		userId, projectId,
-        		Integer.parseInt(request.getParameter("amount_pledged")),
+        		userId, projectId, money,
         		Integer.parseInt(request.getParameter("option")), fourteen_format.format(date_now),
         		proj.getRest_day(), proj.getFund_rate()>100?1:0, 0);
         
         Back_OrderDAO backOrderDao = new Back_OrderDAO();
         backOrderDao.insertBack_Order(backOrder);
 
+        // 리워드 옵션 
         return "/project/back/success.jsp";
 	}
 

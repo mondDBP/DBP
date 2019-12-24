@@ -107,4 +107,9 @@ public class ProjectManager {//프로젝트 존재여부
 	public int getNumberofProjects() {
 		return projDAO.getNumberofProjects();
 	}
+	
+	public int updateTotalMoney(int proj_id, int money) {
+		return projDAO.updateTotalMoney(proj_id, money);
+	}
+	
 }

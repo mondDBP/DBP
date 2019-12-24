@@ -58,7 +58,6 @@ public class BackProjectController implements Controller {
 		request.setAttribute("card", card);
 
 		return "/project/back/backingForm.jsp";
-
 	}
 
 }

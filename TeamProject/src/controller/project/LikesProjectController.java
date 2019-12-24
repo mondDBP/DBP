@@ -24,13 +24,14 @@ public class LikesProjectController implements Controller{
 	 public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		    
 		 try {
+			 HttpSession session = request.getSession();
+		     String userId = (String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY);
+		     request.setAttribute("curUserId", userId);
+		     
 		 ProjectManager projManager = ProjectManager.getInstance();
 		 UserManager userManager = UserManager.getInstance();
 		 LikesManager likesManager = LikesManager.getInstance();
 		 
-		 HttpSession session = request.getSession();
-	     String userId = (String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY);
-	     
 	     Project proj = null;
 		 String proj_title = request.getParameter("title");
 		 proj = projManager.findProject(proj_title);		// 프로젝트 정보 검색
@@ -57,6 +58,7 @@ public class LikesProjectController implements Controller{
 		 return "/project/view/project.jsp";	 
 		 }
 		 catch(ExistingLikesException e) {
+
 			  request.setAttribute("registerFailed", true);
 				request.setAttribute("exception", e);
 				 return "/project/view/project.jsp";	 
