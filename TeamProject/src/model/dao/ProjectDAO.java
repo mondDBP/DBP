@@ -301,7 +301,7 @@ public class ProjectDAO {
 				Project pj = new Project(		
 						rs.getInt("PROJECT_ID"),
 						rs.getInt("USER_ID"),
-						title,
+						rs.getString("TITLE"),
 						rs.getDate("START_DATE"),
 						rs.getString("IMAGE"),
 						rs.getString("DESCRIPTION"),
