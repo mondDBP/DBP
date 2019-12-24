@@ -211,9 +211,6 @@ public class Reward_optionDAO {
 		int rs = 0;
 		try {
 			rs = jdbcUtil.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

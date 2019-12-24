@@ -60,6 +60,7 @@ public class SuccessBackProjectController implements Controller {
         String result = backOrderDao.insertBack_Order(backOrder);
         
         request.setAttribute("result", result);
+        request.setAttribute("curUserId", userId);
         
         return "/project/back/success.jsp";
 	}

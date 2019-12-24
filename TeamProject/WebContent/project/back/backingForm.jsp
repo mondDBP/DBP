@@ -192,6 +192,7 @@ div {
 				<td class="title">제목</td>
 				<td>${project.title }
 				<input type="hidden" name="title" value="${project.title}"></td>
+				<c:out value='${param.address}' />
 			</tr>
 
 			<tr>
@@ -200,8 +201,8 @@ div {
 					<table id="reward" border="1" style="margin-top: 20px;">
 						<tr height="30">
 							<td align='center'></td>
-							<td align='center'>가격</td>
-							<td align='center'>배송비</td>
+							<td align='center'>가격(원)</td>
+							<td align='center'>배송비(원)</td>
 							<td align='center'>설명</td>
 							<td align='center'>한정수량</td>
 						</tr>
@@ -231,7 +232,7 @@ div {
 			
 			<tr>
 				<td class="title">후원 금액 입력<font color="red">*</font></td>
-				<td><input type="text" name="amount_pledged">원</td>
+				<td>가격 + 배송비: <br><input type="text" name="amount_pledged">원</td>
 			</tr>
 			
 			<tr>
