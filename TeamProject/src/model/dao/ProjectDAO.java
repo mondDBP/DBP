@@ -323,12 +323,49 @@ public class ProjectDAO {
 		}
 		return null;
 	}
+	
+public List<Project> findProjectList_ByCategory(String category) throws SQLException {
+        
+		String findSql = "SELECT * " + "FROM PROJECT " + "WHERE CATEGORY_NAME = '?' ";
+		
+		String cg = category;
+		jdbcUtil.setSqlAndParameters(findSql, new Object[] {cg});	
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			List<Project> projList = new ArrayList<Project>();	
+			while (rs.next()) {
+				Project pj = new Project(		
+						rs.getInt("PROJECT_ID"),
+						rs.getInt("USER_ID"),
+						rs.getString("TITLE"),
+						rs.getDate("START_DATE"),
+						rs.getString("IMAGE"),
+						rs.getString("DESCRIPTION"),
+						rs.getInt("GOAL"),
+						rs.getInt("FUND_RATE"),
+						rs.getInt("REST_DAY"),
+						rs.getInt("FUNDING_PERIOD"),
+						rs.getInt("TOTAL_MONEY"),
+						rs.getString("CATEGORY_NAME")
+						);
+				projList.add(pj);		
+			}		
+			return projList;					
+				
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
 
 	public List<Project> projectListOrderByCondition(String condition) throws SQLException {
 		String sql = "";
 
 		if (condition.equals("start_date")) {
-			sql = "SELECT * FROM Project ORDER BY start_date";
+			sql = "SELECT * FROM Project ORDER BY start_date desc";
 		} else if (condition.equals("fund_rate")) {
 			sql = "SELECT * FROM Project ORDER BY fund_rate desc";
 		} else if (condition.equals("likes")) {
@@ -437,7 +474,7 @@ public class ProjectDAO {
 
 	public List<Project> projectListOrderByLatest() throws SQLException {
       String sql = "SELECT * FROM Project "
-   				+ "ORDER BY start_date";                         
+   				+ "ORDER BY start_date desc";                         
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
