@@ -9,7 +9,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatiblee" content="IE=edge,chrome=1" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -17,7 +16,6 @@
 <script src="<c:url value='/main/main.js' />"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css' />" media="all" />
 
-=======
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css' />" media="all" />
 
 <meta charset="UTF-8">
@@ -25,21 +23,15 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="<c:url value='/main/jquery-1.8.0.min.js' />"></script>
 <script src="<c:url value='/main/main.js' />"></script>
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
+
 <script>
 	function backProject() {
 		document.form.action = "<c:url value='/project/back'><c:param name='title' value='${project.title}'/></c:url>";
 		document.form.submit();
 	}
 
-<<<<<<< HEAD
-
 /* 	function likeProject(vs) {
-=======
 	/* 	function likeProject(vs) {
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
-
-		 
 		
 		document.form.action = "<c:url value='/project/like' />";
 		document.form.submit();
@@ -82,7 +74,7 @@ div {
 	<div class="header-wrap">
 		<div class="header">
 			<div class="hpName-wrap">
-<<<<<<< HEAD
+
 				<a class="hpName" href="<c:url value='/main/page' />">FUNDAY</a>
 			</div>
 		
@@ -155,35 +147,6 @@ div {
 	</div>
 	</div>
 
-=======
-				<a class="hpName" href="<c:url value='/' />">FUNDAY</a>
-			</div>
-			
-			<div class="leftproject-bar">
-			<a class="view-project" href="<c:url value='/project/view/category.jsp' />">프로젝트 둘러보기</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class="create-project" href="<c:url value='/project/register/creationForm.jsp' />">프로젝트 올리기</a>
-		</div>
-		<div class="rightproject-bar">
-					<a href="<c:url value='/project/search.jsp' />" class="search-project"><img src="<c:url value='/images/search.png' />" style="width: auto; height: 35px;"></a>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-					&nbsp;&nbsp;&nbsp;
-			<c:choose>
-			 <c:when test='${empty curUserId}'>			
-			 <a href="<c:url value='/user/login/login.jsp' />" class="view-login">로그인/회원가입</a>
-				
-			</c:when>
-			<c:otherwise>
-				<a href="<c:url value='/user/mypage/logout.jsp' />">로그아웃</a>
-					&nbsp;&nbsp;
-			</c:otherwise>
-			</c:choose>
-
-				</div>
-				</div>
-				</div>
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
 	<form name="form" method="POST">
 		<table border="1" style="text-align:center; margin-top: 20px;">
 			<tr>
