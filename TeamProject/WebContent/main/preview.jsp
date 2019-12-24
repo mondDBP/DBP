@@ -66,6 +66,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 							</div>
 						</td>
 					</c:forEach>
+					</tr>
 			</table>
 		</div>
 		<br>
@@ -99,6 +100,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 							</div>
 						</td>
 					</c:forEach>
+					</tr>
 			</table>
 		</div>
 		<br>
@@ -132,6 +134,7 @@ String curUserId = (String)request.getAttribute("curUserId");
 							</div>
 						</td>
 					</c:forEach>
+					</tr>
 			</table>
 		</div>
 		<br>

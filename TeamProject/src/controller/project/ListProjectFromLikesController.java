@@ -25,7 +25,7 @@ public class ListProjectFromLikesController implements Controller {
 		int numOfProj = manager.getNumberofProjects();
 		request.setAttribute("numOfProj", numOfProj);
 		
-		return "/project/view/listBylikes.jsp";
+		return "/project/view/listByLikes.jsp";
 		
     }
 }
