@@ -43,9 +43,8 @@ public class Back_OrderDAO {
 	 * 
 	 */
 //	후원정보 생성
-	public int insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
-		int result = 0;
-		
+	public String insertBack_Order(Back_Order bo) {//주문정보를 보여주므로 자료입력보다 다른테이블에 있는자료를 읽어서 생성
+		String str = "";
 		String insertQuery = "INSERT INTO Back_Order (user_id, project_id, amount_pledged, reward_option, back_date, "+
 							 "rest_day, is_success, is_paid) " + "VALUES (?, ?, ?, ?, TO_DATE(?), ?, ?, ?) ";
 		
@@ -118,13 +117,13 @@ public class Back_OrderDAO {
 		jdbcUtil.setSqlAndParameters(insertQuery, param);
 
 		try {
-			result = jdbcUtil.executeUpdate(); // insert 문 실행
-			System.out.println("후원자님이 밀어준 프로젝트가 후원정보에 등록되었습니다.");
+			int result = jdbcUtil.executeUpdate(); // insert 문 실행
+			str = "후원자님이 밀어준 프로젝트가 후원정보에 등록되었습니다.";
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.out.println("입력오류 발생!!!");
 			if (ex.getErrorCode() == 1)
-				System.out.println("동일한  후원정보가 이미 존재합니다.");
+				str = "동일한  후원정보가 이미 존재합니다.";
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -132,7 +131,7 @@ public class Back_OrderDAO {
 			jdbcUtil.commit();				
 			jdbcUtil.close(); // ResultSet, PreparedStatement, Connection 반환
 		}
-		return result; // insert 에 의해 반영된 레코드 수 반환
+		return str; // insert 에 의해 반영된 레코드 수 반환
 	}
 
 	public List<Back_Order> findBackList(String today) throws SQLException {

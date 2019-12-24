@@ -57,8 +57,10 @@ public class SuccessBackProjectController implements Controller {
         		proj.getRest_day(), proj.getFund_rate()>100?1:0, 0);
         
         Back_OrderDAO backOrderDao = new Back_OrderDAO();
-        backOrderDao.insertBack_Order(backOrder);
-
+        String result = backOrderDao.insertBack_Order(backOrder);
+        
+        request.setAttribute("result", result);
+        
         return "/project/back/success.jsp";
 	}
 
