@@ -30,18 +30,11 @@
 		document.form.action = "<c:url value='/project/back'><c:param name='title' value='${project.title}'/></c:url>";
 		document.form.submit();
 	}
-
-/* 	function likeProject(vs) {
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f1322af29da5c2c9ffa6ae58e84bd3a6533fff21
->>>>>>> branch 'master' of https://github.com/mondDBP/DBP.git
-	/* 	function likeProject(vs) {
+function likeProject(vs) {
 		
-		document.form.action = "<c:url value='/project/like' />";
+		document.form.action = "<c:url value='/project/like'><c:param name='title' value='${project.title}'/></c:url>";
 		document.form.submit();
-	} */
+	} 
 
 </script>
 <style>
@@ -171,10 +164,10 @@ div {
 				<td colspan="3" style="background-color: #ececec">
 					<div>
 						<input type="button" value="후원하기" onClick="backProject()">
-				<!-- 	 	<input type="button" value="좋아요" onClick="likeProject()">  -->
-			 	 <a href="<c:url value='/project/like' >
+				    	<input type="button" value="좋아요" onClick="likeProject()"> 
+			 	<%--  <a href="<c:url value='/project/like' >
 	     		   <c:param name='title' value='${project.title}'/>
-			 	 </c:url>">좋아요</a> &nbsp;
+			 	 </c:url>">좋아요</a> &nbsp; --%>
 					
 					<c:if test="${kk != 'hi' }">
 						 <c:choose>
